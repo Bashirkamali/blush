@@ -30,7 +30,9 @@ export default {
           700: '#a16207',
           800: '#854d0e',
           900: '#713f12',
-        }
+        },
+        ink: '#111827',
+        stone: '#374151',
       },
       fontFamily: {
         'serif': ['Playfair Display', 'Georgia', 'serif'],
@@ -65,12 +67,65 @@ export default {
           '50%': { transform: 'translateY(-20px)' },
         },
       },
+      boxShadow: {
+        soft: '0 10px 30px rgba(0,0,0,.08)',
+      },
+      borderRadius: {
+        '2xl': '1.25rem',
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      borderRadius: {
+        '2xl': '1rem',
+      },
+      boxShadow: {
+        'soft': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+      },
+      // RTL Support
+      textAlign: {
+        'start': 'start',
+        'end': 'end',
+      },
+      // Accessibility utilities
+      screens: {
+        'motion-reduce': {'raw': '(prefers-reduced-motion: reduce)'},
+      },
     },
   },
+<<<<<<< Current (Your changes)
+  plugins: [
+    // RTL plugin for better RTL support
+    function({ addUtilities }) {
+      const newUtilities = {
+        '.rtl': {
+          direction: 'rtl',
+        },
+        '.ltr': {
+          direction: 'ltr',
+        },
+        '.sr-only': {
+          position: 'absolute',
+          width: '1px',
+          height: '1px',
+          padding: '0',
+          margin: '-1px',
+          overflow: 'hidden',
+          clip: 'rect(0, 0, 0, 0)',
+          whiteSpace: 'nowrap',
+          border: '0',
+        },
+        '.focus-visible': {
+          outline: '2px solid #facc15',
+          outlineOffset: '2px',
+        },
+      }
+      addUtilities(newUtilities)
+    }
+  ],
+=======
   plugins: [],
+>>>>>>> Incoming (Background Agent changes)
 }
 

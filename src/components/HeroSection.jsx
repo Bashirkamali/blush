@@ -1,23 +1,66 @@
+import React, { useRef, useEffect, useState } from 'react';
+import { openWhatsApp } from '../utils/whatsapp';
+
 export default function HeroSection(){
+  const videoRef = useRef(null);
+  const [isVideoVisible, setIsVideoVisible] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    // Check for reduced motion preference
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handleReducedMotion = (e) => setPrefersReducedMotion(e.matches);
+    mediaQuery.addEventListener('change', handleReducedMotion);
+
+    // Intersection Observer for video play/pause
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVideoVisible(entry.isIntersecting);
+        if (videoRef.current) {
+          if (entry.isIntersecting && !prefersReducedMotion) {
+            videoRef.current.play().catch(() => {
+              // Autoplay blocked, continue silently
+            });
+          } else {
+            videoRef.current.pause();
+          }
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleReducedMotion);
+      observer.disconnect();
+    };
+  }, [prefersReducedMotion]);
+
   return (
     <section className="relative h-[100svh] overflow-hidden bg-[#0b0b0b]" aria-label="Blush — Cinematic Bloom Hero">
       {/* BG blur fill (covers the frame) */}
       <video
+        ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover filter blur-[12px] saturate-[1.1] brightness-[.9] scale-[1.05]"
-        autoPlay muted loop playsInline
+        autoPlay={!prefersReducedMotion} muted loop playsInline
       >
-        <source src="/blush_macro_1080.mp4" type="video/mp4" media="(min-width:1024px)" />
-        <source src="/blush_macro_720.mp4"  type="video/mp4" media="(max-width:1023px)" />
+        <source src="/video_1024.mp4" type="video/mp4" media="(min-width:1024px)" />
+        <source src="/video_720.mp4"  type="video/mp4" media="(max-width:1023px)" />
       </video>
 
       {/* Foreground video (keeps original aspect) */}
       <video
         className="absolute inset-0 m-auto max-w-full max-h-full w-auto h-full object-contain"
-        autoPlay muted loop playsInline
+        autoPlay={!prefersReducedMotion} muted loop playsInline
         poster="/blush_poster.jpg"
       >
-        <source src="/blush_macro_1080.mp4" type="video/mp4" media="(min-width:1024px)" />
-        <source src="/blush_macro_720.mp4"  type="video/mp4" media="(max-width:1023px)" />
+        <source src="/video_1024.mp4" type="video/mp4" media="(min-width:1024px)" />
+        <source src="/video_720.mp4"  type="video/mp4" media="(max-width:1023px)" />
       </video>
 
       {/* Logo */}
@@ -48,12 +91,13 @@ export default function HeroSection(){
                         transition-[transform,box-shadow] duration-300">
             Shop Now
           </a>
-          <a href="https://wa.me/989900190067"
-             className="inline-flex items-center justify-center rounded-full px-5 py-3 font-semibold
-                        border border-amber-500/60 text-amber-200/95 bg-white/10 backdrop-blur
-                        hover:bg-white/20 transition-colors duration-300">
+          <button 
+            onClick={() => openWhatsApp('989900190067', 'سلام! می‌خوام درباره محصولات Blush اطلاعات بیشتری داشته باشم')}
+            className="inline-flex items-center justify-center rounded-full px-5 py-3 font-semibold
+                       border border-amber-500/60 text-amber-200/95 bg-white/10 backdrop-blur
+                       hover:bg-white/20 transition-colors duration-300">
             Chat on WhatsApp
-          </a>
+          </button>
         </div>
       </div>
     </section>
