@@ -3,8 +3,10 @@ import { openWhatsApp } from '../utils/whatsapp';
 
 export default function HeroSection(){
   const videoRef = useRef(null);
+  const heroRef = useRef(null);
   const [isVideoVisible, setIsVideoVisible] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [parallaxOffset, setParallaxOffset] = useState(0);
 
   useEffect(() => {
     // Check for reduced motion preference
@@ -13,6 +15,16 @@ export default function HeroSection(){
 
     const handleReducedMotion = (e) => setPrefersReducedMotion(e.matches);
     mediaQuery.addEventListener('change', handleReducedMotion);
+
+    // Parallax effect
+    const handleScroll = () => {
+      if (!prefersReducedMotion && heroRef.current) {
+        const rect = heroRef.current.getBoundingClientRect();
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * -0.5;
+        setParallaxOffset(Math.min(rate, 4)); // Limit to 4px
+      }
+    };
 
     // Intersection Observer for video play/pause
     const observer = new IntersectionObserver(
@@ -35,22 +47,28 @@ export default function HeroSection(){
       observer.observe(videoRef.current);
     }
 
+    window.addEventListener('scroll', handleScroll);
+
     return () => {
       mediaQuery.removeEventListener('change', handleReducedMotion);
+      window.removeEventListener('scroll', handleScroll);
       observer.disconnect();
     };
   }, [prefersReducedMotion]);
 
   return (
-    <section className="relative h-[100svh] overflow-hidden bg-[#0b0b0b]" aria-label="Blush — Cinematic Bloom Hero">
+    <section ref={heroRef} className="relative h-[100svh] overflow-hidden bg-[#0b0b0b]" aria-label="Blush — Cinematic Bloom Hero">
+      {/* Preload poster image */}
+      <link rel="preload" as="image" href="/blush_poster.jpg" />
+      
       {/* BG blur fill (covers the frame) */}
       <video
         ref={videoRef}
-        className="absolute inset-0 w-full h-full object-cover filter blur-[12px] saturate-[1.1] brightness-[.9] scale-[1.05]"
+        className="absolute inset-0 w-full h-full object-cover filter blur-[20px] saturate-[1.1] brightness-[.9] scale-[1.05]"
         autoPlay={!prefersReducedMotion} muted loop playsInline
+        style={{ transform: `translateY(${parallaxOffset}px)` }}
       >
-        <source src="/video_1024.mp4" type="video/mp4" media="(min-width:1024px)" />
-        <source src="/video_720.mp4"  type="video/mp4" media="(max-width:1023px)" />
+        <source src="/IMG_1993_720.mp4" type="video/mp4" />
       </video>
 
       {/* Foreground video (keeps original aspect) */}
@@ -58,10 +76,20 @@ export default function HeroSection(){
         className="absolute inset-0 m-auto max-w-full max-h-full w-auto h-full object-contain"
         autoPlay={!prefersReducedMotion} muted loop playsInline
         poster="/blush_poster.jpg"
+        style={{ transform: `translateY(${parallaxOffset}px)` }}
       >
-        <source src="/video_1024.mp4" type="video/mp4" media="(min-width:1024px)" />
-        <source src="/video_720.mp4"  type="video/mp4" media="(max-width:1023px)" />
+        <source src="/IMG_1993_720.mp4" type="video/mp4" />
       </video>
+
+      {/* Bloom effect overlay */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(50% 50% at 50% 50%, rgba(246,214,229,0.4), transparent 70%)',
+          filter: 'blur(20px)',
+          opacity: 0.4
+        }}
+      />
 
       {/* Logo */}
       <div className="absolute top-8 left-8 z-20">
@@ -83,21 +111,21 @@ export default function HeroSection(){
         </p>
 
         <div className="mt-7 flex items-center justify-center gap-3">
-          <a href="#shop"
-             className="relative inline-flex items-center justify-center rounded-full px-5 py-3 font-semibold
-                        bg-gradient-to-br from-yellow-400 to-amber-600 text-white
-                        shadow-[0_10px_30px_rgba(212,175,55,0.45)]
-                        hover:-translate-y-0.5 hover:shadow-[0_14px_40px_rgba(212,175,55,0.6)]
-                        transition-[transform,box-shadow] duration-300">
-            Shop Now
-          </a>
           <button 
             onClick={() => openWhatsApp('989900190067', 'سلام! می‌خوام درباره محصولات Blush اطلاعات بیشتری داشته باشم')}
-            className="inline-flex items-center justify-center rounded-full px-5 py-3 font-semibold
-                       border border-amber-500/60 text-amber-200/95 bg-white/10 backdrop-blur
-                       hover:bg-white/20 transition-colors duration-300">
+            className="relative inline-flex items-center justify-center rounded-full px-5 py-3 font-semibold
+                       bg-gradient-to-br from-yellow-400 to-amber-600 text-white
+                       shadow-[0_10px_30px_rgba(212,175,55,0.45)]
+                       hover:-translate-y-0.5 hover:shadow-[0_14px_40px_rgba(212,175,55,0.6)]
+                       transition-[transform,box-shadow] duration-300">
             Chat on WhatsApp
           </button>
+          <a href="#daily-vitrine"
+             className="inline-flex items-center justify-center rounded-full px-5 py-3 font-semibold
+                        border border-amber-500/60 text-amber-200/95 bg-white/10 backdrop-blur
+                        hover:bg-white/20 transition-colors duration-300">
+            View Our Work
+          </a>
         </div>
       </div>
     </section>

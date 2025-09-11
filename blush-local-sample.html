@@ -2,9 +2,9 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Blush - تجربه‌ای لوکس از گل‌آرایی</title>
-    <meta name="description" content="آرایش‌های گل فصلی لوکس، تحویل تازه هر روز">
+    <meta name="description" content="آرایش‌های گل فصلی لوکس، تحویل تازه هر روز. هنر گل‌آرایی را با Blush تجربه کنید.">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,24 +14,137 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        blush: {
+                            50: '#fef7f9',
+                            100: '#fdf0f4',
+                            200: '#fbe1e9',
+                            300: '#f8c9d7',
+                            400: '#f4a5c0',
+                            500: '#f6d6e5',
+                            600: '#e85a8a',
+                            700: '#d13d6b',
+                            800: '#b03257',
+                            900: '#922b4a',
+                        },
+                        gold: {
+                            50: '#fefce8',
+                            100: '#fef9c3',
+                            200: '#fef08a',
+                            300: '#fde047',
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                            700: '#a16207',
+                            800: '#854d0e',
+                            900: '#713f12',
+                        }
+                    },
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'Georgia', 'serif'],
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        soft: '0 10px 30px rgba(0,0,0,.08)',
+                    },
+                    borderRadius: {
+                        '2xl': '1.25rem',
+                    }
+                }
+            }
+        }
+    </script>
+    
     <style>
-        .blush-gradient { background: linear-gradient(135deg, #f6d6e5 0%, #f8e6f0 50%, #f4a5c0 100%); }
-        .gold-gradient { background: linear-gradient(135deg, #facc15 0%, #eab308 50%, #ca8a04 100%); }
-        .rtl { direction: rtl; }
-        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+        .container-custom { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+        .section-padding { padding: 2rem 0; }
+        @media (min-width: 1024px) { .section-padding { padding: 3rem 0; } }
+        
+        /* Mobile-first responsive base styles */
+        html, body { 
+            height: 100%; 
+        }
+        body { 
+            overflow-x: hidden; 
+            -webkit-font-smoothing: antialiased; 
+        }
+        img, video { 
+            max-width: 100%; 
+            height: auto; 
+            display: block; 
+        }
+        
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            .reduce-anim { 
+                transition: none !important; 
+                transform: none !important; 
+            }
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .line-clamp-1 {
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+        }
+        
+        /* Force blur effect to work */
+        .blur-video {
+            filter: blur(24px) saturate(1.1) brightness(0.95) !important;
+            transform: scale(1.12) !important;
+        }
+        
     </style>
 </head>
-<body class="font-sans rtl">
-    <!-- Skip Link -->
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded">پرش به محتوای اصلی</a>
+<body class="font-sans bg-pink-50">
     
     <!-- Hero Section -->
-    <section class="relative h-[100svh] overflow-hidden bg-[#0b0b0b]" aria-label="Blush — Cinematic Bloom Hero">
-        <!-- Video Background -->
-        <video class="absolute inset-0 w-full h-full object-cover filter blur-[12px] saturate-[1.1] brightness-[.9] scale-[1.05]" autoplay muted loop playsinline>
-            <source src="./video_1024.mp4" type="video/mp4" media="(min-width:1024px)" />
-            <source src="./video_720.mp4" type="video/mp4" media="(max-width:1023px)" />
+    <section class="relative h-[100svh] overflow-hidden bg-pink-100" aria-label="Blush — Cinematic Bloom Hero">
+        <!-- Desktop: Blurred Background Video (covers entire background) -->
+        <video
+            class="absolute inset-0 w-full h-full object-cover blur-video hidden md:block bg-pink-100"
+            autoplay muted loop playsinline
+        >
+            <source src="./video_720.mp4" type="video/mp4" />
         </video>
+
+        <!-- Mobile: Full Frame Hero Video -->
+        <video
+            class="absolute inset-0 w-full h-full object-cover md:hidden"
+            autoplay muted loop playsinline
+            poster="./blush_poster.jpg"
+        >
+            <source src="./video_720.mp4" type="video/mp4" />
+        </video>
+
+        <!-- Desktop: Prominent Hero Video (full height, object-contain) -->
+        <div class="absolute inset-0 m-auto max-w-full max-h-full w-auto h-full object-contain hidden md:block">
+            <video
+                class="w-full h-full object-contain"
+                autoplay
+                muted
+                loop
+                playsinline
+                poster="./blush_poster.jpg"
+            >
+                <source src="./video_720.mp4" type="video/mp4" />
+            </video>
+        </div>
+
+        
 
         <!-- Logo -->
         <div class="absolute top-8 left-8 z-20">
@@ -43,157 +156,345 @@
         </div>
 
         <!-- Content -->
-        <div class="relative z-10 max-w-3xl mx-auto px-6 text-center" style="top: 50%; transform: translateY(-50%);">
-            <h1 class="font-serif text-white text-4xl md:text-6xl leading-tight drop-shadow-[0_6px_24px_rgba(0,0,0,.35)]">
-                Blush — تجربه‌ای لوکس از گل‌آرایی
+        <div class="relative z-10 max-w-3xl mx-auto px-6 text-center"
+             style="top: 50%; transform: translateY(-50%);">
+            <h1 class="font-serif text-gray-800 text-4xl md:text-6xl leading-tight drop-shadow-[0_6px_24px_rgba(255,255,255,.5)]">
+                Blush — A Luxurious Floral Experience
             </h1>
-            <p class="mt-4 text-base md:text-lg text-white/85">
-                آرایش‌های روزانه مینیمال و لوکس • مجموعه‌های جاودان
+            <p class="mt-4 text-base md:text-lg text-gray-700">
+                Minimal & luxurious daily arrangements • Everlasting collections
             </p>
 
             <div class="mt-7 flex items-center justify-center gap-3">
-                <a href="#shop" class="relative inline-flex items-center justify-center rounded-full px-5 py-3 font-semibold bg-gradient-to-br from-yellow-400 to-amber-600 text-white shadow-[0_10px_30px_rgba(212,175,55,0.45)] hover:-translate-y-0.5 hover:shadow-[0_14px_40px_rgba(212,175,55,0.6)] transition-[transform,box-shadow] duration-300">
-                    خرید کنید
+                <a href="#shop"
+                   class="relative inline-flex items-center justify-center rounded-full px-5 py-3 font-semibold
+                          bg-gradient-to-br from-yellow-400 to-amber-600 text-white
+                          shadow-[0_10px_30px_rgba(212,175,55,0.45)]
+                          hover:-translate-y-0.5 hover:shadow-[0_14px_40px_rgba(212,175,55,0.6)]
+                          transition-[transform,box-shadow] duration-300">
+                    Shop Now
                 </a>
-                <button onclick="openWhatsApp()" class="inline-flex items-center justify-center rounded-full px-5 py-3 font-semibold border border-amber-500/60 text-amber-200/95 bg-white/10 backdrop-blur hover:bg-white/20 transition-colors duration-300">
-                    چت در واتس‌اپ
-                </button>
+                <a href="https://wa.me/989900190067"
+                   class="inline-flex items-center justify-center rounded-full px-5 py-3 font-semibold
+                          border border-pink-400 text-pink-700 bg-white/20 backdrop-blur
+                          hover:bg-white/30 transition-colors duration-300">
+                    Chat on WhatsApp
+                </a>
+            </div>
+        </div>
+
+        
+    </section>
+
+    <!-- Daily Vitrine Gallery -->
+    <section id="daily-vitrine" class="py-12 lg:py-16">
+        <div class="mx-auto max-w-6xl px-4">
+            <p class="uppercase tracking-[.25em] text-gray-500 mb-2 text-right">Daily Vitrine</p>
+            <div class="flex items-end justify-between mb-6 gap-4">
+                <h2 class="font-serif text-3xl md:text-4xl text-gray-900">Blush Daily Vitrine</h2>
+                <a href="#featured" class="shrink-0 rounded-2xl border border-pink-200 bg-pink-50 px-4 py-2 text-sm hover:bg-pink-100 focus:outline-none focus:ring-2 focus:ring-offset-2">
+                    See more
+                </a>
+            </div>
+
+            <!-- Grid - Limited to 9 items -->
+            <div class="grid gap-4 sm:gap-5 md:gap-6 grid-cols-2 md:grid-cols-3">
+                <!-- Sample vitrine items with Persian captions -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-soft text-left">
+                    <img
+                        src="./src/assets/vitrine/vitrine_09_05_2025_1.webp"
+                        alt="گل‌آرایی لوکس روزانه"
+                        loading="lazy"
+                        decoding="async"
+                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                        style="aspect-ratio: 4/5;"
+                    />
+                    <span
+                        aria-hidden
+                        class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                        style="filter: blur(22px); background: radial-gradient(50% 50% at 50% 50%, rgba(246,214,229,0.35), transparent 70%);"
+                    ></span>
+                    <div class="absolute inset-x-0 bottom-0 p-3 md:p-4 bg-gradient-to-t from-black/40 to-transparent text-white">
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="line-clamp-1">گل‌آرایی لوکس روزانه</span>
+                            <span class="rounded-full bg-white/85 text-gray-900 px-2 py-0.5 text-xs">۲۵۰,۰۰۰ تومان</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="group relative overflow-hidden rounded-2xl shadow-soft text-left">
+                    <img
+                        src="./src/assets/vitrine/vitrine_09_05_2025_2.webp"
+                        alt="دسته گل عروس"
+                        loading="lazy"
+                        decoding="async"
+                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                        style="aspect-ratio: 4/5;"
+                    />
+                    <span
+                        aria-hidden
+                        class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                        style="filter: blur(22px); background: radial-gradient(50% 50% at 50% 50%, rgba(246,214,229,0.35), transparent 70%);"
+                    ></span>
+                    <div class="absolute inset-x-0 bottom-0 p-3 md:p-4 bg-gradient-to-t from-black/40 to-transparent text-white">
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="line-clamp-1">دسته گل عروس</span>
+                            <span class="rounded-full bg-white/85 text-gray-900 px-2 py-0.5 text-xs">۴۵۰,۰۰۰ تومان</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="group relative overflow-hidden rounded-2xl shadow-soft text-left">
+                    <img
+                        src="./src/assets/vitrine/vitrine_09_05_2025_3.webp"
+                        alt="آرایش گل فصلی"
+                        loading="lazy"
+                        decoding="async"
+                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                        style="aspect-ratio: 4/5;"
+                    />
+                    <span
+                        aria-hidden
+                        class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                        style="filter: blur(22px); background: radial-gradient(50% 50% at 50% 50%, rgba(246,214,229,0.35), transparent 70%);"
+                    ></span>
+                    <div class="absolute inset-x-0 bottom-0 p-3 md:p-4 bg-gradient-to-t from-black/40 to-transparent text-white">
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="line-clamp-1">آرایش گل فصلی</span>
+                            <span class="rounded-full bg-white/85 text-gray-900 px-2 py-0.5 text-xs">۱۸۰,۰۰۰ تومان</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="group relative overflow-hidden rounded-2xl shadow-soft text-left">
+                    <img
+                        src="./src/assets/vitrine/vitrine_09_05_2025_4.webp"
+                        alt="باکت گل لوکس"
+                        loading="lazy"
+                        decoding="async"
+                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                        style="aspect-ratio: 4/5;"
+                    />
+                    <span
+                        aria-hidden
+                        class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                        style="filter: blur(22px); background: radial-gradient(50% 50% at 50% 50%, rgba(246,214,229,0.35), transparent 70%);"
+                    ></span>
+                    <div class="absolute inset-x-0 bottom-0 p-3 md:p-4 bg-gradient-to-t from-black/40 to-transparent text-white">
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="line-clamp-1">باکت گل لوکس</span>
+                            <span class="rounded-full bg-white/85 text-gray-900 px-2 py-0.5 text-xs">۳۲۰,۰۰۰ تومان</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="group relative overflow-hidden rounded-2xl shadow-soft text-left">
+                    <img
+                        src="./src/assets/vitrine/vitrine_09_05_2025_5.webp"
+                        alt="آرایش گل مدرن"
+                        loading="lazy"
+                        decoding="async"
+                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                        style="aspect-ratio: 4/5;"
+                    />
+                    <span
+                        aria-hidden
+                        class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                        style="filter: blur(22px); background: radial-gradient(50% 50% at 50% 50%, rgba(246,214,229,0.35), transparent 70%);"
+                    ></span>
+                    <div class="absolute inset-x-0 bottom-0 p-3 md:p-4 bg-gradient-to-t from-black/40 to-transparent text-white">
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="line-clamp-1">آرایش گل مدرن</span>
+                            <span class="rounded-full bg-white/85 text-gray-900 px-2 py-0.5 text-xs">۲۲۰,۰۰۰ تومان</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="group relative overflow-hidden rounded-2xl shadow-soft text-left">
+                    <img
+                        src="./src/assets/vitrine/vitrine_09_05_2025_6.webp"
+                        alt="دسته گل کلاسیک"
+                        loading="lazy"
+                        decoding="async"
+                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                        style="aspect-ratio: 4/5;"
+                    />
+                    <span
+                        aria-hidden
+                        class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                        style="filter: blur(22px); background: radial-gradient(50% 50% at 50% 50%, rgba(246,214,229,0.35), transparent 70%);"
+                    ></span>
+                    <div class="absolute inset-x-0 bottom-0 p-3 md:p-4 bg-gradient-to-t from-black/40 to-transparent text-white">
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="line-clamp-1">دسته گل کلاسیک</span>
+                            <span class="rounded-full bg-white/85 text-gray-900 px-2 py-0.5 text-xs">۱۹۵,۰۰۰ تومان</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Main Content -->
-    <main id="main-content">
-        <!-- About Section -->
-        <section class="py-20 lg:py-32 blush-gradient">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-                <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                    <div class="space-y-8">
-                        <div class="space-y-4">
-                            <h2 class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 leading-tight">
-                                هنر گل‌آرایی را تجربه کنید
-                            </h2>
-                            <div class="w-20 h-1 gold-gradient rounded-full"></div>
-                        </div>
-                        
-                        <div class="space-y-6 text-lg text-gray-700 leading-relaxed">
-                            <p>در Blush، ما معتقدیم که گل‌ها بیش از آرایش‌های زیبا هستند—آن‌ها بیان احساسات، لحظات زیبایی و نمادهای گران‌به‌ترین مناسبت‌های زندگی هستند.</p>
-                            <p class="text-pink-600 font-medium">تفاوتی را که شور، هنر و توجه به جزئیات می‌تواند در تبدیل لحظات عادی به خاطرات فوق‌العاده ایجاد کند، کشف کنید.</p>
-                        </div>
-                        
-                        <!-- Stats -->
-                        <div class="grid grid-cols-3 gap-6 pt-8">
-                            <div class="text-center">
-                                <div class="text-3xl font-bold text-yellow-600 mb-2">500+</div>
-                                <div class="text-sm text-gray-600">مشتری راضی</div>
-                            </div>
-                            <div class="text-center">
-                                <div class="text-3xl font-bold text-yellow-600 mb-2">1000+</div>
-                                <div class="text-sm text-gray-600">آرایش گل</div>
-                            </div>
-                            <div class="text-center">
-                                <div class="text-3xl font-bold text-yellow-600 mb-2">5★</div>
-                                <div class="text-sm text-gray-600">امتیاز</div>
-                            </div>
-                        </div>
+    <!-- Testimonials Section (Compact) -->
+    <section class="py-16 lg:py-24 bg-pink-50">
+        <div class="container-custom section-padding">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-serif font-bold text-gray-900 mb-6">
+                    What Our Clients Say
+                </h2>
+            </div>
+
+            <!-- Compact Testimonials -->
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="relative bg-pink-50 rounded-2xl p-6 shadow-soft h-full">
+                    <blockquote class="text-lg text-gray-700 italic font-serif mb-4 leading-relaxed">
+                        "Blush transformed our wedding day into something truly magical."
+                    </blockquote>
+                    <div class="border-t border-gray-100 pt-4">
+                        <div class="font-semibold text-gray-900">Sarah & Michael</div>
+                        <div class="text-sm text-blush-600">Wedding</div>
                     </div>
-                    
-                    <div class="relative group">
-                        <div class="relative overflow-hidden rounded-2xl shadow-2xl">
-                            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=2025&q=80" alt="Luxury flower arrangement" class="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-110">
-                        </div>
+                </div>
+                
+                <div class="relative bg-pink-50 rounded-2xl p-6 shadow-soft h-full">
+                    <blockquote class="text-lg text-gray-700 italic font-serif mb-4 leading-relaxed">
+                        "Every time I receive flowers from Blush, I'm reminded of how beauty can brighten even the darkest days."
+                    </blockquote>
+                    <div class="border-t border-gray-100 pt-4">
+                        <div class="font-semibold text-gray-900">Emily Chen</div>
+                        <div class="text-sm text-blush-600">Regular Customer</div>
+                    </div>
+                </div>
+                
+                <div class="relative bg-pink-50 rounded-2xl p-6 shadow-soft h-full">
+                    <blockquote class="text-lg text-gray-700 italic font-serif mb-4 leading-relaxed">
+                        "The attention to detail and the way they captured the essence of our brand was absolutely perfect."
+                    </blockquote>
+                    <div class="border-t border-gray-100 pt-4">
+                        <div class="font-semibold text-gray-900">Jennifer Martinez</div>
+                        <div class="text-sm text-blush-600">Corporate Event</div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Featured Products -->
-        <section class="py-20 lg:py-32 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-6">مجموعه‌های ویژه</h2>
-                    <p class="text-xl text-gray-600 max-w-2xl mx-auto">محبوب‌ترین آرایش‌های ما را کشف کنید</p>
+            <!-- Trust Badges -->
+            <div class="flex flex-wrap justify-center gap-8 text-gray-600">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">🌿</span>
+                    <span class="text-sm font-medium">Fresh Daily</span>
                 </div>
-
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Product Cards -->
-                    <div class="group">
-                        <div class="relative overflow-hidden rounded-2xl shadow-lg group-hover:shadow-2xl transition-all duration-500">
-                            <div class="relative h-80 overflow-hidden">
-                                <img src="https://images.unsplash.com/photo-1562690868-60bbe7293e94?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Eternal Romance" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                                <div class="absolute top-4 left-4">
-                                    <span class="px-3 py-1 bg-white/90 backdrop-blur-sm text-sm font-medium text-gray-800 rounded-full">عاشقانه</span>
-                                </div>
-                            </div>
-                            <div class="p-6 bg-white">
-                                <h3 class="text-xl font-serif font-semibold text-gray-900 mb-2 group-hover:text-pink-600 transition-colors duration-300">عشق جاودان</h3>
-                                <p class="text-gray-600 text-sm mb-4">آرایشی جاودان از رزهای قرمز عمیق</p>
-                                <div class="flex items-center justify-between">
-                                    <span class="text-lg font-bold text-yellow-600">$180 - $280</span>
-                                    <button class="text-pink-600 hover:text-pink-700 font-medium text-sm transition-colors duration-300">افزودن به سبد →</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">🚚</span>
+                    <span class="text-sm font-medium">Same-Day Delivery</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">🎁</span>
+                    <span class="text-sm font-medium">Luxury Packaging</span>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-20 lg:py-32 bg-pink-50">
+        <div class="container-custom section-padding">
+            <div class="text-center max-w-3xl mx-auto">
+                <h2 class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-6">
+                    Ready to Experience Blush?
+                </h2>
+                <p class="text-xl text-gray-600 mb-12">
+                    Let's create something beautiful together. Get in touch with our floral experts today.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button 
+                        onclick="openWhatsApp()"
+                        class="bg-gradient-to-r from-gold-400 to-gold-500 text-white px-8 py-4 rounded-full font-medium transition-all duration-300 hover:from-gold-500 hover:to-gold-600 hover:shadow-lg hover:shadow-gold-200/50 hover:scale-105 transform">
+                        Chat on WhatsApp
+                    </button>
+                    <a 
+                        href="#daily-vitrine"
+                        class="border border-gold-400 text-gold-600 px-8 py-4 rounded-full font-medium transition-all duration-300 hover:bg-gold-50 hover:border-gold-500">
+                        View Our Work
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-12">
-            <div class="text-center">
-                <h3 class="text-2xl font-serif font-bold text-gray-900 mb-4">Blush</h3>
-                <p class="text-gray-600 mb-4">تجربه‌ای لوکس از گل‌آرایی</p>
-                <div class="flex justify-center gap-4">
-                    <a href="https://www.instagram.com/blush_flower/" target="_blank" class="w-10 h-10 bg-gradient-to-r from-pink-400 to-purple-500 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform duration-300">IG</a>
-                    <a href="https://wa.me/989900190067" target="_blank" class="w-10 h-10 bg-gradient-to-r from-green-400 to-green-600 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform duration-300">WA</a>
+    <footer class="bg-pink-50 border-t border-pink-200">
+        <div class="container-custom section-padding py-12">
+            <div class="grid md:grid-cols-4 gap-8 items-center">
+                <!-- Logo -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-gold-400 to-gold-600 rounded-full flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-serif font-bold text-gray-900">Blush</h3>
+                            <p class="text-sm text-gray-600">A Luxurious Floral Experience</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 max-w-md">
+                        Crafting beautiful moments with the finest seasonal blooms. 
+                        Experience the art of flowers with Blush.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-semibold text-gray-900 mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><a href="#" class="hover:text-blush-600 transition-colors duration-300">Shop</a></li>
+                        <li><a href="#" class="hover:text-blush-600 transition-colors duration-300">Collections</a></li>
+                        <li><a href="/about" class="hover:text-blush-600 transition-colors duration-300">About Us</a></li>
+                        <li><a href="/newsletter" class="hover:text-blush-600 transition-colors duration-300">Newsletter</a></li>
+                    </ul>
+                </div>
+
+                <!-- Social Links -->
+                <div>
+                    <h4 class="font-semibold text-gray-900 mb-4">Connect With Us</h4>
+                    <div class="flex gap-4">
+                        <a href="https://www.instagram.com/blush_flower/" target="_blank" rel="noopener noreferrer"
+                           class="w-10 h-10 bg-gradient-to-r from-pink-400 to-purple-500 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform duration-300">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        
+                        <a href="https://wa.me/989900190067" target="_blank" rel="noopener noreferrer"
+                           class="w-10 h-10 bg-gradient-to-r from-green-400 to-green-600 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform duration-300">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-gray-100 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-600 text-sm">
+                <p>&copy; 2024 Blush. All rights reserved.</p>
+                <div class="flex gap-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-blush-600 transition-colors duration-300">Privacy Policy</a>
+                    <a href="#" class="hover:text-blush-600 transition-colors duration-300">Terms of Service</a>
+                    <a href="#" class="hover:text-blush-600 transition-colors duration-300">Shipping Info</a>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // WhatsApp utility with UTM tracking
         function openWhatsApp() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const utmSource = urlParams.get('utm_source') || 'website';
-            const utmMedium = urlParams.get('utm_medium') || 'organic';
-            const utmCampaign = urlParams.get('utm_campaign') || 'blush_landing';
-            
-            const utmString = `utm_source=${utmSource}&utm_medium=${utmMedium}&utm_campaign=${utmCampaign}`;
-            const message = 'سلام! می‌خوام درباره محصولات Blush اطلاعات بیشتری داشته باشم';
-            const fullMessage = `${message}%0A%0A${utmString}`;
-            
-            const link = `https://wa.me/989900190067?text=${fullMessage}`;
-            window.open(link, '_blank');
+            const message = encodeURIComponent('سلام! می‌خوام درباره محصولات Blush اطلاعات بیشتری داشته باشم');
+            const url = `https://wa.me/989900190067?text=${message}`;
+            window.open(url, '_blank');
         }
-
-        // Smart video functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const videos = document.querySelectorAll('video');
-            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            
-            videos.forEach(video => {
-                if (prefersReducedMotion) {
-                    video.pause();
-                }
-                
-                const observer = new IntersectionObserver(
-                    ([entry]) => {
-                        if (entry.isIntersecting && !prefersReducedMotion) {
-                            video.play().catch(() => {});
-                        } else {
-                            video.pause();
-                        }
-                    },
-                    { threshold: 0.5 }
-                );
-                
-                observer.observe(video);
-            });
-        });
     </script>
 </body>
 </html>
