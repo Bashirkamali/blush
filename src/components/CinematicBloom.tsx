@@ -11,6 +11,15 @@ const CinematicBloom: React.FC<CinematicBloomProps> = ({ className = '' }) => {
   const [parallaxOffset, setParallaxOffset] = useState(0);
 
   useEffect(() => {
+    // Preload hero video for better performance
+    const link = document.createElement("link");
+    link.rel = "preload";
+    link.as = "video";
+    link.href = "/media/hero.mp4";
+    document.head.appendChild(link);
+  }, []);
+
+  useEffect(() => {
     // Check for reduced motion preference
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     setPrefersReducedMotion(mediaQuery.matches);
@@ -105,7 +114,7 @@ const CinematicBloom: React.FC<CinematicBloomProps> = ({ className = '' }) => {
           src="/logo.svg" 
           alt="THE BLUSH FLOWER STUDIO" 
           className="w-24 h-auto md:w-40 lg:w-48 drop-shadow-[0_4px_20px_rgba(255,215,0,0.3)]"
-          loading="eager"
+          loading="lazy"
           decoding="async"
         />
       </div>
@@ -136,6 +145,7 @@ const CinematicBloom: React.FC<CinematicBloomProps> = ({ className = '' }) => {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4">
             <button 
+              type="button"
               onClick={handleWhatsAppClick}
               className="relative inline-flex items-center justify-center rounded-full px-6 py-3 md:px-8 md:py-4 font-semibold text-sm md:text-base
                          bg-gradient-to-br from-yellow-400 to-amber-600 text-white
@@ -149,6 +159,7 @@ const CinematicBloom: React.FC<CinematicBloomProps> = ({ className = '' }) => {
             </button>
             
             <button
+              type="button"
               onClick={handleScrollToVitrine}
               className="inline-flex items-center justify-center rounded-full px-6 py-3 md:px-8 md:py-4 font-semibold text-sm md:text-base
                          border border-pink-400 text-pink-700 bg-white/20 backdrop-blur
