@@ -1,0 +1,26 @@
+# WebM Video Encoding Instructions
+
+This file is a placeholder for the WebM version of the hero video.
+
+## Encoding Command (FFmpeg)
+
+To create the WebM version from the MP4 source:
+
+```bash
+ffmpeg -i hero.mp4 -c:v libvpx-vp9 -crf 30 -b:v 0 -b:a 128k -c:a libopus -vf "scale=1920:1080" hero.webm
+```
+
+## Parameters Explained:
+- `-c:v libvpx-vp9`: Use VP9 video codec (best WebM codec)
+- `-crf 30`: Constant Rate Factor (18-28 for high quality, 30-35 for good quality)
+- `-b:v 0`: Use CRF mode instead of bitrate
+- `-b:a 128k`: Audio bitrate
+- `-c:a libopus`: Use Opus audio codec
+- `-vf "scale=1920:1080"`: Scale to 1080p (adjust as needed)
+
+## Alternative for smaller file size:
+```bash
+ffmpeg -i hero.mp4 -c:v libvpx-vp9 -crf 35 -b:v 0 -b:a 96k -c:a libopus -vf "scale=1280:720" hero.webm
+```
+
+## Target file size: < 1MB for optimal web performance

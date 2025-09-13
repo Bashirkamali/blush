@@ -58,7 +58,8 @@ const CinematicBloom: React.FC<CinematicBloomProps> = ({ className = '' }) => {
       {/* Background Video with poster fallback */}
       <div className="absolute inset-0">
         <video
-          className="w-full h-full object-cover object-[center_30%]"
+          className="absolute inset-0 h-full w-full object-cover"
+          preload="auto"
           autoPlay
           muted
           loop
@@ -69,7 +70,8 @@ const CinematicBloom: React.FC<CinematicBloomProps> = ({ className = '' }) => {
             transition: prefersReducedMotion ? 'none' : 'transform 0.1s ease-out'
           }}
         >
-          <source src="/IMG_1993_720.mp4" type="video/mp4" />
+          <source src="/media/hero.webm" type="video/webm" />
+          <source src="/media/hero.mp4" type="video/mp4" />
         </video>
       </div>
 

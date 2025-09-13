@@ -1,7 +1,5 @@
 User-agent: *
-Allow: /
-
-Sitemap: https://blush-flower.com/sitemap.xml
-
-# Crawl-delay for respectful crawling
-Crawl-delay: 1
+Disallow: /blush-simple.html
+Disallow: /blush-local-sample.html
+Disallow: /blush-test-new-video.html
+Disallow: /playground/
