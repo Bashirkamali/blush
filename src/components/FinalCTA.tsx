@@ -19,6 +19,7 @@ const FinalCTA: React.FC = () => {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button 
+              type="button"
               onClick={handleWhatsAppClick}
               className="btn-primary"
               aria-label="Chat with us on WhatsApp"

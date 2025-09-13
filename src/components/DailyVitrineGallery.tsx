@@ -70,6 +70,7 @@ const DailyVitrineGallery: React.FC<DailyVitrineGalleryProps> = ({
           {displayItems.map((it, idx) => (
             <button
               key={idx}
+              type="button"
               onClick={() => {
                 setLastFocusedElement(document.activeElement as HTMLElement);
                 setActive(idx);
@@ -119,6 +120,7 @@ const DailyVitrineGallery: React.FC<DailyVitrineGalleryProps> = ({
         >
           <div className="relative max-w-4xl w-full" onClick={(e) => e.stopPropagation()}>
             <button
+              type="button"
               onClick={() => setActive(null)}
               className="absolute -top-10 right-0 text-white/90 hover:text-white focus:outline-none"
               aria-label="Close"
@@ -155,6 +157,7 @@ const DailyVitrineGallery: React.FC<DailyVitrineGalleryProps> = ({
             {/* Nav */}
             <div className="mt-2 flex items-center justify-between text-white/80">
               <button
+                type="button"
                 onClick={() => setActive((i) => (i! > 0 ? i! - 1 : displayItems.length - 1))}
                 className="px-3 py-1 rounded hover:bg-white/10"
                 aria-label="Previous"
@@ -162,6 +165,7 @@ const DailyVitrineGallery: React.FC<DailyVitrineGalleryProps> = ({
                 ‹ Prev
               </button>
               <button
+                type="button"
                 onClick={() => setActive((i) => (i! < displayItems.length - 1 ? i! + 1 : 0))}
                 className="px-3 py-1 rounded hover:bg-white/10"
                 aria-label="Next"

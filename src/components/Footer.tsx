@@ -28,8 +28,8 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="font-semibold text-gray-900 mb-4">Quick Links</h4>
             <ul className="space-y-2 text-gray-600">
-              <li><a href="#" className="hover:text-blush-600 transition-colors duration-300">Shop</a></li>
-              <li><a href="#" className="hover:text-blush-600 transition-colors duration-300">Collections</a></li>
+              <li><button type="button" className="hover:text-blush-600 transition-colors duration-300">Shop</button></li>
+              <li><button type="button" className="hover:text-blush-600 transition-colors duration-300">Collections</button></li>
               <li><a href="/about" className="hover:text-blush-600 transition-colors duration-300">About Us</a></li>
               <li><a href="/newsletter" className="hover:text-blush-600 transition-colors duration-300">Newsletter</a></li>
             </ul>
@@ -82,9 +82,9 @@ const Footer: React.FC = () => {
         <div className="border-t border-gray-100 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-600 text-sm">
           <p>&copy; 2024 Blush. All rights reserved.</p>
           <div className="flex gap-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-blush-600 transition-colors duration-300">Privacy Policy</a>
-            <a href="#" className="hover:text-blush-600 transition-colors duration-300">Terms of Service</a>
-            <a href="#" className="hover:text-blush-600 transition-colors duration-300">Shipping Info</a>
+            <button type="button" className="hover:text-blush-600 transition-colors duration-300">Privacy Policy</button>
+            <button type="button" className="hover:text-blush-600 transition-colors duration-300">Terms of Service</button>
+            <button type="button" className="hover:text-blush-600 transition-colors duration-300">Shipping Info</button>
           </div>
         </div>
       </div>

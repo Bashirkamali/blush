@@ -91,7 +91,7 @@ const FeaturedProducts = () => {
                   
                   {/* Quick View Button */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <button className="bg-white/90 backdrop-blur-sm text-gray-800 px-6 py-3 rounded-full font-medium hover:bg-white transition-colors duration-300">
+                    <button type="button" className="bg-white/90 backdrop-blur-sm text-gray-800 px-6 py-3 rounded-full font-medium hover:bg-white transition-colors duration-300">
                       Quick View
                     </button>
                   </div>
@@ -109,7 +109,7 @@ const FeaturedProducts = () => {
                     <span className="text-lg font-bold text-gold-600">
                       {product.price}
                     </span>
-                    <button className="text-blush-600 hover:text-blush-700 font-medium text-sm transition-colors duration-300">
+                    <button type="button" className="text-blush-600 hover:text-blush-700 font-medium text-sm transition-colors duration-300">
                       Add to Cart →
                     </button>
                   </div>
@@ -121,7 +121,7 @@ const FeaturedProducts = () => {
 
         {/* View All Button */}
         <div className="text-center mt-12">
-          <button className="btn-primary">
+          <button type="button" className="btn-primary">
             View All Collections
           </button>
         </div>

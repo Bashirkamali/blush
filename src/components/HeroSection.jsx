@@ -112,6 +112,7 @@ export default function HeroSection(){
 
         <div className="mt-7 flex items-center justify-center gap-3">
           <button 
+            type="button"
             onClick={() => openWhatsApp('989900190067', 'سلام! می‌خوام درباره محصولات Blush اطلاعات بیشتری داشته باشم')}
             className="relative inline-flex items-center justify-center rounded-full px-5 py-3 font-semibold
                        bg-gradient-to-br from-yellow-400 to-amber-600 text-white
