@@ -20,7 +20,7 @@ const FinalCTA: React.FC = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button 
               onClick={handleWhatsAppClick}
-              className="bg-gradient-to-r from-gold-400 to-gold-500 text-white px-8 py-4 rounded-full font-medium transition-all duration-300 hover:from-gold-500 hover:to-gold-600 hover:shadow-lg hover:shadow-gold-200/50 hover:scale-105 transform"
+              className="btn-primary"
               aria-label="Chat with us on WhatsApp"
             >
               Chat on WhatsApp

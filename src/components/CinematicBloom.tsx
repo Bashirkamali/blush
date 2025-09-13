@@ -147,12 +147,7 @@ const CinematicBloom: React.FC<CinematicBloomProps> = ({ className = '' }) => {
             <button 
               type="button"
               onClick={handleWhatsAppClick}
-              className="relative inline-flex items-center justify-center rounded-full px-6 py-3 md:px-8 md:py-4 font-semibold text-sm md:text-base
-                         bg-gradient-to-br from-yellow-400 to-amber-600 text-white
-                         shadow-[0_10px_30px_rgba(212,175,55,0.45)]
-                         hover:-translate-y-0.5 hover:shadow-[0_14px_40px_rgba(212,175,55,0.6)]
-                         transition-[transform,box-shadow] duration-300
-                         min-h-[44px] min-w-[120px]"
+              className="btn-primary"
               aria-label="Chat with us on WhatsApp"
             >
               Chat on WhatsApp
@@ -161,10 +156,7 @@ const CinematicBloom: React.FC<CinematicBloomProps> = ({ className = '' }) => {
             <button
               type="button"
               onClick={handleScrollToVitrine}
-              className="inline-flex items-center justify-center rounded-full px-6 py-3 md:px-8 md:py-4 font-semibold text-sm md:text-base
-                         border border-pink-400 text-pink-700 bg-white/20 backdrop-blur
-                         hover:bg-white/30 transition-colors duration-300
-                         min-h-[44px] min-w-[120px]"
+              className="btn-secondary"
               aria-label="View our daily vitrine collection"
             >
               View Our Work
