@@ -304,6 +304,7 @@
                           LLIINNEE EEDDIITTIINNGG
 
         These keys can be used to edit text being entered 
+        on the "command line" at the bottom of the screen.
 
  RightArrow ..................... ESC-l ... Move cursor right one character.
  LeftArrow ...................... ESC-h ... Move cursor left one character.
