@@ -50,11 +50,11 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            max-width: 100%;
-            max-height: 100%;
+            max-width: calc(100% - 80px);
+            max-height: calc(100% - 80px);
             -o-object-fit: contain;
                object-fit: contain;
-            z-index: 2;
+            z-index: 4;
             border: 6px solid #FFFFFF;
             border-radius: 0px;
             box-shadow: 
@@ -67,6 +67,24 @@
             background: rgba(255, 255, 255, 0.1);
             padding: 2px;
             filter: brightness(1.1) contrast(1.05);
+        }
+
+        .video-frame {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: calc(100% - 60px);
+            height: calc(100% - 60px);
+            z-index: 1;
+            border: 4px solid #FFFFFF;
+            border-radius: 12px;
+            box-shadow: 
+                0 0 25px rgba(255, 255, 255, 0.7),
+                0 0 50px rgba(255, 255, 255, 0.4),
+                0 6px 12px rgba(0, 0, 0, 0.4);
+            background: transparent;
+            pointer-events: none;
         }
 
         .bloom-overlay {
@@ -110,12 +128,12 @@
 
         .content {
             position: absolute;
-            top: 50%;
+            top: 20%;
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 15;
             text-align: center;
-            max-width: 400px;
+            max-width: 500px;
             padding: 15px;
             background: transparent;
             border: none;
@@ -134,10 +152,10 @@
             transition: all 0.5s ease-in-out;
         }
 
-        /* Desktop positioning - top center of video frame */
+        /* Desktop positioning - bottom center of video */
         @media (min-width: 769px) {
             .logo {
-                top: 60px;
+                top: 70%;
                 left: 50%;
                 transform: translateX(-50%);
                 filter: 
@@ -166,10 +184,10 @@
             }
         }
 
-        /* Mobile positioning - top center of video frame */
+        /* Mobile positioning - bottom center of video */
         @media (max-width: 768px) {
             .logo {
-                top: 50px;
+                top: 65%;
                 left: 50%;
                 transform: translateX(-50%);
                 width: 80px;
@@ -228,6 +246,18 @@
         }
 
         .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-buttons {
+            position: absolute;
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
             display: flex;
             gap: 15px;
             justify-content: center;
@@ -318,16 +348,19 @@
 <body>
     <section class="hero-section">
         <!-- Logo -->
-        <img src="/assets/logo-9f896a7f.svg" alt="THE BLUSH FLOWER STUDIO" class="logo">
+        <img src="../logo.svg" alt="THE BLUSH FLOWER STUDIO" class="logo">
         
         <!-- Background Video (Blurred) -->
         <video class="video-background" autoplay muted loop playsinline>
-            <source src="/assets/IMG_1993_720-dfd90f31.mp4" type="video/mp4">
+            <source src="../IMG_1993_720.mp4" type="video/mp4">
         </video>
         
+        <!-- Video Frame -->
+        <div class="video-frame"></div>
+        
         <!-- Foreground Video (Original) -->
-        <video class="video-foreground" autoplay muted loop playsinline poster="/assets/blush_poster-5e76afca.jpg">
-            <source src="/assets/IMG_1993_720-dfd90f31.mp4" type="video/mp4">
+        <video class="video-foreground" autoplay muted loop playsinline poster="../blush_poster.jpg">
+            <source src="../IMG_1993_720.mp4" type="video/mp4">
         </video>
         
         <!-- Bloom Effect -->
@@ -340,11 +373,12 @@
         <div class="content">
             <h1>Blush — A Luxurious Floral Experience</h1>
             <p>Minimal & luxurious daily arrangements • Everlasting collections</p>
-            
-            <div class="buttons">
-                <a href="#collections" class="btn-ghost">View Collections</a>
-                <a href="https://wa.me/989900190067" class="btn-gold">Chat on WhatsApp</a>
-            </div>
+        </div>
+        
+        <!-- CTA Buttons -->
+        <div class="cta-buttons">
+            <a href="#collections" class="btn-ghost">View Collections</a>
+            <a href="https://wa.me/989900190067" class="btn-gold">Chat on WhatsApp</a>
         </div>
         
     </section>
