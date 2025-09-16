@@ -11,12 +11,25 @@ const CinematicBloom: React.FC<CinematicBloomProps> = ({ className = '' }) => {
   const [parallaxOffset, setParallaxOffset] = useState(0);
 
   useEffect(() => {
-    // Preload hero video for better performance
-    const link = document.createElement("link");
-    link.rel = "preload";
-    link.as = "video";
-    link.href = "/media/hero.mp4";
-    document.head.appendChild(link);
+    const poster = document.createElement("link");
+    poster.rel = "preload";
+    poster.as = "image";
+    poster.href = "/hero.jpg";
+    document.head.appendChild(poster);
+
+    const videoWebm = document.createElement("link");
+    videoWebm.rel = "preload";
+    videoWebm.as = "video";
+    videoWebm.href = "/media/hero.webm";
+    videoWebm.type = "video/webm" as any;
+    document.head.appendChild(videoWebm);
+
+    const videoMp4 = document.createElement("link");
+    videoMp4.rel = "preload";
+    videoMp4.as = "video";
+    videoMp4.href = "/media/hero.mp4";
+    videoMp4.type = "video/mp4" as any;
+    document.head.appendChild(videoMp4);
   }, []);
 
   useEffect(() => {
@@ -62,18 +75,18 @@ const CinematicBloom: React.FC<CinematicBloomProps> = ({ className = '' }) => {
       aria-label="Blush — Cinematic Bloom Hero"
     >
       {/* Preload hero image */}
-      <link rel="preload" as="image" href="/blush_poster.jpg" />
+      <link rel="preload" as="image" href="/hero.jpg" />
       
       {/* Background Video with poster fallback */}
       <div className="absolute inset-0">
         <video
           className="absolute inset-0 h-full w-full object-cover"
-          preload="auto"
+          preload="metadata"
           autoPlay
           muted
           loop
           playsInline
-          poster="/blush_poster.jpg"
+          poster="/hero.jpg"
           style={{ 
             transform: prefersReducedMotion ? 'none' : `translateY(${parallaxOffset}px)`,
             transition: prefersReducedMotion ? 'none' : 'transform 0.1s ease-out'
@@ -108,15 +121,23 @@ const CinematicBloom: React.FC<CinematicBloomProps> = ({ className = '' }) => {
         }}
       />
 
-      {/* Logo */}
-      <div className="absolute top-4 left-4 md:top-8 md:left-8 z-20">
-        <img 
-          src="/logo.svg" 
-          alt="THE BLUSH FLOWER STUDIO" 
-          className="w-24 h-auto md:w-40 lg:w-48 drop-shadow-[0_4px_20px_rgba(255,215,0,0.3)]"
-          loading="lazy"
-          decoding="async"
-        />
+      {/* Centered Luxury Logo */}
+      <div className="absolute inset-0 z-20 flex items-start justify-center pt-6 md:pt-10">
+        <div className="relative">
+          <div className="absolute -inset-4 md:-inset-5 rounded-full blur-2xl opacity-70"
+               style={{
+                 background: 'radial-gradient(circle, rgba(255,215,0,0.25) 0%, rgba(255,215,0,0.12) 45%, rgba(255,215,0,0) 70%)'
+               }}
+          />
+          <img 
+            src="/logo.svg" 
+            alt="THE BLUSH FLOWER STUDIO" 
+            className="relative w-16 md:w-24 lg:w-28 h-auto drop-shadow-[0_8px_26px_rgba(212,175,55,0.45)]"
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
+          />
+        </div>
       </div>
 
       {/* Content */}
