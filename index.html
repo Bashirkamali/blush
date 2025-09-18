@@ -7,6 +7,7 @@
     <link rel="canonical" href="https://example.com/">
     <title>BLUSH — Luxurious Floral Experience</title>
     <link rel="preload" as="image" href="hero.webp" fetchpriority="high" />
+    <meta name="theme-color" content="#f7e8eb">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
@@ -465,6 +466,65 @@
             letter-spacing: .06em;
             font-size: clamp(1.4rem, 3.6vw, 2rem);
         }
+
+        /* --- Loading beauty kit (tiny & incremental) --- */
+        #hero{ position:relative; overflow:hidden; transform-style:preserve-3d }
+
+        /* LQIP image (injected via JS) */
+        #hero .lqip{
+            position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+            filter: blur(12px) saturate(1.05) brightness(.98); transform:scale(1.02);
+            opacity:1; transition: filter .2s ease, opacity .15s ease, transform .2s ease;
+            z-index: 3; pointer-events:none;
+        }
+
+        /* Foreground video soft fade (uses your existing <video>) */
+        #hero video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+            opacity:0; transition: opacity .2s ease; z-index:4 }
+
+        /* Shimmer skeleton while hero is loading */
+        #hero .skeleton{
+            position:absolute; inset:0; z-index:5; pointer-events:none;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 20%,
+                                             rgba(255,255,255,.25) 40%,
+                                             rgba(255,255,255,0) 60%);
+            transform: translateX(-120%);
+            animation: shimmer 1.6s ease-in-out infinite;
+        }
+        @keyframes shimmer{ to{ transform: translateX(120%) } }
+
+        /* Top scrim to sharpen headings over media */
+        #hero::before{
+            content:""; position:absolute; inset:0 0 55% 0; z-index:2; pointer-events:none;
+            background: linear-gradient(to bottom, rgba(0,0,0,.28), rgba(0,0,0,0));
+        }
+
+        /* When ready: fade in media, fade out lqip & skeleton */
+        #hero.ready .lqip{ filter:blur(0); transform:none; opacity:0 }
+        #hero.ready video{ opacity:1 }
+        #hero.ready .skeleton{ display:none }
+
+        /* Respect reduced motion */
+        @media (prefers-reduced-motion:reduce){
+            #hero .lqip, #hero video{ transition:none }
+            #hero .skeleton{ display:none }
+        }
+
+        /* Below-the-fold performance (no layout shift) */
+        #collections{ content-visibility:auto; contain-intrinsic-size: 800px 1200px }
+
+        /* Preserve foreground video framing (override generic video rule) */
+        #hero .video-background{
+            position:absolute; top:0; left:0; width:100%; height:100%;
+            object-fit:cover; z-index:1;
+        }
+        #hero .video-foreground{
+            position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);
+            width:85%; height:85%; object-fit:cover; border-radius:16px; z-index:2;
+        }
+        @media (max-width: 768px){
+            #hero .video-foreground{ width:85%; height:85%; border-radius:16px; }
+        }
     </style>
 </head>
 <body>
@@ -581,6 +641,54 @@
             const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
         }
+    </script>
+
+    <script>
+    (() => {
+      const hero = document.getElementById('hero');
+      if (!hero) return;
+
+      // Add a subtle skeleton shimmer
+      const sk = document.createElement('div');
+      sk.className = 'skeleton';
+      hero.appendChild(sk);
+
+      // Inject LQIP blurred image (keeps LCP beautiful & fast)
+      const lq = document.createElement('img');
+      lq.src = 'hero-lq.webp';
+      lq.alt = '';
+      lq.decoding = 'async';
+      lq.loading = 'eager';          // above-the-fold
+      lq.className = 'lqip';
+      lq.setAttribute('aria-hidden','true');
+      hero.appendChild(lq);
+
+      // Prepare gentle cross-fade to video if available
+      const saveData = navigator.connection && navigator.connection.saveData;
+      const reduce   = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const vid      = hero.querySelector('video');
+
+      // Preload full hero image, then sharpen & fade LQIP out
+      const full = new Image();
+      full.src = 'hero.webp';
+      full.decoding = 'async';
+      full.onload = () => {
+        // swap LQIP -> sharp image, then remove it
+        lq.src = full.src;
+        requestAnimationFrame(() => {
+          hero.classList.add('ready');
+          setTimeout(() => { lq.remove(); sk.remove(); }, 180);
+        });
+      };
+
+      // If video exists and user isn't saving data / reducing motion, fade it in when ready
+      if (vid && !saveData && !reduce) {
+        vid.addEventListener('canplaythrough', () => {
+          hero.classList.add('ready');        // ensures CSS fades happen
+          setTimeout(() => { try { lq.remove(); sk.remove(); } catch(e){} }, 160);
+        }, { once: true });
+      }
+    })();
     </script>
 
     <script>
