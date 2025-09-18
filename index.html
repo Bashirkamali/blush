@@ -6,7 +6,7 @@
     <meta name="description" content="BLUSH — Luxurious Floral Experience. Minimal & luxurious daily floral arrangements.">
     <link rel="canonical" href="https://example.com/">
     <title>BLUSH — Luxurious Floral Experience</title>
-    <link rel="preload" as="image" href="hero.webp" />
+    <link rel="preload" as="image" href="hero.webp" fetchpriority="high" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
@@ -278,6 +278,193 @@
         .fade-in:not(.visible) {
             opacity: 0.8;
         }
+
+        /* Mobile: make hero truly full-frame, no margins, keep effects */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 0;
+                height: 100vh;      /* fallback */
+                height: 100dvh;     /* modern dynamic viewport */
+                height: 100svh;     /* small viewport on iOS */
+                min-height: 0;
+            }
+            .hero-container {
+                width: 100vw;
+                height: 100vh;      /* fallback */
+                height: 100dvh;     /* modern dynamic viewport */
+                height: 100svh;     /* small viewport on iOS */
+                aspect-ratio: auto;
+                border-radius: 0;
+                box-shadow: none;
+            }
+            .video-background {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            .video-foreground {
+                width: 85%;
+                height: 85%;
+                border-radius: 16px;
+                object-fit: cover; /* keep the mirror-style crop inside the frame */
+            }
+        }
+
+        /* === BLUSH theme tokens (pink / white / gold) === */
+        :root{
+            --white:#ffffff;
+            --ink:#4a3b2f;          /* dark text for legibility over light gradients */
+            --gold-400:#f4d03f;     /* primary gold */
+            --gold-500:#e0b51a;     /* focus/hover ring */
+            --blush-400:#f5b7b1;    /* soft pink */
+            --blush-500:#ee9aa6;    /* deeper pink for hover */
+        }
+
+        /* Keep CTA above overlays and give it breathing room on iOS */
+        #hero .cta{
+            position:relative; z-index:20;
+            margin-bottom: max(10px, calc(env(safe-area-inset-bottom) + 6px));
+        }
+
+        /* PRIMARY: gold → pink gradient, readable dark text */
+        #hero .cta .btn:not(.secondary){
+            color:var(--ink);
+            background:linear-gradient(90deg, var(--gold-400), var(--blush-400));
+            box-shadow:
+                0 0 0 1px rgba(255,255,255,.25) inset,
+                0 6px 18px rgba(0,0,0,.18);
+        }
+        #hero .cta .btn:not(.secondary):hover{
+            background:linear-gradient(90deg, var(--gold-400), var(--blush-500));
+        }
+        #hero .cta .btn:not(.secondary):active{
+            box-shadow:0 4px 12px rgba(0,0,0,.16);
+        }
+
+        /* SECONDARY: frosted white with subtle gold border */
+        #hero .cta .btn.secondary{
+            background:color-mix(in srgb, var(--white) 88%, transparent);
+            color:var(--ink);
+            border:1px solid color-mix(in srgb, var(--gold-400) 85%, transparent);
+            backdrop-filter: blur(6px);
+            box-shadow:0 6px 16px rgba(0,0,0,.14);
+        }
+        #hero .cta .btn.secondary:hover{
+            background:var(--white);
+        }
+
+        /* Shared focus ring + tap target polish */
+        #hero .cta .btn{ min-height:44px; padding:12px 18px; border-radius:999px; font-weight:600; }
+        #hero .cta .btn:focus-visible{ outline:2px solid var(--gold-500); outline-offset:2px }
+
+        /* Optional soft shimmer on hover (no layout shift) */
+        #hero .cta .btn{ position:relative; overflow:hidden; }
+        @media (hover:hover){
+            #hero .cta .btn::before{
+                content:""; position:absolute; inset:-1px; border-radius:inherit; pointer-events:none;
+                background:linear-gradient(115deg, rgba(255,255,255,0) 40%,
+                                                 rgba(255,255,255,.35) 50%,
+                                                 rgba(255,255,255,0) 60%);
+                transform:translateX(-120%); transition:transform .6s ease;
+            }
+            #hero .cta .btn:hover::before{ transform:translateX(120%) }
+        }
+
+        /* Respect reduced motion */
+        @media (prefers-reduced-motion:reduce){
+            #hero .cta .btn{ transition:none }
+            #hero .cta .btn::before{ display:none }
+        }
+
+        /* Mobile: keep CTAs side-by-side with equal widths & heights */
+        @media (max-width: 768px) {
+            #hero .cta { flex-direction: row; flex-wrap: nowrap; align-items: stretch; }
+            #hero .cta .btn {
+                flex: 1 1 0; 
+                min-width: 0; 
+                display: inline-flex; 
+                align-items: center; 
+                justify-content: center; 
+                text-align: center; 
+                white-space: nowrap; /* avoid wrapping to two lines */
+            }
+        }
+        @media (max-width: 420px) {
+            #hero .cta .btn { padding: 10px 12px; font-size: 13.5px; }
+        }
+
+        /* top scrim to improve legibility of headings over video */
+        #hero::before{
+            content:""; position:absolute; inset:0 0 55% 0; pointer-events:none;
+            background:linear-gradient(to bottom, rgba(0,0,0,.28), rgba(0,0,0,0));
+            z-index: 5;
+        }
+
+        /* subtle text sharpening (no visible stroke) */
+        #hero h1, #hero .sub{
+            text-shadow: 0 2px 10px rgba(0,0,0,.35), 0 0 1px rgba(255,255,255,.25);
+        }
+
+        @keyframes pulse-once{
+            0%{ transform:translateY(0) scale(1); box-shadow:0 6px 18px rgba(0,0,0,.18) }
+            50%{ transform:translateY(-2px) scale(1.03); box-shadow:0 12px 26px rgba(0,0,0,.2) }
+            100%{ transform:translateY(0) scale(1); box-shadow:0 6px 18px rgba(0,0,0,.18) }
+        }
+        #hero .cta .btn.pulse-once{ animation: pulse-once 1.2s ease-out 2.2s 1 both }
+        @media (prefers-reduced-motion:reduce){
+            #hero .cta .btn.pulse-once{ animation:none }
+        }
+
+        /* allow tiny perspective tilt */
+        #hero{ transform-style: preserve-3d; }
+
+        .scroll-cue{
+            position:absolute; left:50%; bottom:66px; transform:translateX(-50%);
+            padding:8px 10px; border-radius:999px; font-size:12px; letter-spacing:.08em;
+            background:rgba(255,255,255,.75); color:#333; text-decoration:none;
+            backdrop-filter: blur(6px); box-shadow:0 6px 14px rgba(0,0,0,.12);
+            z-index: 25;
+        }
+        @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-6px)}}
+        @media (hover:hover){ .scroll-cue{ animation:bob 1.8s ease-in-out infinite } }
+
+        /* slight vignette to keep eyes in center, very subtle */
+        #hero::after{
+            content:""; position:absolute; inset:0; pointer-events:none; z-index:6;
+            background:radial-gradient(100% 120% at 50% 40%, rgba(0,0,0,0) 60%, rgba(0,0,0,.15) 100%);
+        }
+
+        /* Move scroll cue to the right on mobile so it doesn't overlap CTAs */
+        @media (max-width: 768px){
+            #hero .scroll-cue{ left:auto; right:16px; transform:none; bottom: calc(env(safe-area-inset-bottom) + 96px); }
+        }
+        @media (min-width: 769px){
+            #hero .scroll-cue{ left:auto; right:24px; transform:none; bottom: 80px; }
+        }
+
+        /* Daily Vitrin (Collections) */
+        #collections{ background:#ffffff; color:#2b2b2b; padding:56px 20px; }
+        #collections .v-head{ text-align:center; margin:0 auto 22px; max-width:720px; }
+        #collections h2{ margin:0 0 6px; font-family:'Playfair Display', 'Times New Roman', serif; font-weight:600; letter-spacing:.04em; color:#2b2b2b; }
+        #collections .v-sub{ margin:0; opacity:.7; font-size:14px; }
+        .v-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:14px; max-width:1024px; margin:0 auto; }
+        @media (min-width: 769px){ .v-grid{ grid-template-columns:repeat(3,1fr); gap:18px; } }
+        .v-item{ position:relative; display:block; aspect-ratio:3/4; border-radius:18px; overflow:hidden; background:#eee; box-shadow:0 10px 24px rgba(0,0,0,.08); }
+        .v-item img{ width:100%; height:100%; object-fit:cover; display:block; filter:saturate(1.05) contrast(1.02); }
+        .v-item::after{ content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(to top, rgba(0,0,0,.22), rgba(0,0,0,0) 40%); }
+        .v-cap{ position:absolute; left:12px; right:12px; bottom:10px; color:#fff; font-size:12px; letter-spacing:.02em; text-shadow:0 2px 10px rgba(0,0,0,.35); display:flex; justify-content:space-between; align-items:center; }
+        .v-price{ background:rgba(255,255,255,.85); color:#333; border-radius:999px; padding:4px 8px; font-weight:600; box-shadow:0 4px 10px rgba(0,0,0,.12); }
+
+        /* Daily Vitrin tweaks: remove captions/prices, make heading gold and attractive */
+        #collections .v-cap{ display:none !important; }
+        #collections h2{
+            color: transparent;
+            background: linear-gradient(90deg, var(--gold-400), #ffd86b, var(--gold-400));
+            -webkit-background-clip: text; background-clip: text;
+            text-shadow: 0 3px 14px rgba(244,208,63,.35), 0 1px 0 rgba(255,255,255,.2);
+            letter-spacing: .06em;
+            font-size: clamp(1.4rem, 3.6vw, 2rem);
+        }
     </style>
 </head>
 <body>
@@ -317,6 +504,34 @@
             </div>
         </section>
     </main>
+
+    <!-- Daily Vitrin / Collections -->
+    <section id="collections">
+        <div class="v-head">
+            <h2>Daily Vitrin</h2>
+            <p class="v-sub">منتخب امروز از گل‌آرایی‌های مینیمال و لوکس</p>
+        </div>
+        <div class="v-grid">
+            <a class="v-item" href="https://wa.me/989900190067" rel="noopener">
+                <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_1.webp" alt="Daily vitrines image 1">
+            </a>
+            <a class="v-item" href="https://wa.me/989900190067" rel="noopener">
+                <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_2.webp" alt="Daily vitrines image 2">
+            </a>
+            <a class="v-item" href="https://wa.me/989900190067" rel="noopener">
+                <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_3.webp" alt="Daily vitrines image 3">
+            </a>
+            <a class="v-item" href="https://wa.me/989900190067" rel="noopener">
+                <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_4.webp" alt="Daily vitrines image 4">
+            </a>
+            <a class="v-item" href="https://wa.me/989900190067" rel="noopener">
+                <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_5.webp" alt="Daily vitrines image 5">
+            </a>
+            <a class="v-item" href="https://wa.me/989900190067" rel="noopener">
+                <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_6.webp" alt="Daily vitrines image 6">
+            </a>
+        </div>
+    </section>
 
     <script>
         // Smooth fade-in animations with IntersectionObserver
@@ -366,6 +581,56 @@
             const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
         }
+    </script>
+
+    <script>
+    // add a one-time pulse to the primary CTA (first .btn that is not .secondary)
+    (() => {
+        const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReduced) return;
+        const primary = document.querySelector('#hero .cta .btn:not(.secondary)');
+        if (primary) primary.classList.add('pulse-once');
+    })();
+
+    // micro tilt for desktop pointer, very subtle
+    (() => {
+        const ok = matchMedia('(pointer:fine)').matches && matchMedia('(prefers-reduced-motion: no-preference)').matches;
+        if (!ok) return;
+        const el = document.getElementById('hero');
+        if (!el) return;
+        const max = 6; // degrees
+        const onMove = (e) => {
+            const r = el.getBoundingClientRect();
+            const cx = r.left + r.width/2, cy = r.top + r.height/2;
+            const dx = (e.clientX - cx) / (r.width/2);
+            const dy = (e.clientY - cy) / (r.height/2);
+            el.style.transform = `perspective(900px) rotateX(${(-dy*max).toFixed(2)}deg) rotateY(${(dx*max).toFixed(2)}deg)`;
+        };
+        const reset = ()=>{ el.style.transform = 'none'; };
+        el.addEventListener('mousemove', onMove);
+        el.addEventListener('mouseleave', reset);
+    })();
+
+    // inject scroll cue link if not already present
+    (() => {
+        if (document.querySelector('#hero .scroll-cue')) return;
+        const cue = document.createElement('a');
+        cue.href = '#collections';
+        cue.className = 'scroll-cue';
+        cue.setAttribute('aria-label','Scroll to collections');
+        cue.textContent = 'Scroll ↓';
+        const hero = document.getElementById('hero');
+        if (hero) hero.appendChild(cue);
+    })();
+
+    // upgrade wa.me link with a friendly prefilled message
+    (() => {
+        const link = document.querySelector('#hero .cta a[href*="wa.me"]');
+        if (!link) return;
+        const msg = encodeURIComponent("Hi! I'm interested in your floral collections. Could you help me choose?");
+        const m = link.href.match(/https?:\/\/wa\.me\/(\d+)/);
+        if (m) link.href = `https://wa.me/${m[1]}?text=${msg}`;
+    })();
     </script>
 </body>
 </html>
