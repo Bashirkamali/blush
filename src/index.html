@@ -1,21 +1,461 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Discover our daily vitrine of curated pieces. Hand-finished details, fair pricing, and quick WhatsApp ordering.">
+    <meta name="description" content="Minimal & luxurious daily arrangements • Everlasting collections • Fast WhatsApp ordering.">
     <link rel="canonical" href="https://example.com/">
-    <title>Brand — Daily Vitrine & Bespoke Pieces</title>
+    <title>Blush — A Luxurious Floral Experience | Daily Vitrine & Collections</title>
+    <meta property="og:locale" content="fa_IR">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Blush — A Luxurious Floral Experience">
+    <meta property="og:description" content="Minimal & luxurious daily arrangements • Everlasting collections.">
+    <meta property="og:url" content="https://example.com/">
+    <meta property="og:image" content="hero.jpg">
+    <meta property="og:image:alt" content="Blush — A Luxurious Floral Experience">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blush — A Luxurious Floral Experience">
+    <meta name="twitter:description" content="Minimal & luxurious daily arrangements • Everlasting collections.">
+    <meta name="twitter:image" content="hero.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="image" href="hero.jpg" imagesrcset="hero.jpg 1x" imagesizes="100vw">
+    <link rel="preload" as="video" href="../IMG_1600 (1).mp4" type="video/mp4" fetchpriority="high">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-    <link rel="preload" as="image" href="/hero.jpg" imagesrcset="/hero.jpg 1x" fetchpriority="high">
-    <link rel="preload" as="image" href="/logo.svg">
-    <link rel="preload" as="video" href="/media/hero.webm" type="video/webm">
-    <link rel="preload" as="video" href="/media/hero.mp4" type="video/mp4">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffffff;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            opacity: 0;
+            animation: heroFadeIn .5s ease .08s forwards;
+        }
+
+        @keyframes heroFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+               object-fit: cover;
+            z-index: 1;
+            filter: blur(10px) brightness(1.15) saturate(1.12);
+            transform: scale(1.01);
+            opacity: 0.95;
+        }
+
+        .video-foreground {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: calc(100% - 80px);
+            max-height: calc(100% - 80px);
+            -o-object-fit: contain;
+               object-fit: contain;
+            z-index: 4;
+            border: 6px solid #FFFFFF;
+            border-radius: 0px;
+            box-shadow: 
+                0 0 30px rgba(255, 255, 255, 1),
+                0 0 60px rgba(255, 255, 255, 0.8),
+                0 0 90px rgba(255, 255, 255, 0.6),
+                0 0 120px rgba(255, 255, 255, 0.4),
+                0 0 150px rgba(255, 255, 255, 0.2),
+                0 4px 8px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px;
+            filter: brightness(1.1) contrast(1.05);
+        }
+
+        .video-frame {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: calc(100% - 60px);
+            height: calc(100% - 60px);
+            z-index: 1;
+            border: 4px solid #FFFFFF;
+            border-radius: 12px;
+            box-shadow: 
+                0 0 25px rgba(255, 255, 255, 0.7),
+                0 0 50px rgba(255, 255, 255, 0.4),
+                0 6px 12px rgba(0, 0, 0, 0.4);
+            background: transparent;
+            pointer-events: none;
+        }
+
+        .bloom-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(50% 50% at 50% 50%, rgba(246,214,229,0.4), transparent 70%);
+            filter: blur(20px);
+            opacity: 0.4;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        /* Additional glow effect for video */
+        .video-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(ellipse at center, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 30%, transparent 70%);
+            filter: blur(40px);
+            z-index: 1;
+            pointer-events: none;
+            animation: pulseGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { 
+                opacity: 0.6;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% { 
+                opacity: 0.9;
+                transform: translate(-50%, -50%) scale(1.05);
+            }
+        }
+
+        .content {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 15;
+            text-align: center;
+            max-width: 500px;
+            padding: 15px;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+        }
+
+
+        .logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 20;
+            width: 120px;
+            height: auto;
+            transition: all 0.5s ease-in-out;
+        }
+        .logo::after{
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(110deg, transparent 0%, rgba(212,175,55,0.0) 35%, rgba(212,175,55,0.25) 50%, rgba(255,255,255,0.35) 55%, rgba(212,175,55,0.0) 65%, transparent 100%);
+            mix-blend-mode: screen;
+            transform: translateX(-120%);
+            animation: sheenSweep 3.8s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes sheenSweep{ 0%{ transform: translateX(-120%);} 45%{ transform: translateX(120%);} 100%{ transform: translateX(120%);} }
+        @media (prefers-reduced-motion: reduce){ .logo::after{ animation: none; } }
+
+        /* Desktop positioning - bottom center of video */
+        @media (min-width: 769px) {
+            .logo {
+                top: 56%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 96px;
+                opacity: .92;
+                filter: 
+                    drop-shadow(0 0 6px rgba(212, 175, 55, 0.45))
+                    drop-shadow(0 0 14px rgba(212, 175, 55, 0.22))
+                    drop-shadow(0 3px 6px rgba(0, 0, 0, 0.3));
+                background: transparent;
+                border: none;
+                border-radius: 0;
+                padding: 0;
+                position: absolute;
+                z-index: 25;
+            }
+            
+            .logo::before {
+                content: '';
+                position: absolute;
+                inset: -22%;
+                background: radial-gradient(ellipse at center, rgba(212,175,55,0.22) 0%, rgba(212,175,55,0.08) 45%, transparent 70%);
+                border-radius: 50%;
+                z-index: -1;
+                filter: blur(10px);
+                pointer-events: none;
+            }
+        }
+
+        /* Mobile positioning - bottom center of video */
+        @media (max-width: 768px) {
+            .logo {
+                top: 56%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 68px;
+                opacity: .9;
+                filter: 
+                    drop-shadow(0 0 5px rgba(212, 175, 55, 0.4))
+                    drop-shadow(0 0 12px rgba(212, 175, 55, 0.2))
+                    drop-shadow(0 3px 6px rgba(0, 0, 0, 0.28));
+                background: transparent;
+                border: none;
+                border-radius: 0;
+                padding: 0;
+                position: absolute;
+                z-index: 25;
+            }
+            
+            .logo::before {
+                content: '';
+                position: absolute;
+                inset: -20%;
+                background: radial-gradient(ellipse at center, rgba(212,175,55,0.2) 0%, rgba(212,175,55,0.08) 45%, transparent 70%);
+                border-radius: 50%;
+                z-index: -1;
+                filter: blur(9px);
+                pointer-events: none;
+            }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', 'Times New Roman', serif;
+            font-size: clamp(1.2rem, 2.8vw, 1.8rem);
+            font-weight: 300;
+            margin-bottom: 12px;
+            color: #FFFFFF;
+            text-shadow: 
+                0 0 12px rgba(255, 255, 255, 0.8),
+                0 0 24px rgba(255, 255, 255, 0.4),
+                0 2px 4px rgba(0, 0, 0, 0.8);
+            line-height: 1.2;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-style: italic;
+            text-rendering: optimizeLegibility;
+        }
+
+        p {
+            font-size: clamp(0.75rem, 1.8vw, 0.9rem);
+            margin-bottom: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 
+                0 0 6px rgba(255, 255, 255, 0.5),
+                0 1px 2px rgba(0, 0, 0, 0.7);
+            line-height: 1.3;
+            font-weight: 300;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-buttons {
+            position: absolute;
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #F8BBD9, #F48FB1);
+            color: #FFFFFF;
+            box-shadow: 0 4px 15px rgba(244, 143, 177, 0.4);
+            font-weight: 500;
+            border: 1px solid rgba(248, 187, 217, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #F8BBD9, #F06292);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(244, 143, 177, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #F8BBD9;
+            border: 2px solid rgba(248, 187, 217, 0.8);
+            font-weight: 500;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(248, 187, 217, 0.1);
+            border-color: rgba(248, 187, 217, 1);
+            color: #FFFFFF;
+        }
+
+        /* New CTA Buttons */
+        .btn-ghost, .btn-gold{
+            padding: 10px 16px;
+            border-radius: 999px;
+            font-weight:500;
+            letter-spacing:.03em;
+            text-decoration:none;
+            transition: .25s ease;
+            backdrop-filter: blur(6px);
+        }
+
+        .btn-ghost{
+            color:#fff;
+            border:1px solid rgba(255,255,255,.55);
+            background: rgba(0,0,0,.15);
+        }
+        .btn-ghost:hover{ border-color:#fff; background: rgba(255,255,255,.10); transform: translateY(-1px); }
+
+        .btn-gold{
+            color:#fff;
+            border:1px solid #d4af37;
+            background: linear-gradient(145deg, rgba(212,175,55,.28), rgba(212,175,55,.18));
+            box-shadow: 0 6px 18px rgba(212,175,55,.22) inset, 0 6px 16px rgba(212,175,55,.18);
+        }
+        .btn-gold:hover{
+            background: linear-gradient(145deg, #d4af37, #e7d6a8);
+            color:#2a2a2a;
+            transform: translateY(-1px);
+        }
+
+
+        @media (max-width: 768px) {
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 200px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .hero-section { background: #ffffff; }
+            .video-background,
+            .bloom-overlay,
+            .video-glow { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section { background: transparent; }
+            .video-background { filter: none; transform: none; opacity: 1; }
+            .video-foreground { top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100vw; height: 100vh; object-fit: cover; max-width: none; max-height: none; border: none; padding: 0; box-shadow: none; background: none; }
+            .video-frame { display: none; }
+        }
+    </style>
 </head>
 <body>
-    <div id="root" dir="ltr"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <section class="hero-section">
+        <!-- Logo -->
+        <img src="../logo.svg" alt="THE BLUSH FLOWER STUDIO" class="logo">
+        
+        <!-- Background Video (Blurred) -->
+        <video class="video-background" autoplay muted loop playsinline preload="metadata">
+            <source src="video_720.mp4" type="video/mp4">
+        </video>
+        
+        <!-- Video Frame -->
+        <div class="video-frame"></div>
+        
+        <!-- Foreground Video (Original) -->
+        <video class="video-foreground" autoplay muted loop playsinline preload="auto">
+            <source src="../IMG_1600 (1).mp4" type="video/mp4">
+        </video>
+        
+        <!-- Bloom Effect -->
+        <div class="bloom-overlay"></div>
+        
+        <!-- Video Glow Effect -->
+        <div class="video-glow"></div>
+        
+        <!-- Content -->
+        <div class="content">
+            <h1>Blush — A Luxurious Floral Experience</h1>
+            <p>Minimal & luxurious daily arrangements • Everlasting collections</p>
+        </div>
+        
+        <!-- CTA Buttons -->
+        <div class="cta-buttons">
+            <a href="#collections" class="btn-ghost">View Collections</a>
+            <a href="https://wa.me/989900190067" class="btn-gold">Chat on WhatsApp</a>
+        </div>
+        
+    </section>
+
+    <script>
+        function openWhatsApp() {
+            const phoneNumber = '989900190067';
+            const message = 'سلام! می‌خوام درباره محصولات Blush اطلاعات بیشتری داشته باشم';
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        // Video loading check
+        document.addEventListener('DOMContentLoaded', function() {
+            const videos = document.querySelectorAll('video');
+            videos.forEach((video, index) => {
+                video.addEventListener('loadstart', () => {
+                    console.log(`Video ${index + 1} started loading`);
+                });
+                
+                video.addEventListener('canplay', () => {
+                    console.log(`Video ${index + 1} can play`);
+                });
+                
+                video.addEventListener('error', (e) => {
+                    console.error(`Video ${index + 1} error:`, e);
+                    alert(`خطا در بارگذاری ویدیو ${index + 1}. لطفاً فایل IMG_1600 (1).mp4 را بررسی کنید.`);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
