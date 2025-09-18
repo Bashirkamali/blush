@@ -521,6 +521,7 @@
         #hero .video-foreground{
             position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);
             width:85%; height:85%; object-fit:cover; border-radius:16px; z-index:2;
+            filter: blur(1.5px);
         }
         @media (max-width: 768px){
             #hero .video-foreground{ width:85%; height:85%; border-radius:16px; }
@@ -559,7 +560,7 @@
             <div class="content">
                 <div class="cta fade-in">
                     <a class="btn" href="https://wa.me/989900190067" rel="noopener">Chat on WhatsApp</a>
-                    <a class="btn secondary" href="#collections">View Collections</a>
+                    <a class="btn secondary" href="https://blush-flower.com/" rel="noopener">View Collections</a>
                 </div>
             </div>
         </section>
@@ -572,22 +573,22 @@
             <p class="v-sub">منتخب امروز از گل‌آرایی‌های مینیمال و لوکس</p>
         </div>
         <div class="v-grid">
-            <a class="v-item" href="https://wa.me/989900190067" rel="noopener">
+            <a class="v-item" href="https://blush-flower.com/" rel="noopener">
                 <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_1.webp" alt="Daily vitrines image 1">
             </a>
-            <a class="v-item" href="https://wa.me/989900190067" rel="noopener">
+            <a class="v-item" href="https://blush-flower.com/" rel="noopener">
                 <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_2.webp" alt="Daily vitrines image 2">
             </a>
-            <a class="v-item" href="https://wa.me/989900190067" rel="noopener">
+            <a class="v-item" href="https://blush-flower.com/" rel="noopener">
                 <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_3.webp" alt="Daily vitrines image 3">
             </a>
-            <a class="v-item" href="https://wa.me/989900190067" rel="noopener">
+            <a class="v-item" href="https://blush-flower.com/" rel="noopener">
                 <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_4.webp" alt="Daily vitrines image 4">
             </a>
-            <a class="v-item" href="https://wa.me/989900190067" rel="noopener">
+            <a class="v-item" href="https://blush-flower.com/" rel="noopener">
                 <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_5.webp" alt="Daily vitrines image 5">
             </a>
-            <a class="v-item" href="https://wa.me/989900190067" rel="noopener">
+            <a class="v-item" href="https://blush-flower.com/" rel="noopener">
                 <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_6.webp" alt="Daily vitrines image 6">
             </a>
         </div>
@@ -687,6 +688,24 @@
           hero.classList.add('ready');        // ensures CSS fades happen
           setTimeout(() => { try { lq.remove(); sk.remove(); } catch(e){} }, 160);
         }, { once: true });
+
+        // Try to sync background and foreground videos if both exist
+        const bg = hero.querySelector('.video-background');
+        const fg = hero.querySelector('.video-foreground');
+        if (bg && fg) {
+          const sync = () => {
+            if (Math.abs(bg.currentTime - fg.currentTime) > 0.2) {
+              const t = Math.min(bg.duration || fg.duration || 0, Math.max(0, bg.currentTime));
+              try { fg.currentTime = t; } catch(e){}
+            }
+            if (bg.paused && !fg.paused) { try { fg.pause(); } catch(e){} }
+            if (!bg.paused && fg.paused) { try { fg.play().catch(()=>{}); } catch(e){} }
+          };
+          bg.addEventListener('timeupdate', sync);
+          fg.addEventListener('timeupdate', sync);
+          bg.addEventListener('play', sync);
+          fg.addEventListener('play', sync);
+        }
       }
     })();
     </script>
