@@ -4,19 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="BLUSH — Luxurious Floral Experience. Minimal & luxurious daily floral arrangements.">
-    <link rel="canonical" href="https://blush-flower.com/">
+    <link rel="canonical" href="https://example.com/">
     <title>BLUSH — Luxurious Floral Experience</title>
     <link rel="preload" as="image" href="hero.webp" fetchpriority="high" />
     <meta name="theme-color" content="#f7e8eb">
-    <meta property="og:title" content="BLUSH — Luxurious Floral Experience">
-    <meta property="og:description" content="Minimal & luxurious daily floral arrangements • Everlasting collections">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://blush-flower.com/">
-    <meta property="og:image" content="https://blush-flower.com/hero.webp">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="BLUSH — Luxurious Floral Experience">
-    <meta name="twitter:description" content="Minimal & luxurious daily floral arrangements • Everlasting collections">
-    <meta name="twitter:image" content="https://blush-flower.com/hero.webp">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
@@ -629,7 +620,18 @@
         document.addEventListener('DOMContentLoaded', function() {
             const videos = document.querySelectorAll('video');
             videos.forEach((video, index) => {
-                // telemetry logs removed for production
+                video.addEventListener('loadstart', () => {
+                    console.log(`Video ${index + 1} started loading`);
+                });
+                
+                video.addEventListener('canplay', () => {
+                    console.log(`Video ${index + 1} can play`);
+                });
+                
+                video.addEventListener('error', (e) => {
+                    console.error(`Video ${index + 1} error:`, e);
+                    console.log(`Video ${index + 1} failed to load, trying fallback`);
+                });
             });
         });
 
@@ -640,22 +642,6 @@
             const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
         }
-    </script>
-
-    <!-- Basic LocalBusiness Schema (Florist) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Florist",
-      "name": "BLUSH Flower Studio",
-      "url": "https://blush-flower.com/",
-      "image": "https://blush-flower.com/hero.webp",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "IR"
-      },
-      "telephone": "+98 990 019 0067"
-    }
     </script>
 
     <script>
@@ -764,17 +750,13 @@
         if (hero) hero.appendChild(cue);
     })();
 
-    // gclid/utm propagate to destination links (add as query params)
+    // upgrade wa.me link with a friendly prefilled message
     (() => {
-        const params = new URLSearchParams(location.search);
-        const keep = ['gclid','utm_source','utm_medium','utm_campaign','utm_term','utm_content'];
-        const qs = keep.filter(k => params.has(k)).map(k => `${k}=${encodeURIComponent(params.get(k)||'')}`).join('&');
-        if (!qs) return;
-        document.querySelectorAll('a[href^="https://blush-flower.com/"]').forEach(a => {
-            const url = new URL(a.href);
-            keep.forEach(k => { if (params.has(k)) url.searchParams.set(k, params.get(k)); });
-            a.href = url.toString();
-        });
+        const link = document.querySelector('#hero .cta a[href*="wa.me"]');
+        if (!link) return;
+        const msg = encodeURIComponent("Hi! I'm interested in your floral collections. Could you help me choose?");
+        const m = link.href.match(/https?:\/\/wa\.me\/(\d+)/);
+        if (m) link.href = `https://wa.me/${m[1]}?text=${msg}`;
     })();
     </script>
 </body>
