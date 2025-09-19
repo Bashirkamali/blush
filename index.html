@@ -560,15 +560,15 @@
         }
         
         /* Icon-only CTA (second row) */
-        .icon-row{ margin-top:0 !important; gap:0 !important; }
+        .icon-row{ margin-top:0 !important; gap:clamp(10px,3vw,16px) !important; }
         .icon-cta{ display:inline-flex; align-items:center; justify-content:center; padding:0; margin:0; background:transparent; border:0; box-shadow:none; border-radius:0; }
-        .icon-cta svg{ width:clamp(18px,2.8vw,24px); height:clamp(18px,2.8vw,24px); color:rgba(255,255,255,.72); opacity:.9; transition: transform .25s ease, filter .25s ease, color .25s ease, opacity .25s ease; }
-        @media (min-width: 769px){ .icon-cta svg{ width:clamp(20px,2.2vw,26px); height:clamp(20px,2.2vw,26px); } }
-        .icon-cta:hover svg{ color:#f4d03f; opacity:1; filter:drop-shadow(0 0 8px rgba(244,208,63,.45)) brightness(1.06) saturate(1.05); transform:scale(1.03); animation: flash-burst .55s ease-out 1; }
+        .icon-cta svg{ width:clamp(24px,3.8vw,32px); height:clamp(24px,3.8vw,32px); color:var(--gold-400); opacity:1; filter:drop-shadow(0 0 6px rgba(255,255,255,.3)); transition: transform .25s ease, filter .25s ease, color .25s ease, opacity .25s ease; }
+        @media (min-width: 769px){ .icon-cta svg{ width:clamp(26px,2.6vw,36px); height:clamp(26px,2.6vw,36px); } }
+        .icon-cta:hover svg{ color:var(--gold-400); opacity:1; filter:drop-shadow(0 0 12px rgba(255,255,255,.55)) brightness(1.08) saturate(1.05); transform:scale(1.05); animation: flash-burst .5s ease-out 1; }
         @keyframes flash-burst{
-            0%{ filter:brightness(.96) saturate(.96) drop-shadow(0 0 0 rgba(244,208,63,0)); }
-            40%{ filter:brightness(1.12) saturate(1.08) drop-shadow(0 0 10px rgba(244,208,63,.55)); }
-            100%{ filter:brightness(1.0) saturate(1.0) drop-shadow(0 0 6px rgba(244,208,63,.3)); }
+            0%{ filter:brightness(.96) drop-shadow(0 0 0 rgba(255,255,255,0)); }
+            40%{ filter:brightness(1.15) drop-shadow(0 0 12px rgba(255,255,255,.6)); }
+            100%{ filter:brightness(1.0) drop-shadow(0 0 6px rgba(255,255,255,.35)); }
         }
     </style>
 </head>
