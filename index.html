@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="BLUSH — Luxurious Floral Experience. Minimal & luxurious daily floral arrangements.">
+    <meta name="description" content="BLUSH Flower — Luxury & minimal floral studio in Shiraz. Same‑day delivery, fresh flowers, elegant packaging. Blush Flower Studio & Blush Flower Boutique.">
     <link rel="canonical" href="https://blush-flower.com/">
     <title>BLUSH — Luxurious Floral Experience</title>
     <link rel="preload" as="image" href="hero.webp" fetchpriority="high" />
@@ -17,9 +17,11 @@
     <meta name="twitter:title" content="BLUSH — Luxurious Floral Experience">
     <meta name="twitter:description" content="Minimal & luxurious daily floral arrangements • Everlasting collections">
     <meta name="twitter:image" content="https://blush-flower.com/hero.webp">
+    <meta name="keywords" content="Blush, Blush Flower, Blush Flower Studio, Blush Flowershop, Blush Flower Boutique, Blush Shiraz, استودیو گل بلاش, گل بلاش, گلفروشی بلاش, گل فروشی بلاش, بوتیک گل بلاش, خرید گل, سفارش آنلاین گل, دسته گل, باکس گل, گل رز, گل لاکچری, خرید اینترنتی گل, گل‌آرایی, گل طبیعی, گل تازه, ارسال گل, هدیه خاص, هدیه رمانتیک, گل برای تولد, گل برای سالگرد, سورپرایز با گل, گل‌فروشی Blush شیراز, خرید گل در شیراز, سفارش آنلاین گل شیراز, گل‌فروشی آنلاین شیراز, ارسال گل در شیراز, دسته گل شیراز, باکس گل شیراز, خرید اینترنتی گل شیراز, بهترین گل‌فروشی شیراز, گل رز شیراز, سفارش دسته گل شیراز, ارسال فوری گل شیراز, گل‌آرایی در شیراز">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Reset and Base Styles */
         *,*::before,*::after{box-sizing:border-box}
@@ -141,6 +143,26 @@
             gap: 18px;
             padding: 20px 28px 28px 28px;
             z-index: 30;
+        }
+        /* Mini actions: Call + Instagram */
+        .mini-actions{ display:flex; gap:8px; }
+        .mini-actions .mini-btn{
+            appearance:none; border:0; padding:8px 12px; border-radius:999px;
+            font-size:12px; font-weight:600; letter-spacing:.02em; cursor:pointer;
+            background:color-mix(in srgb, var(--white) 86%, transparent);
+            color:var(--ink); text-decoration:none; backdrop-filter:blur(6px);
+            box-shadow:0 4px 12px rgba(0,0,0,.14);
+        }
+        .mini-actions .mini-btn:focus-visible{ outline:2px solid var(--gold-500); outline-offset:2px }
+        /* Call: white → green → gold */
+        .mini-actions .mini-btn.call{
+            background:linear-gradient(90deg, #ffffff 0%, #2ecc71 55%, var(--gold-400) 100%);
+            color:#1e1e1e; border:1px solid color-mix(in srgb, var(--gold-400) 55%, transparent);
+        }
+        /* Instagram: brand gradient */
+        .mini-actions .mini-btn.ig{
+            background:linear-gradient(45deg, #f58529, #dd2a7b 40%, #8134af 70%, #515bd4);
+            color:#ffffff;
         }
 
         .logo {
@@ -536,6 +558,18 @@
         @media (max-width: 768px){
             #hero .video-foreground{ width:85%; height:85%; border-radius:16px; }
         }
+        
+        /* Icon-only CTA (second row) */
+        .icon-row{ margin-top:0 !important; gap:0 !important; }
+        .icon-cta{ display:inline-flex; align-items:center; justify-content:center; padding:0; margin:0; background:transparent; border:0; box-shadow:none; border-radius:0; }
+        .icon-cta svg{ width:clamp(18px,2.8vw,24px); height:clamp(18px,2.8vw,24px); color:rgba(255,255,255,.72); opacity:.9; transition: transform .25s ease, filter .25s ease, color .25s ease, opacity .25s ease; }
+        @media (min-width: 769px){ .icon-cta svg{ width:clamp(20px,2.2vw,26px); height:clamp(20px,2.2vw,26px); } }
+        .icon-cta:hover svg{ color:#f4d03f; opacity:1; filter:drop-shadow(0 0 8px rgba(244,208,63,.45)) brightness(1.06) saturate(1.05); transform:scale(1.03); animation: flash-burst .55s ease-out 1; }
+        @keyframes flash-burst{
+            0%{ filter:brightness(.96) saturate(.96) drop-shadow(0 0 0 rgba(244,208,63,0)); }
+            40%{ filter:brightness(1.12) saturate(1.08) drop-shadow(0 0 10px rgba(244,208,63,.55)); }
+            100%{ filter:brightness(1.0) saturate(1.0) drop-shadow(0 0 6px rgba(244,208,63,.3)); }
+        }
     </style>
 </head>
 <body>
@@ -550,7 +584,7 @@
             </video>
             
             <!-- Foreground Video (Original) -->
-            <video class="video-foreground" autoplay muted loop playsinline poster="./public/hero.jpg">
+            <video class="video-foreground" autoplay muted loop playsinline poster="hero.webp">
                 <source src="./IMG_1600 (2).mp4" type="video/mp4">
             </video>
             
@@ -566,11 +600,33 @@
                 <div class="subtitle">Minimal & luxurious daily arrangements • Everlasting collections</div>
             </div>
 
-            <!-- Content (CTA) -->
+            <!-- Content (Icon-only actions at bottom) -->
             <div class="content">
-                <div class="cta fade-in">
-                    <a class="btn" href="https://wa.me/989900190067" rel="noopener">Chat on WhatsApp</a>
-                    <a class="btn secondary" href="https://blush-flower.com/" rel="noopener">View Collections</a>
+                <div class="fade-in w-full">
+                    <div class="mt-6 grid grid-cols-2 gap-3 md:gap-4 w-full max-w-md mx-auto px-[0.1cm]">
+                        <a href="tel:+989177800806"
+                           class="inline-flex items-center justify-center rounded-2xl px-2 py-2 text-[13px] md:text-sm font-medium tracking-wide text-neutral-900 shadow-sm hover:shadow-md transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500/40 focus-visible:ring-offset-2 border border-yellow-400/50 bg-[linear-gradient(90deg,#ffffff_0%,#fff6d5_40%,#f4d03f_100%)]"
+                           aria-label="Call BLUSH">
+                            <svg class="mr-2 h-4 w-4 md:h-5 md:w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.5-1.2a2 2 0 0 1 2.1-.4c.8.3 1.7.5 2.6.6A2 2 0 0 1 22 16.9z"/></svg>
+                            Call us
+                        </a>
+
+                        <a href="https://www.blush-flower.com"
+                           class="inline-flex items-center justify-center rounded-2xl border border-yellow-400/60 bg-white px-2 py-2 text-[13px] md:text-sm font-medium tracking-wide text-neutral-900 shadow-[0_6px_20px_rgba(0,0,0,0.06)] ring-1 ring-yellow-500/10 hover:ring-yellow-500/25 hover:shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500/40 focus-visible:ring-offset-2 decoration-yellow-500/40"
+                           aria-label="View Collections on BLUSH" data-gold>
+                            <svg class="mr-2 h-4 w-4 md:h-5 md:w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 7h12l-1 13H7L6 7Z"/><path d="M9 7a3 3 0 1 1 6 0"/></svg>
+                            View Collections
+                        </a>
+                    </div>
+
+                    <div class="icon-row flex items-center justify-center">
+                        <a href="https://wa.me/989357060067" aria-label="Chat on WhatsApp" class="icon-cta">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 11.5A8.5 8.5 0 1 1 11.5 3 8.5 8.5 0 0 1 20 11.5Z"/><path d="M8.5 8.5c.5 2 2.5 4 4.5 4.5l1.5-1"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/blush_flower" target="_blank" rel="noopener" aria-label="Open BLUSH Instagram" class="icon-cta">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1"/></svg>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -651,11 +707,30 @@
       "name": "BLUSH Flower Studio",
       "url": "https://blush-flower.com/",
       "image": "https://blush-flower.com/hero.webp",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "IR"
-      },
-      "telephone": "+98 990 019 0067"
+      "telephone": "+989177800806",
+      "openingHours": "Mo-Su 10:00-22:00",
+      "department": [
+        {
+          "@type": "Store",
+          "name": "Blush Flower Studio",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Sattarkhan Blvd, Valiaasr St, Corner of 26th Alley",
+            "addressLocality": "Shiraz",
+            "addressCountry": "IR"
+          }
+        },
+        {
+          "@type": "Store",
+          "name": "Blush Flower Boutique",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Moalem Square, Moalem St, Between 5th and 7th Alley",
+            "addressLocality": "Shiraz",
+            "addressCountry": "IR"
+          }
+        }
+      ]
     }
     </script>
 
