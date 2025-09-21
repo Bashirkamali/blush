@@ -14,7 +14,7 @@ const CinematicBloom: React.FC<CinematicBloomProps> = ({ className = '' }) => {
     const poster = document.createElement("link");
     poster.rel = "preload";
     poster.as = "image";
-    poster.href = "/hero.jpg";
+    poster.href = "/hero.webp";
     document.head.appendChild(poster);
 
     const videoWebm = document.createElement("link");
@@ -75,7 +75,7 @@ const CinematicBloom: React.FC<CinematicBloomProps> = ({ className = '' }) => {
       aria-label="Blush — Cinematic Bloom Hero"
     >
       {/* Preload hero image */}
-      <link rel="preload" as="image" href="/hero.jpg" />
+      <link rel="preload" as="image" href="/hero.webp" />
       
       {/* Background Video with poster fallback */}
       <div className="absolute inset-0">
@@ -86,7 +86,7 @@ const CinematicBloom: React.FC<CinematicBloomProps> = ({ className = '' }) => {
           muted
           loop
           playsInline
-          poster="/hero.jpg"
+          poster="/hero.webp"
           style={{ 
             transform: prefersReducedMotion ? 'none' : `translateY(${parallaxOffset}px)`,
             transition: prefersReducedMotion ? 'none' : 'transform 0.1s ease-out'

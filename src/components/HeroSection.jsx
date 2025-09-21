@@ -59,7 +59,7 @@ export default function HeroSection(){
   return (
     <section ref={heroRef} className="relative h-[100svh] overflow-hidden bg-[#0b0b0b]" aria-label="Blush — Cinematic Bloom Hero">
       {/* Preload poster image */}
-      <link rel="preload" as="image" href="/blush_poster.jpg" />
+      <link rel="preload" as="image" href="/blush_poster.webp" />
       
       {/* BG blur fill (covers the frame) */}
       <video
@@ -75,7 +75,7 @@ export default function HeroSection(){
       <video
         className="absolute inset-0 m-auto max-w-full max-h-full w-auto h-full object-contain"
         autoPlay={!prefersReducedMotion} muted loop playsInline
-        poster="/blush_poster.jpg"
+        poster="/blush_poster.webp"
         style={{ transform: `translateY(${parallaxOffset}px)` }}
       >
         <source src="/IMG_1993_720.mp4" type="video/mp4" />

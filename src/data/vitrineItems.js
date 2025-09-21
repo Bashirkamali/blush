@@ -10,16 +10,87 @@ const modules = import.meta.glob(
 // Example:
 // 'vitrine-2025-09-01-001.jpg': { caption: 'Eternal Romance', price: '$180–280', href: '/products/210', alt: 'Red roses with white peonies' }
 const manualMeta = {
-  // انتخاب 9 تصویر برتر برای نمایش
-  'vitrine_09_05_2025_1.webp': { caption: 'گل‌آرایی لوکس روزانه', price: '۲۵۰,۰۰۰ تومان', alt: 'آرایش گل لوکس' },
-  'vitrine_09_05_2025_2.webp': { caption: 'دسته گل عروس', price: '۴۵۰,۰۰۰ تومان', alt: 'دسته گل عروس' },
-  'vitrine_09_05_2025_3.webp': { caption: 'آرایش گل فصلی', price: '۱۸۰,۰۰۰ تومان', alt: 'گل‌آرایی فصلی' },
-  'vitrine_09_05_2025_4.webp': { caption: 'باکت گل لوکس', price: '۳۲۰,۰۰۰ تومان', alt: 'باکت گل' },
-  'vitrine_09_05_2025_5.webp': { caption: 'آرایش گل مدرن', price: '۲۲۰,۰۰۰ تومان', alt: 'گل‌آرایی مدرن' },
-  'vitrine_09_05_2025_6.webp': { caption: 'دسته گل کلاسیک', price: '۱۹۵,۰۰۰ تومان', alt: 'گل کلاسیک' },
-  'vitrine_09_05_2025_7.webp': { caption: 'آرایش گل مینیمال', price: '۱۶۵,۰۰۰ تومان', alt: 'گل مینیمال' },
-  'vitrine_09_05_2025_8.webp': { caption: 'باکت گل رمانتیک', price: '۲۸۰,۰۰۰ تومان', alt: 'گل رمانتیک' },
-  'vitrine_09_05_2025_9.webp': { caption: 'آرایش گل شرقی', price: '۲۱۰,۰۰۰ تومان', alt: 'گل‌آرایی شرقی' }
+  // تصاویر جدید با نام‌های SEO-friendly برای موتورهای جستجو
+  'luxury-bouquet-white-bag-pink-background.webp': { 
+    caption: 'دسته گل لوکس در کیسه سفید', 
+    price: '۳۵۰,۰۰۰ تومان', 
+    alt: 'دسته گل لوکس صورتی و سفید در کیسه کادویی سفید با پس‌زمینه صورتی - گل‌آرایی حرفه‌ای' 
+  },
+  'elegant-flower-arrangement-acrylic-vitrine.webp': { 
+    caption: 'آرایش گل شیک در ویترین شیشه‌ای', 
+    price: '۴۲۰,۰۰۰ تومان', 
+    alt: 'آرایش گل شیک و مدرن در ویترین شیشه‌ای شفاف - گل‌آرایی لوکس' 
+  },
+  'vibrant-mixed-bouquet-modern-vase.webp': { 
+    caption: 'دسته گل رنگارنگ در گلدان مدرن', 
+    price: '۲۸۰,۰۰۰ تومان', 
+    alt: 'دسته گل رنگارنگ و شاد در گلدان مدرن سفید - ترکیب گل‌های فصلی' 
+  },
+  'colorful-flower-box-blue-container.webp': { 
+    caption: 'باکت گل رنگارنگ در ظرف آبی', 
+    price: '۳۲۰,۰۰۰ تومان', 
+    alt: 'باکت گل رنگارنگ در ظرف آبی آسمانی - گل‌آرایی هنرمندانه' 
+  },
+  'artistic-floral-display-hexagonal-box.webp': { 
+    caption: 'نمایش هنری گل در جعبه شش‌ضلعی', 
+    price: '۳۸۰,۰۰۰ تومان', 
+    alt: 'نمایش هنری گل‌ها در جعبه شش‌ضلعی آبی - طراحی خلاقانه' 
+  },
+  'romantic-pink-purple-bouquet-vase.webp': { 
+    caption: 'دسته گل رمانتیک صورتی و بنفش', 
+    price: '۲۶۰,۰۰۰ تومان', 
+    alt: 'دسته گل رمانتیک با ترکیب صورتی و بنفش در گلدان سفید' 
+  },
+  'luxury-purple-flower-box-ribbon.webp': { 
+    caption: 'باکت گل لوکس بنفش با روبان', 
+    price: '۴۵۰,۰۰۰ تومان', 
+    alt: 'باکت گل لوکس بنفش با روبان ساتن - گل‌آرایی مجلل' 
+  },
+  'sunflower-yellow-bouquet-green-box.webp': { 
+    caption: 'دسته گل آفتابگردان در جعبه سبز', 
+    price: '۲۲۰,۰۰۰ تومان', 
+    alt: 'دسته گل آفتابگردان زرد و نارنجی در جعبه سبز - گل‌های شاد' 
+  },
+  'elegant-white-orchid-arrangement.webp': { 
+    caption: 'آرایش ارکیده سفید شیک', 
+    price: '۵۵۰,۰۰۰ تومان', 
+    alt: 'آرایش ارکیده سفید شیک و ظریف - گل‌آرایی مینیمال' 
+  },
+  'cheerful-yellow-white-lavender-bouquet.webp': { 
+    caption: 'دسته گل شاد زرد، سفید و بنفش', 
+    price: '۲۴۰,۰۰۰ تومان', 
+    alt: 'دسته گل شاد با ترکیب زرد، سفید و بنفش - گل‌های آفتابگردان و لاوندر' 
+  },
+  'rustic-wicker-basket-macrame-flowers.webp': { 
+    caption: 'دسته گل در سبد حصیری با ماکرامه', 
+    price: '۳۰۰,۰۰۰ تومان', 
+    alt: 'دسته گل رنگارنگ در سبد حصیری با تزئینات ماکرامه - سبک روستیک' 
+  },
+  'luxury-golden-flower-box-arrangement.webp': { 
+    caption: 'باکت گل لوکس طلایی', 
+    price: '۵۰۰,۰۰۰ تومان', 
+    alt: 'باکت گل لوکس در جعبه طلایی - گل‌آرایی مجلل و شیک' 
+  },
+  'beautiful-mixed-bouquet-white-vase.webp': { 
+    caption: 'دسته گل زیبا در گلدان سفید', 
+    price: '۲۷۰,۰۰۰ تومان', 
+    alt: 'دسته گل زیبا و رنگارنگ در گلدان سفید - ترکیب گل‌های فصلی' 
+  },
+  'dried-flower-arrangement-modern-vase.webp': { 
+    caption: 'آرایش گل خشک در گلدان مدرن', 
+    price: '۱۸۰,۰۰۰ تومان', 
+    alt: 'آرایش گل خشک و طبیعی در گلدان مدرن - سبک مینیمال' 
+  },
+  'luxury-white-flower-box-ribbon.webp': { 
+    caption: 'باکت گل لوکس سفید با روبان', 
+    price: '۴۰۰,۰۰۰ تومان', 
+    alt: 'باکت گل لوکس سفید با روبان صورتی - گل‌آرایی شیک' 
+  },
+  'colorful-bouquet-ceramic-vase.webp': { 
+    caption: 'دسته گل رنگارنگ در گلدان سرامیکی', 
+    price: '۲۹۰,۰۰۰ تومان', 
+    alt: 'دسته گل رنگارنگ در گلدان سرامیکی آبی - گل‌آرایی هنرمندانه' 
+  }
 };
 
 function baseName(path) {
