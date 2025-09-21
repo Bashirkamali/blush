@@ -1,5 +1,0 @@
-User-agent: *
-Disallow: /blush-simple.html
-Disallow: /blush-local-sample.html
-Disallow: /blush-test-new-video.html
-Disallow: /playground/

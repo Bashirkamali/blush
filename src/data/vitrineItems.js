@@ -10,7 +10,7 @@ const modules = import.meta.glob(
 // Example:
 // 'vitrine-2025-09-01-001.jpg': { caption: 'Eternal Romance', price: '$180–280', href: '/products/210', alt: 'Red roses with white peonies' }
 const manualMeta = {
-  // تصاویر جدید با نام‌های SEO-friendly برای موتورهای جستجو
+  // انتخاب 9 تصویر برتر برای نمایش در ویترین
   'luxury-bouquet-white-bag-pink-background.webp': { 
     caption: 'دسته گل لوکس در کیسه سفید', 
     price: '۳۵۰,۰۰۰ تومان', 
@@ -55,41 +55,6 @@ const manualMeta = {
     caption: 'آرایش ارکیده سفید شیک', 
     price: '۵۵۰,۰۰۰ تومان', 
     alt: 'آرایش ارکیده سفید شیک و ظریف - گل‌آرایی مینیمال' 
-  },
-  'cheerful-yellow-white-lavender-bouquet.webp': { 
-    caption: 'دسته گل شاد زرد، سفید و بنفش', 
-    price: '۲۴۰,۰۰۰ تومان', 
-    alt: 'دسته گل شاد با ترکیب زرد، سفید و بنفش - گل‌های آفتابگردان و لاوندر' 
-  },
-  'rustic-wicker-basket-macrame-flowers.webp': { 
-    caption: 'دسته گل در سبد حصیری با ماکرامه', 
-    price: '۳۰۰,۰۰۰ تومان', 
-    alt: 'دسته گل رنگارنگ در سبد حصیری با تزئینات ماکرامه - سبک روستیک' 
-  },
-  'luxury-golden-flower-box-arrangement.webp': { 
-    caption: 'باکت گل لوکس طلایی', 
-    price: '۵۰۰,۰۰۰ تومان', 
-    alt: 'باکت گل لوکس در جعبه طلایی - گل‌آرایی مجلل و شیک' 
-  },
-  'beautiful-mixed-bouquet-white-vase.webp': { 
-    caption: 'دسته گل زیبا در گلدان سفید', 
-    price: '۲۷۰,۰۰۰ تومان', 
-    alt: 'دسته گل زیبا و رنگارنگ در گلدان سفید - ترکیب گل‌های فصلی' 
-  },
-  'dried-flower-arrangement-modern-vase.webp': { 
-    caption: 'آرایش گل خشک در گلدان مدرن', 
-    price: '۱۸۰,۰۰۰ تومان', 
-    alt: 'آرایش گل خشک و طبیعی در گلدان مدرن - سبک مینیمال' 
-  },
-  'luxury-white-flower-box-ribbon.webp': { 
-    caption: 'باکت گل لوکس سفید با روبان', 
-    price: '۴۰۰,۰۰۰ تومان', 
-    alt: 'باکت گل لوکس سفید با روبان صورتی - گل‌آرایی شیک' 
-  },
-  'colorful-bouquet-ceramic-vase.webp': { 
-    caption: 'دسته گل رنگارنگ در گلدان سرامیکی', 
-    price: '۲۹۰,۰۰۰ تومان', 
-    alt: 'دسته گل رنگارنگ در گلدان سرامیکی آبی - گل‌آرایی هنرمندانه' 
   }
 };
 

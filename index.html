@@ -3,33 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Discover our daily vitrine of curated pieces. Hand-finished details, fair pricing, and quick WhatsApp ordering.">
-    <link rel="canonical" href="https://example.com/">
-    <title>Brand — Daily Vitrine & Bespoke Pieces</title>
+    <meta name="description" content="BLUSH Flower — Luxury & minimal floral studio in Shiraz. Same‑day delivery, fresh flowers, elegant packaging. Blush Flower Studio & Blush Flower Boutique.">
+    <link rel="canonical" href="https://blush-flower.com/">
+    <title>BLUSH — Luxurious Floral Experience</title>
+    <link rel="preload" as="image" href="hero.webp" fetchpriority="high" />
+    <meta name="theme-color" content="#f7e8eb">
+    <meta property="og:title" content="BLUSH — Luxurious Floral Experience">
+    <meta property="og:description" content="Minimal & luxurious daily floral arrangements • Everlasting collections">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://blush-flower.com/">
+    <meta property="og:image" content="https://blush-flower.com/hero.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="BLUSH — Luxurious Floral Experience">
+    <meta name="twitter:description" content="Minimal & luxurious daily floral arrangements • Everlasting collections">
+    <meta name="twitter:image" content="https://blush-flower.com/hero.webp">
+    <meta name="keywords" content="Blush, Blush Flower, Blush Flower Studio, Blush Flowershop, Blush Flower Boutique, Blush Shiraz, استودیو گل بلاش, گل بلاش, گلفروشی بلاش, گل فروشی بلاش, بوتیک گل بلاش, خرید گل, سفارش آنلاین گل, دسته گل, باکس گل, گل رز, گل لاکچری, خرید اینترنتی گل, گل‌آرایی, گل طبیعی, گل تازه, ارسال گل, هدیه خاص, هدیه رمانتیک, گل برای تولد, گل برای سالگرد, سورپرایز با گل, گل‌فروشی Blush شیراز, خرید گل در شیراز, سفارش آنلاین گل شیراز, گل‌فروشی آنلاین شیراز, ارسال گل در شیراز, دسته گل شیراز, باکس گل شیراز, خرید اینترنتی گل شیراز, بهترین گل‌فروشی شیراز, گل رز شیراز, سفارش دسته گل شیراز, ارسال فوری گل شیراز, گل‌آرایی در شیراز">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* Reset and Base Styles */
+        *,*::before,*::after{box-sizing:border-box}
+        html,body{height:100%}
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0b0b0b;
-            color: white;
+            font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: #faf6f5;
+            color: #fff;
             overflow-x: hidden;
+            margin: 0;
         }
 
         .hero-section {
             position: relative;
-            height: 100vh;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 20px;
+        }
+
+        .hero-container {
+            position: relative;
+            width: min(92vw, 420px);
+            aspect-ratio: 9/16;
+            border-radius: 24px;
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,.15);
+            background: #e7c7c7;
         }
 
         .video-background {
@@ -40,7 +61,7 @@
             height: 100%;
             object-fit: cover;
             z-index: 1;
-            filter: blur(15px) brightness(0.8);
+            filter: blur(1.5px) brightness(0.9);
             transform: scale(1.02);
         }
 
@@ -49,22 +70,27 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
+            width: 85%;
+            height: 85%;
+            object-fit: cover;
             z-index: 2;
-            border: 6px solid #FFFFFF;
-            border-radius: 0px;
+            border-radius: 16px;
             box-shadow: 
-                0 0 30px rgba(255, 255, 255, 1),
-                0 0 60px rgba(255, 255, 255, 0.8),
-                0 0 90px rgba(255, 255, 255, 0.6),
-                0 0 120px rgba(255, 255, 255, 0.4),
-                0 0 150px rgba(255, 255, 255, 0.2),
-                0 4px 8px rgba(0, 0, 0, 0.3);
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2px;
-            filter: brightness(1.1) contrast(1.05);
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
+            filter: none;
+        }
+
+        /* Elegant overlay effects */
+        .hero-container::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(80% 60% at 50% 10%, rgba(255,255,255,.35), transparent 60%),
+                       linear-gradient(to bottom, rgba(255,216,230,.18), rgba(255,255,255,0));
+            backdrop-filter: blur(0px);
+            z-index: 3;
+            pointer-events: none;
         }
 
         .bloom-overlay {
@@ -73,10 +99,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(50% 50% at 50% 50%, rgba(246,214,229,0.4), transparent 70%);
-            filter: blur(20px);
-            opacity: 0.4;
-            z-index: 3;
+            background: radial-gradient(50% 50% at 50% 50%, rgba(246,214,229,0.3), transparent 70%);
+            filter: blur(6px);
+            opacity: 0.25;
+            z-index: 4;
             pointer-events: none;
         }
 
@@ -85,223 +111,747 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 120%;
-            height: 120%;
-            background: radial-gradient(ellipse at center, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 30%, transparent 70%);
-            filter: blur(40px);
+            width: 110%;
+            height: 110%;
+            background: radial-gradient(ellipse at center, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.05) 30%, transparent 70%);
+            filter: blur(30px);
             z-index: 1;
             pointer-events: none;
-            animation: pulseGlow 3s ease-in-out infinite alternate;
+            animation: pulseGlow 4s ease-in-out infinite alternate;
         }
 
         @keyframes pulseGlow {
             0% { 
-                opacity: 0.6;
+                opacity: 0.4;
                 transform: translate(-50%, -50%) scale(1);
             }
             100% { 
-                opacity: 0.9;
-                transform: translate(-50%, -50%) scale(1.05);
+                opacity: 0.7;
+                transform: translate(-50%, -50%) scale(1.02);
             }
         }
 
         .content {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 15;
-            text-align: center;
-            max-width: 400px;
-            padding: 15px;
-            background: transparent;
-            border: none;
-            box-shadow: none;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 18px;
+            padding: 20px 28px 28px 28px;
+            z-index: 30;
+        }
+        /* Mini actions: Call + Instagram */
+        .mini-actions{ display:flex; gap:8px; }
+        .mini-actions .mini-btn{
+            appearance:none; border:0; padding:8px 12px; border-radius:999px;
+            font-size:12px; font-weight:600; letter-spacing:.02em; cursor:pointer;
+            background:color-mix(in srgb, var(--white) 86%, transparent);
+            color:var(--ink); text-decoration:none; backdrop-filter:blur(6px);
+            box-shadow:0 4px 12px rgba(0,0,0,.14);
+        }
+        .mini-actions .mini-btn:focus-visible{ outline:2px solid var(--gold-500); outline-offset:2px }
+        /* Call: white → green → gold */
+        .mini-actions .mini-btn.call{
+            background:linear-gradient(90deg, #ffffff 0%, #2ecc71 55%, var(--gold-400) 100%);
+            color:#1e1e1e; border:1px solid color-mix(in srgb, var(--gold-400) 55%, transparent);
+        }
+        /* Instagram: brand gradient */
+        .mini-actions .mini-btn.ig{
+            background:linear-gradient(45deg, #f58529, #dd2a7b 40%, #8134af 70%, #515bd4);
+            color:#ffffff;
         }
 
         .logo {
             position: absolute;
-            top: 50%;
-            left: 50%;
+            left: calc(50% - 2cm);
+            top: calc(50% + 1cm);
             transform: translate(-50%, -50%);
             z-index: 20;
-            width: 120px;
+            width: 140px;
             height: auto;
-            transition: all 0.5s ease-in-out;
+            opacity: 0.65;
+            mix-blend-mode: soft-light;
+            filter: saturate(0.8) brightness(1.05);
+            transition: opacity .4s ease, transform .4s ease;
+            pointer-events: none;
         }
 
+        /* Responsive logo positioning */
         @media (min-width: 769px) {
+            .hero-container {
+                width: min(520px, 50vw);
+            }
             .logo {
-                top: 60px;
-                left: 50%;
-                transform: translateX(-50%);
-                filter: 
-                    drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))
-                    brightness(1.1)
-                    contrast(1.05);
-                border: 2px solid rgba(255, 255, 255, 0.4);
-                border-radius: 12px;
-                padding: 8px 12px;
-                background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(248, 187, 217, 0.05));
-                position: absolute;
-                z-index: 25;
+                width: 180px;
             }
         }
 
         @media (max-width: 768px) {
             .logo {
-                top: 50px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 80px;
-                filter: 
-                    drop-shadow(0 1px 3px rgba(0, 0, 0, 0.3))
-                    brightness(1.1)
-                    contrast(1.05);
-                border: 1px solid rgba(255, 255, 255, 0.4);
-                border-radius: 8px;
-                padding: 6px 8px;
-                background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(248, 187, 217, 0.05));
-                position: absolute;
-                z-index: 25;
+                width: 120px;
             }
         }
 
         h1 {
+            margin: 0;
+            padding: 0 18px;
             font-family: 'Playfair Display', 'Times New Roman', serif;
-            font-size: clamp(1.2rem, 2.8vw, 1.8rem);
-            font-weight: 300;
-            margin-bottom: 12px;
+            font-size: clamp(1rem, 2.2vw, 1.4rem);
+            font-weight: 600;
+            letter-spacing: .06em;
+            text-shadow: 0 2px 8px rgba(0,0,0,.25);
             color: #FFFFFF;
-            text-shadow: 
-                0 0 12px rgba(255, 255, 255, 0.8),
-                0 0 24px rgba(255, 255, 255, 0.4),
-                0 2px 4px rgba(0, 0, 0, 0.8);
             line-height: 1.2;
-            letter-spacing: 2px;
             text-transform: uppercase;
             font-style: italic;
-            text-rendering: optimizeLegibility;
         }
 
-        p {
-            font-size: clamp(0.75rem, 1.8vw, 0.9rem);
-            margin-bottom: 18px;
+        .subtitle {
+            font-size: 11px;
+            opacity: .9;
             color: rgba(255, 255, 255, 0.9);
-            text-shadow: 
-                0 0 6px rgba(255, 255, 255, 0.5),
-                0 1px 2px rgba(0, 0, 0, 0.7);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
             line-height: 1.3;
             font-weight: 300;
+            padding: 0 20px;
         }
 
-        .buttons {
+        .cta {
             display: flex;
-            gap: 15px;
+            gap: 12px;
+            width: 100%;
             justify-content: center;
             flex-wrap: wrap;
         }
 
-        .btn-ghost, .btn-gold{
+        .btn {
+            appearance: none;
+            border: 0;
             padding: 10px 16px;
             border-radius: 999px;
-            font-weight:500;
-            letter-spacing:.03em;
-            text-decoration:none;
-            transition: .25s ease;
+            font-weight: 600;
+            background: linear-gradient(90deg, #f4d03f, #f5b7b1);
+            color: #4a3b2f;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(0,0,0,.18);
+            transition: transform .2s ease, opacity .2s ease;
+            text-decoration: none;
+            letter-spacing: .03em;
             backdrop-filter: blur(6px);
         }
 
-        .btn-ghost{
-            color:#fff;
-            border:1px solid rgba(255,255,255,.55);
-            background: rgba(0,0,0,.15);
+        .btn.secondary {
+            background: linear-gradient(90deg, #f0e6e6, #e6d5c3);
+            color: #4a3b2f;
         }
-        .btn-ghost:hover{ border-color:#fff; background: rgba(255,255,255,.10); transform: translateY(-1px); }
 
-        .btn-gold{
-            color:#fff;
-            border:1px solid #d4af37;
-            background: linear-gradient(145deg, rgba(212,175,55,.28), rgba(212,175,55,.18));
-            box-shadow: 0 6px 18px rgba(212,175,55,.22) inset, 0 6px 16px rgba(212,175,55,.18);
+        .btn:hover {
+            transform: translateY(-2px);
         }
-        .btn-gold:hover{
-            background: linear-gradient(145deg, #d4af37, #e7d6a8);
-            color:#2a2a2a;
-            transform: translateY(-1px);
+
+        /* Responsive adjustments */
+        @media (max-width: 380px) {
+            .logo { font-size: 48px; }
+            h1 { font-size: 14px; }
+            .subtitle { font-size: 10px; }
         }
 
         @media (max-width: 768px) {
-            .buttons {
+            .cta {
                 flex-direction: column;
                 align-items: center;
             }
         }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            .btn { transition: none; }
+            .video-glow { animation: none; }
+        }
+
+        /* Fade-in animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity .6s ease, transform .6s ease;
+        }
+
+        /* Top-aligned overlay for hero text */
+        .text-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 28%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 6px;
+            z-index: 40; /* above logo */
+            padding: 18px 24px;
+            text-align: center;
+            pointer-events: none;
+        }
+        @media (min-width: 769px) {
+            .text-overlay { height: 24%; }
+        }
+
+        .visible {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        /* Ensure content is visible by default if JS fails */
+        .fade-in:not(.visible) {
+            opacity: 0.8;
+        }
+
+        /* Mobile: make hero truly full-frame, no margins, keep effects */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 0;
+                height: 100vh;      /* fallback */
+                height: 100dvh;     /* modern dynamic viewport */
+                height: 100svh;     /* small viewport on iOS */
+                min-height: 0;
+            }
+            .hero-container {
+                width: 100vw;
+                height: 100vh;      /* fallback */
+                height: 100dvh;     /* modern dynamic viewport */
+                height: 100svh;     /* small viewport on iOS */
+                aspect-ratio: auto;
+                border-radius: 0;
+                box-shadow: none;
+            }
+            .video-background {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            .video-foreground {
+                width: 85%;
+                height: 85%;
+                border-radius: 16px;
+                object-fit: cover; /* keep the mirror-style crop inside the frame */
+            }
+        }
+
+        /* === BLUSH theme tokens (pink / white / gold) === */
+        :root{
+            --white:#ffffff;
+            --ink:#4a3b2f;          /* dark text for legibility over light gradients */
+            --gold-400:#f4d03f;     /* primary gold */
+            --gold-500:#e0b51a;     /* focus/hover ring */
+            --blush-400:#f5b7b1;    /* soft pink */
+            --blush-500:#ee9aa6;    /* deeper pink for hover */
+        }
+
+        /* Keep CTA above overlays and give it breathing room on iOS */
+        #hero .cta{
+            position:relative; z-index:20;
+            margin-bottom: max(10px, calc(env(safe-area-inset-bottom) + 6px));
+        }
+
+        /* PRIMARY: gold → pink gradient, readable dark text */
+        #hero .cta .btn:not(.secondary){
+            color:var(--ink);
+            background:linear-gradient(90deg, var(--gold-400), var(--blush-400));
+            box-shadow:
+                0 0 0 1px rgba(255,255,255,.25) inset,
+                0 6px 18px rgba(0,0,0,.18);
+        }
+        #hero .cta .btn:not(.secondary):hover{
+            background:linear-gradient(90deg, var(--gold-400), var(--blush-500));
+        }
+        #hero .cta .btn:not(.secondary):active{
+            box-shadow:0 4px 12px rgba(0,0,0,.16);
+        }
+
+        /* SECONDARY: frosted white with subtle gold border */
+        #hero .cta .btn.secondary{
+            background:color-mix(in srgb, var(--white) 88%, transparent);
+            color:var(--ink);
+            border:1px solid color-mix(in srgb, var(--gold-400) 85%, transparent);
+            backdrop-filter: blur(6px);
+            box-shadow:0 6px 16px rgba(0,0,0,.14);
+        }
+        #hero .cta .btn.secondary:hover{
+            background:var(--white);
+        }
+
+        /* Shared focus ring + tap target polish */
+        #hero .cta .btn{ min-height:44px; padding:12px 18px; border-radius:999px; font-weight:600; }
+        #hero .cta .btn:focus-visible{ outline:2px solid var(--gold-500); outline-offset:2px }
+
+        /* Optional soft shimmer on hover (no layout shift) */
+        #hero .cta .btn{ position:relative; overflow:hidden; }
+        @media (hover:hover){
+            #hero .cta .btn::before{
+                content:""; position:absolute; inset:-1px; border-radius:inherit; pointer-events:none;
+                background:linear-gradient(115deg, rgba(255,255,255,0) 40%,
+                                                 rgba(255,255,255,.35) 50%,
+                                                 rgba(255,255,255,0) 60%);
+                transform:translateX(-120%); transition:transform .6s ease;
+            }
+            #hero .cta .btn:hover::before{ transform:translateX(120%) }
+        }
+
+        /* Respect reduced motion */
+        @media (prefers-reduced-motion:reduce){
+            #hero .cta .btn{ transition:none }
+            #hero .cta .btn::before{ display:none }
+        }
+
+        /* Mobile: keep CTAs side-by-side with equal widths & heights */
+        @media (max-width: 768px) {
+            #hero .cta { flex-direction: row; flex-wrap: nowrap; align-items: stretch; }
+            #hero .cta .btn {
+                flex: 1 1 0; 
+                min-width: 0; 
+                display: inline-flex; 
+                align-items: center; 
+                justify-content: center; 
+                text-align: center; 
+                white-space: nowrap; /* avoid wrapping to two lines */
+            }
+        }
+        @media (max-width: 420px) {
+            #hero .cta .btn { padding: 10px 12px; font-size: 13.5px; }
+        }
+
+        /* top scrim to improve legibility of headings over video */
+        #hero::before{
+            content:""; position:absolute; inset:0 0 55% 0; pointer-events:none;
+            background:linear-gradient(to bottom, rgba(0,0,0,.28), rgba(0,0,0,0));
+            z-index: 5;
+        }
+
+        /* subtle text sharpening (no visible stroke) */
+        #hero h1, #hero .sub{
+            text-shadow: 0 2px 10px rgba(0,0,0,.35), 0 0 1px rgba(255,255,255,.25);
+        }
+
+        @keyframes pulse-once{
+            0%{ transform:translateY(0) scale(1); box-shadow:0 6px 18px rgba(0,0,0,.18) }
+            50%{ transform:translateY(-2px) scale(1.03); box-shadow:0 12px 26px rgba(0,0,0,.2) }
+            100%{ transform:translateY(0) scale(1); box-shadow:0 6px 18px rgba(0,0,0,.18) }
+        }
+        #hero .cta .btn.pulse-once{ animation: pulse-once 1.2s ease-out 2.2s 1 both }
+        @media (prefers-reduced-motion:reduce){
+            #hero .cta .btn.pulse-once{ animation:none }
+        }
+
+        /* allow tiny perspective tilt */
+        #hero{ transform-style: preserve-3d; }
+
+        .scroll-cue{
+            position:absolute; left:50%; bottom:66px; transform:translateX(-50%);
+            padding:8px 10px; border-radius:999px; font-size:12px; letter-spacing:.08em;
+            background:rgba(255,255,255,.75); color:#333; text-decoration:none;
+            backdrop-filter: blur(6px); box-shadow:0 6px 14px rgba(0,0,0,.12);
+            z-index: 25;
+        }
+        @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-6px)}}
+        @media (hover:hover){ .scroll-cue{ animation:bob 1.8s ease-in-out infinite } }
+
+        /* slight vignette to keep eyes in center, very subtle */
+        #hero::after{
+            content:""; position:absolute; inset:0; pointer-events:none; z-index:6;
+            background:radial-gradient(100% 120% at 50% 40%, rgba(0,0,0,0) 60%, rgba(0,0,0,.15) 100%);
+        }
+
+        /* Move scroll cue to the right on mobile so it doesn't overlap CTAs */
+        @media (max-width: 768px){
+            #hero .scroll-cue{ left:auto; right:16px; transform:none; bottom: calc(env(safe-area-inset-bottom) + 96px); }
+        }
+        @media (min-width: 769px){
+            #hero .scroll-cue{ left:auto; right:24px; transform:none; bottom: 80px; }
+        }
+
+        /* Daily Vitrin (Collections) */
+        #collections{ background:#ffffff; color:#2b2b2b; padding:56px 20px; }
+        #collections .v-head{ text-align:center; margin:0 auto 22px; max-width:720px; }
+        #collections h2{ margin:0 0 6px; font-family:'Playfair Display', 'Times New Roman', serif; font-weight:600; letter-spacing:.04em; color:#2b2b2b; }
+        #collections .v-sub{ margin:0; opacity:.7; font-size:14px; }
+        .v-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:14px; max-width:1024px; margin:0 auto; }
+        @media (min-width: 769px){ .v-grid{ grid-template-columns:repeat(3,1fr); gap:18px; } }
+        .v-item{ position:relative; display:block; aspect-ratio:3/4; border-radius:18px; overflow:hidden; background:#eee; box-shadow:0 10px 24px rgba(0,0,0,.08); }
+        .v-item img{ width:100%; height:100%; object-fit:cover; display:block; filter:saturate(1.05) contrast(1.02); }
+        .v-item::after{ content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(to top, rgba(0,0,0,.22), rgba(0,0,0,0) 40%); }
+        .v-cap{ position:absolute; left:12px; right:12px; bottom:10px; color:#fff; font-size:12px; letter-spacing:.02em; text-shadow:0 2px 10px rgba(0,0,0,.35); display:flex; justify-content:space-between; align-items:center; }
+        .v-price{ background:rgba(255,255,255,.85); color:#333; border-radius:999px; padding:4px 8px; font-weight:600; box-shadow:0 4px 10px rgba(0,0,0,.12); }
+
+        /* Daily Vitrin tweaks: remove captions/prices, make heading gold and attractive */
+        #collections .v-cap{ display:none !important; }
+        #collections h2{
+            color: transparent;
+            background: linear-gradient(90deg, var(--gold-400), #ffd86b, var(--gold-400));
+            -webkit-background-clip: text; background-clip: text;
+            text-shadow: 0 3px 14px rgba(244,208,63,.35), 0 1px 0 rgba(255,255,255,.2);
+            letter-spacing: .06em;
+            font-size: clamp(1.4rem, 3.6vw, 2rem);
+        }
+
+        /* --- Loading beauty kit (tiny & incremental) --- */
+        #hero{ position:relative; overflow:hidden; transform-style:preserve-3d }
+
+        /* LQIP image (injected via JS) */
+        #hero .lqip{
+            position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+            filter: blur(12px) saturate(1.05) brightness(.98); transform:scale(1.02);
+            opacity:1; transition: filter .2s ease, opacity .15s ease, transform .2s ease;
+            z-index: 3; pointer-events:none;
+        }
+
+        /* Foreground video soft fade (uses your existing <video>) */
+        #hero video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+            opacity:0; transition: opacity .2s ease; z-index:4 }
+
+        /* Shimmer skeleton while hero is loading */
+        #hero .skeleton{
+            position:absolute; inset:0; z-index:5; pointer-events:none;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 20%,
+                                             rgba(255,255,255,.25) 40%,
+                                             rgba(255,255,255,0) 60%);
+            transform: translateX(-120%);
+            animation: shimmer 1.6s ease-in-out infinite;
+        }
+        @keyframes shimmer{ to{ transform: translateX(120%) } }
+
+        /* Top scrim to sharpen headings over media */
+        #hero::before{
+            content:""; position:absolute; inset:0 0 55% 0; z-index:2; pointer-events:none;
+            background: linear-gradient(to bottom, rgba(0,0,0,.28), rgba(0,0,0,0));
+        }
+
+        /* When ready: fade in media, fade out lqip & skeleton */
+        #hero.ready .lqip{ filter:blur(0); transform:none; opacity:0 }
+        #hero.ready video{ opacity:1 }
+        #hero.ready .skeleton{ display:none }
+
+        /* Respect reduced motion */
+        @media (prefers-reduced-motion:reduce){
+            #hero .lqip, #hero video{ transition:none }
+            #hero .skeleton{ display:none }
+        }
+
+        /* Below-the-fold performance (no layout shift) */
+        #collections{ content-visibility:auto; contain-intrinsic-size: 800px 1200px }
+
+        /* Preserve foreground video framing (override generic video rule) */
+        #hero .video-background{
+            position:absolute; top:0; left:0; width:100%; height:100%;
+            object-fit:cover; z-index:1;
+            filter: blur(1.5px) brightness(.9) saturate(1.05);
+        }
+        #hero .video-foreground{
+            position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);
+            width:85%; height:85%; object-fit:cover; border-radius:16px; z-index:2;
+            filter: none; /* keep foreground sharp */
+        }
+        @media (max-width: 768px){
+            #hero .video-foreground{ width:85%; height:85%; border-radius:16px; }
+        }
+        
+        /* Icon-only CTA (second row) */
+        .icon-row{ margin-top:0 !important; gap:clamp(10px,3vw,16px) !important; }
+        .icon-cta{ display:inline-flex; align-items:center; justify-content:center; padding:0; margin:0; background:transparent; border:0; box-shadow:none; border-radius:0; }
+        .icon-cta svg{ width:clamp(24px,3.8vw,32px); height:clamp(24px,3.8vw,32px); color:var(--gold-400); opacity:1; filter:drop-shadow(0 0 6px rgba(255,255,255,.3)); transition: transform .25s ease, filter .25s ease, color .25s ease, opacity .25s ease; }
+        @media (min-width: 769px){ .icon-cta svg{ width:clamp(26px,2.6vw,36px); height:clamp(26px,2.6vw,36px); } }
+        .icon-cta:hover svg{ color:var(--gold-400); opacity:1; filter:drop-shadow(0 0 12px rgba(255,255,255,.55)) brightness(1.08) saturate(1.05); transform:scale(1.05); animation: flash-burst .5s ease-out 1; }
+        @keyframes flash-burst{
+            0%{ filter:brightness(.96) drop-shadow(0 0 0 rgba(255,255,255,0)); }
+            40%{ filter:brightness(1.15) drop-shadow(0 0 12px rgba(255,255,255,.6)); }
+            100%{ filter:brightness(1.0) drop-shadow(0 0 6px rgba(255,255,255,.35)); }
+        }
     </style>
 </head>
 <body>
-    <section class="hero-section">
-        <!-- Logo -->
-        <img src="./logo.svg" alt="THE BLUSH FLOWER STUDIO" class="logo">
-        
-        <!-- Background Video (Blurred) -->
-        <video class="video-background" autoplay muted loop playsinline>
-            <source src="./public/media/hero.mp4" type="video/mp4">
-            <source src="./public/IMG_1993_720.mp4" type="video/mp4">
-            <source src="./IMG_1993_720.mp4" type="video/mp4">
-        </video>
-        
-        <!-- Foreground Video (Original) -->
-        <video class="video-foreground" autoplay muted loop playsinline poster="./public/hero.webp">
-            <source src="./public/media/hero.mp4" type="video/mp4">
-            <source src="./public/IMG_1993_720.mp4" type="video/mp4">
-            <source src="./IMG_1993_720.mp4" type="video/mp4">
-        </video>
-        
-        <!-- Bloom Effect -->
-        <div class="bloom-overlay"></div>
-        
-        <!-- Video Glow Effect -->
-        <div class="video-glow"></div>
-        
-        <!-- Content -->
-        <div class="content">
-            <h1>Brand — Daily Vitrine & Bespoke Pieces</h1>
-            <p>Discover our daily vitrine of curated pieces. Hand-finished details, fair pricing, and quick WhatsApp ordering.</p>
+    <main class="hero-section">
+        <section class="hero-container" id="hero">
+            <!-- Logo -->
+            <img src="./logo.svg" alt="BLUSH logo" class="logo fade-in">
             
-            <div class="buttons">
-                <a href="#collections" class="btn-ghost">View Collections</a>
-                <a href="https://wa.me/989900190067" class="btn-gold">Chat on WhatsApp</a>
+            <!-- Background Video (Blurred) -->
+            <video class="video-background" autoplay muted loop playsinline>
+                <source src="./IMG_1600 (2).mp4" type="video/mp4">
+            </video>
+            
+            <!-- Foreground Video (Original) -->
+            <video class="video-foreground" autoplay muted loop playsinline poster="hero.webp">
+                <source src="./IMG_1600 (2).mp4" type="video/mp4">
+            </video>
+            
+            <!-- Bloom Effect -->
+            <div class="bloom-overlay"></div>
+            
+            <!-- Video Glow Effect -->
+            <div class="video-glow"></div>
+            
+            <!-- Centered Text Overlay -->
+            <div class="text-overlay fade-in">
+                <h1>BLUSH — A LUXURIOUS FLORAL EXPERIENCE</h1>
+                <div class="subtitle">Minimal & luxurious daily arrangements • Everlasting collections</div>
             </div>
+
+            <!-- Content (Icon-only actions at bottom) -->
+            <div class="content">
+                <div class="fade-in w-full">
+                    <div class="mt-6 grid grid-cols-2 gap-3 md:gap-4 w-full max-w-md mx-auto px-[0.1cm]">
+                        <a href="tel:+989177800806"
+                           class="inline-flex items-center justify-center rounded-2xl px-2 py-2 text-[13px] md:text-sm font-medium tracking-wide text-neutral-900 shadow-sm hover:shadow-md transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500/40 focus-visible:ring-offset-2 border border-yellow-400/50 bg-[linear-gradient(90deg,#ffffff_0%,#fff6d5_40%,#f4d03f_100%)]"
+                           aria-label="Call BLUSH">
+                            <svg class="mr-2 h-4 w-4 md:h-5 md:w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.5-1.2a2 2 0 0 1 2.1-.4c.8.3 1.7.5 2.6.6A2 2 0 0 1 22 16.9z"/></svg>
+                            Call us
+                        </a>
+
+                        <a href="https://www.blush-flower.com"
+                           class="inline-flex items-center justify-center rounded-2xl border border-yellow-400/60 bg-white px-2 py-2 text-[13px] md:text-sm font-medium tracking-wide text-neutral-900 shadow-[0_6px_20px_rgba(0,0,0,0.06)] ring-1 ring-yellow-500/10 hover:ring-yellow-500/25 hover:shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500/40 focus-visible:ring-offset-2 decoration-yellow-500/40"
+                           aria-label="View Collections on BLUSH" data-gold>
+                            <svg class="mr-2 h-4 w-4 md:h-5 md:w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 7h12l-1 13H7L6 7Z"/><path d="M9 7a3 3 0 1 1 6 0"/></svg>
+                            View Collections
+                        </a>
+                    </div>
+
+                    <div class="icon-row flex items-center justify-center">
+                        <a href="https://wa.me/989357060067" aria-label="Chat on WhatsApp" class="icon-cta">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 11.5A8.5 8.5 0 1 1 11.5 3 8.5 8.5 0 0 1 20 11.5Z"/><path d="M8.5 8.5c.5 2 2.5 4 4.5 4.5l1.5-1"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/blush_flower" target="_blank" rel="noopener" aria-label="Open BLUSH Instagram" class="icon-cta">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Daily Vitrin / Collections -->
+    <section id="collections">
+        <div class="v-head">
+            <h2>Daily Vitrin</h2>
+            <p class="v-sub">منتخب امروز از گل‌آرایی‌های مینیمال و لوکس</p>
+        </div>
+        <div class="v-grid">
+            <a class="v-item" href="https://blush-flower.com/" rel="noopener">
+                <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_1.webp" alt="Daily vitrines image 1">
+            </a>
+            <a class="v-item" href="https://blush-flower.com/" rel="noopener">
+                <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_2.webp" alt="Daily vitrines image 2">
+            </a>
+            <a class="v-item" href="https://blush-flower.com/" rel="noopener">
+                <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_3.webp" alt="Daily vitrines image 3">
+            </a>
+            <a class="v-item" href="https://blush-flower.com/" rel="noopener">
+                <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_4.webp" alt="Daily vitrines image 4">
+            </a>
+            <a class="v-item" href="https://blush-flower.com/" rel="noopener">
+                <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_5.webp" alt="Daily vitrines image 5">
+            </a>
+            <a class="v-item" href="https://blush-flower.com/" rel="noopener">
+                <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_6.webp" alt="Daily vitrines image 6">
+            </a>
         </div>
     </section>
 
     <script>
-        function openWhatsApp() {
-            const phoneNumber = '989900190067';
-            const message = 'Hello! I would like to know more about your products';
-            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
-        }
+        // Smooth fade-in animations with IntersectionObserver
+        document.addEventListener('DOMContentLoaded', function() {
+            const io = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
 
-        // Video loading check
+            document.querySelectorAll('.fade-in').forEach(element => {
+                io.observe(element);
+                // Fallback: make visible after 1 second if not triggered
+                setTimeout(() => {
+                    if (!element.classList.contains('visible')) {
+                        element.classList.add('visible');
+                    }
+                }, 1000);
+            });
+        });
+
+        // Video loading optimization
         document.addEventListener('DOMContentLoaded', function() {
             const videos = document.querySelectorAll('video');
             videos.forEach((video, index) => {
-                video.addEventListener('loadstart', () => {
-                    console.log(`Video ${index + 1} started loading`);
-                });
-                
-                video.addEventListener('canplay', () => {
-                    console.log(`Video ${index + 1} can play`);
-                });
-                
-                video.addEventListener('error', (e) => {
-                    console.error(`Video ${index + 1} error:`, e);
-                    console.log(`Video ${index + 1} failed to load, trying fallback`);
-                });
+                // telemetry logs removed for production
             });
         });
+
+        // WhatsApp integration
+        function openWhatsApp() {
+            const phoneNumber = '989900190067';
+            const message = 'Hello! I would like to know more about your floral arrangements';
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+    </script>
+
+    <!-- Basic LocalBusiness Schema (Florist) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Florist",
+      "name": "BLUSH Flower Studio",
+      "url": "https://blush-flower.com/",
+      "image": "https://blush-flower.com/hero.webp",
+      "telephone": "+989177800806",
+      "openingHours": "Mo-Su 10:00-22:00",
+      "department": [
+        {
+          "@type": "Store",
+          "name": "Blush Flower Studio",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Sattarkhan Blvd, Valiaasr St, Corner of 26th Alley",
+            "addressLocality": "Shiraz",
+            "addressCountry": "IR"
+          }
+        },
+        {
+          "@type": "Store",
+          "name": "Blush Flower Boutique",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Moalem Square, Moalem St, Between 5th and 7th Alley",
+            "addressLocality": "Shiraz",
+            "addressCountry": "IR"
+          }
+        }
+      ]
+    }
+    </script>
+
+    <script>
+    (() => {
+      const hero = document.getElementById('hero');
+      if (!hero) return;
+
+      // Add a subtle skeleton shimmer
+      const sk = document.createElement('div');
+      sk.className = 'skeleton';
+      hero.appendChild(sk);
+
+      // Inject LQIP blurred image (keeps LCP beautiful & fast)
+      const lq = document.createElement('img');
+      lq.src = 'hero-lq.webp';
+      lq.alt = '';
+      lq.decoding = 'async';
+      lq.loading = 'eager';          // above-the-fold
+      lq.className = 'lqip';
+      lq.setAttribute('aria-hidden','true');
+      hero.appendChild(lq);
+
+      // Prepare gentle cross-fade to video if available
+      const saveData = navigator.connection && navigator.connection.saveData;
+      const reduce   = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const vid      = hero.querySelector('video');
+
+      // Preload full hero image, then sharpen & fade LQIP out
+      const full = new Image();
+      full.src = 'hero.webp';
+      full.decoding = 'async';
+      full.onload = () => {
+        // swap LQIP -> sharp image, then remove it
+        lq.src = full.src;
+        requestAnimationFrame(() => {
+          hero.classList.add('ready');
+          setTimeout(() => { lq.remove(); sk.remove(); }, 180);
+        });
+      };
+
+      // If video exists and user isn't saving data / reducing motion, fade it in when ready
+      if (vid && !saveData && !reduce) {
+        vid.addEventListener('canplaythrough', () => {
+          hero.classList.add('ready');        // ensures CSS fades happen
+          setTimeout(() => { try { lq.remove(); sk.remove(); } catch(e){} }, 160);
+        }, { once: true });
+
+        // Try to sync background and foreground videos if both exist
+        const bg = hero.querySelector('.video-background');
+        const fg = hero.querySelector('.video-foreground');
+        if (bg && fg) {
+          const sync = () => {
+            if (Math.abs(bg.currentTime - fg.currentTime) > 0.2) {
+              const t = Math.min(bg.duration || fg.duration || 0, Math.max(0, bg.currentTime));
+              try { fg.currentTime = t; } catch(e){}
+            }
+            if (bg.paused && !fg.paused) { try { fg.pause(); } catch(e){} }
+            if (!bg.paused && fg.paused) { try { fg.play().catch(()=>{}); } catch(e){} }
+          };
+          bg.addEventListener('timeupdate', sync);
+          fg.addEventListener('timeupdate', sync);
+          bg.addEventListener('play', sync);
+          fg.addEventListener('play', sync);
+        }
+      }
+    })();
+    </script>
+
+    <script>
+    // add a one-time pulse to the primary CTA (first .btn that is not .secondary)
+    (() => {
+        const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReduced) return;
+        const primary = document.querySelector('#hero .cta .btn:not(.secondary)');
+        if (primary) primary.classList.add('pulse-once');
+    })();
+
+    // micro tilt for desktop pointer, very subtle
+    (() => {
+        const ok = matchMedia('(pointer:fine)').matches && matchMedia('(prefers-reduced-motion: no-preference)').matches;
+        if (!ok) return;
+        const el = document.getElementById('hero');
+        if (!el) return;
+        const max = 6; // degrees
+        const onMove = (e) => {
+            const r = el.getBoundingClientRect();
+            const cx = r.left + r.width/2, cy = r.top + r.height/2;
+            const dx = (e.clientX - cx) / (r.width/2);
+            const dy = (e.clientY - cy) / (r.height/2);
+            el.style.transform = `perspective(900px) rotateX(${(-dy*max).toFixed(2)}deg) rotateY(${(dx*max).toFixed(2)}deg)`;
+        };
+        const reset = ()=>{ el.style.transform = 'none'; };
+        el.addEventListener('mousemove', onMove);
+        el.addEventListener('mouseleave', reset);
+    })();
+
+    // inject scroll cue link if not already present
+    (() => {
+        if (document.querySelector('#hero .scroll-cue')) return;
+        const cue = document.createElement('a');
+        cue.href = '#collections';
+        cue.className = 'scroll-cue';
+        cue.setAttribute('aria-label','Scroll to collections');
+        cue.textContent = 'Scroll ↓';
+        const hero = document.getElementById('hero');
+        if (hero) hero.appendChild(cue);
+    })();
+
+    // gclid/utm propagate to destination links (add as query params)
+    (() => {
+        const params = new URLSearchParams(location.search);
+        const keep = ['gclid','utm_source','utm_medium','utm_campaign','utm_term','utm_content'];
+        const qs = keep.filter(k => params.has(k)).map(k => `${k}=${encodeURIComponent(params.get(k)||'')}`).join('&');
+        if (!qs) return;
+        document.querySelectorAll('a[href^="https://blush-flower.com/"]').forEach(a => {
+            const url = new URL(a.href);
+            keep.forEach(k => { if (params.has(k)) url.searchParams.set(k, params.get(k)); });
+            a.href = url.toString();
+        });
+    })();
     </script>
 </body>
 </html>

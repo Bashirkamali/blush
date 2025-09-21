@@ -1,14 +1,13 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { openWhatsApp } from '../utils/whatsapp';
+import React, { useEffect, useRef, useState } from "react";
 
 interface CinematicBloomProps {
   className?: string;
 }
 
-const CinematicBloom: React.FC<CinematicBloomProps> = ({ className = '' }) => {
+const CinematicBloom: React.FC<CinematicBloomProps> = ({ className = "" }) => {
   const heroRef = useRef<HTMLElement>(null);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [parallaxOffset, setParallaxOffset] = useState(0);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
     const poster = document.createElement("link");
@@ -21,55 +20,45 @@ const CinematicBloom: React.FC<CinematicBloomProps> = ({ className = '' }) => {
     videoWebm.rel = "preload";
     videoWebm.as = "video";
     videoWebm.href = "/media/hero.webm";
-    videoWebm.type = "video/webm" as any;
+    videoWebm.type = "video/webm";
     document.head.appendChild(videoWebm);
 
     const videoMp4 = document.createElement("link");
     videoMp4.rel = "preload";
     videoMp4.as = "video";
     videoMp4.href = "/media/hero.mp4";
-    videoMp4.type = "video/mp4" as any;
+    videoMp4.type = "video/mp4";
     document.head.appendChild(videoMp4);
-  }, []);
 
-  useEffect(() => {
     // Check for reduced motion preference
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     setPrefersReducedMotion(mediaQuery.matches);
 
-    const handleReducedMotion = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
-    mediaQuery.addEventListener('change', handleReducedMotion);
-
-    // Parallax effect (only if motion is not reduced)
-    const handleScroll = () => {
-      if (!prefersReducedMotion && heroRef.current) {
-        const scrolled = window.pageYOffset;
-        const rate = scrolled * -0.3;
-        setParallaxOffset(Math.min(rate, 2)); // Limit to 2px for mobile
-      }
+    const handleMotionChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    mediaQuery.addEventListener('change', handleMotionChange);
+
+    // Parallax effect
+    const handleScroll = () => {
+      if (prefersReducedMotion) return;
+      
+      const scrolled = window.pageYOffset;
+      const rate = scrolled * -0.5;
+      setParallaxOffset(rate);
+    };
+
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      mediaQuery.removeEventListener('change', handleReducedMotion);
       window.removeEventListener('scroll', handleScroll);
+      mediaQuery.removeEventListener('change', handleMotionChange);
     };
   }, [prefersReducedMotion]);
 
-  const handleWhatsAppClick = () => {
-    openWhatsApp('989900190067', 'سلام! می‌خوام درباره محصولات Blush اطلاعات بیشتری داشته باشم');
-  };
-
-  const handleScrollToVitrine = () => {
-    const vitrineSection = document.getElementById('daily-vitrine');
-    if (vitrineSection) {
-      vitrineSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
-    <section 
+    <section
       ref={heroRef}
       className={`relative min-h-[100svh] overflow-hidden bg-pink-100 ${className}`}
       aria-label="Blush — Cinematic Bloom Hero"
@@ -97,102 +86,41 @@ const CinematicBloom: React.FC<CinematicBloomProps> = ({ className = '' }) => {
         </video>
       </div>
 
-      {/* Bloom Effect Overlay */}
+      {/* Bloom Overlay */}
       <div 
-        className={`absolute inset-0 pointer-events-none ${
-          prefersReducedMotion ? 'reduce-anim' : ''
-        }`}
-        style={{
-          background: 'radial-gradient(50% 50% at 50% 50%, rgba(246,214,229,0.3), transparent 70%)',
-          filter: 'blur(10px)',
-          opacity: 0.5
-        }}
-      />
-      
-      {/* Desktop Bloom Effect */}
-      <div 
-        className={`absolute inset-0 pointer-events-none hidden md:block ${
-          prefersReducedMotion ? 'reduce-anim' : ''
-        }`}
+        className="absolute inset-0 pointer-events-none"
         style={{
           background: 'radial-gradient(50% 50% at 50% 50%, rgba(246,214,229,0.4), transparent 70%)',
-          filter: 'blur(22px)',
+          filter: 'blur(20px)',
           opacity: 0.4
         }}
       />
 
-      {/* Centered Luxury Logo */}
-      <div className="absolute inset-0 z-20 flex items-start justify-center pt-6 md:pt-10">
-        <div className="relative">
-          <div className="absolute -inset-4 md:-inset-5 rounded-full blur-2xl opacity-70"
-               style={{
-                 background: 'radial-gradient(circle, rgba(255,215,0,0.25) 0%, rgba(255,215,0,0.12) 45%, rgba(255,215,0,0) 70%)'
-               }}
-          />
-          <img 
-            src="/logo.svg" 
-            alt="THE BLUSH FLOWER STUDIO" 
-            className="relative w-16 md:w-24 lg:w-28 h-auto drop-shadow-[0_8px_26px_rgba(212,175,55,0.45)]"
-            loading="eager"
-            decoding="async"
-            fetchPriority="high"
-          />
-        </div>
-      </div>
-
       {/* Content */}
-      <div className="relative z-10 flex items-center justify-center min-h-[100svh] px-4 md:px-6">
-        <div className="text-center max-w-4xl mx-auto">
-          {/* Main Heading */}
-          <h1 className="font-serif text-gray-800 leading-tight drop-shadow-[0_6px_24px_rgba(255,255,255,.5)] mb-4 md:mb-6"
-              style={{ 
-                fontSize: 'clamp(28px, 6vw, 48px)',
-                maxWidth: '16ch',
-                margin: '0 auto 1rem auto'
-              }}>
-            Blush — A Luxurious Floral Experience
+      <div className="relative z-10 flex items-center justify-center min-h-[100svh] px-4">
+        <div className="text-center max-w-4xl">
+          <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-light text-white mb-6">
+            Blush
           </h1>
-          
-          {/* Subtitle */}
-          <p className="text-gray-700 mb-6 md:mb-8 leading-relaxed"
-             style={{ 
-               fontSize: 'clamp(14px, 3.6vw, 16px)',
-               maxWidth: '32ch',
-               margin: '0 auto 1.5rem auto'
-             }}>
-            Minimal & luxurious daily arrangements • Everlasting collections
+          <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+            Daily Vitrine & Bespoke Pieces
           </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4">
-            <button 
-              type="button"
-              onClick={handleWhatsAppClick}
-              className="btn-primary"
-              aria-label="Chat with us on WhatsApp"
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="#daily-vitrine"
+              className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300"
+            >
+              View Collections
+            </a>
+            <a
+              href="https://wa.me/989900190067"
+              className="px-8 py-3 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full text-white hover:from-pink-600 hover:to-rose-600 transition-all duration-300"
             >
               Chat on WhatsApp
-            </button>
-            
-            <button
-              type="button"
-              onClick={handleScrollToVitrine}
-              className="btn-secondary"
-              aria-label="View our daily vitrine collection"
-            >
-              View Our Work
-            </button>
+            </a>
           </div>
         </div>
       </div>
-
-      {/* Subtle gradient overlay for better text readability */}
-      <div 
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.3) 100%)'
-        }}
-      />
     </section>
   );
 };
