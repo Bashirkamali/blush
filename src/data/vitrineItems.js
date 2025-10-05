@@ -2,7 +2,7 @@
 // Auto-collect Blush daily vitrine images + optional per-file overrides.
 
 const modules = import.meta.glob(
-  '/src/assets/vitrine/*.{jpg,jpeg,png,webp,avif}',
+  '/src/assets/vitrine/*.{jpg,jpeg,png,webp,avif,JPG,JPEG,PNG}',
   { eager: true, as: 'url' }
 );
 
@@ -10,7 +10,7 @@ const modules = import.meta.glob(
 // Example:
 // 'vitrine-2025-09-01-001.jpg': { caption: 'Eternal Romance', price: '$180–280', href: '/products/210', alt: 'Red roses with white peonies' }
 const manualMeta = {
-  // انتخاب 9 تصویر برتر برای نمایش در ویترین
+  // انتخاب 12 تصویر برتر برای نمایش در ویترین
   'luxury-bouquet-white-bag-pink-background.webp': { 
     caption: 'دسته گل لوکس در کیسه سفید', 
     price: '۳۵۰,۰۰۰ تومان', 
@@ -55,6 +55,21 @@ const manualMeta = {
     caption: 'آرایش ارکیده سفید شیک', 
     price: '۵۵۰,۰۰۰ تومان', 
     alt: 'آرایش ارکیده سفید شیک و ظریف - گل‌آرایی مینیمال' 
+  },
+  'luxury-golden-flower-box-arrangement.webp': { 
+    caption: 'آرایش گل طلایی لوکس', 
+    price: '۴۸۰,۰۰۰ تومان', 
+    alt: 'آرایش گل طلایی لوکس در جعبه شفاف - گل‌آرایی مجلل' 
+  },
+  'beautiful-mixed-bouquet-white-vase.webp': { 
+    caption: 'دسته گل زیبا در گلدان سفید', 
+    price: '۳۱۰,۰۰۰ تومان', 
+    alt: 'دسته گل زیبا و رنگارنگ در گلدان سفید کلاسیک' 
+  },
+  'cheerful-yellow-white-lavender-bouquet.webp': { 
+    caption: 'دسته گل شاد زرد و سفید', 
+    price: '۲۹۰,۰۰۰ تومان', 
+    alt: 'دسته گل شاد با ترکیب زرد، سفید و بنفش - گل‌های بهاری' 
   }
 };
 
@@ -67,13 +82,10 @@ function prettyFromFilename(name) {
 }
 
 export const items = Object.entries(modules)
-  .filter(([path]) => {
-    const name = baseName(path);
-    return manualMeta[name]; // فقط تصاویری که در manualMeta تعریف شده‌اند
-  })
+  // از تمام تصاویر موجود استفاده می‌کنیم؛ manualMeta فقط override است
   .map(([path, url]) => {
     const name = baseName(path);
-    const meta = manualMeta[name];
+    const meta = manualMeta[name] || {};
     return {
       src: url,
       alt: meta.alt || prettyFromFilename(name),
@@ -82,7 +94,8 @@ export const items = Object.entries(modules)
       href: meta.href || ''
     };
   })
-  .sort((a,b) => a.src.localeCompare(b.src));
+  // ترتیب الفبایی پایدار (می‌توانید بعداً بر اساس تاریخ/الگو تغییر دهید)
+  .sort((a, b) => a.src.localeCompare(b.src));
 
 // If the folder is empty, add a demo item.
 if (items.length === 0) {

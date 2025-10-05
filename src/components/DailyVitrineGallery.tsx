@@ -27,8 +27,8 @@ const DailyVitrineGallery: React.FC<DailyVitrineGalleryProps> = ({
   const [lastFocusedElement, setLastFocusedElement] = useState<HTMLElement | null>(null);
   const hasPrices = useMemo(() => items.some(i => i?.price), [items]);
   
-  // Limit to 9 items
-  const displayItems = items.slice(0, 9);
+  // Limit to 12 items
+  const displayItems = items.slice(0, 12);
 
   // ESC to close lightbox and focus restoration
   useEffect(() => {
