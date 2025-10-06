@@ -142,7 +142,7 @@
             justify-content: flex-end;
             align-items: center;
             gap: 18px;
-            padding: 20px 28px 28px 28px;
+            padding: 20px 28px calc(28px + 1cm) 28px;
             z-index: 30;
         }
         /* Mini actions: Call + Instagram */
@@ -480,8 +480,8 @@
         #collections .v-head{ text-align:center; margin:0 auto 22px; max-width:720px; }
         #collections h2{ margin:0 0 6px; font-family:'Playfair Display', 'Times New Roman', serif; font-weight:600; letter-spacing:.04em; color:#2b2b2b; }
         #collections .v-sub{ margin:0; opacity:.7; font-size:14px; }
-        .v-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:14px; max-width:1024px; margin:0 auto; }
-        @media (min-width: 769px){ .v-grid{ grid-template-columns:repeat(3,1fr); gap:18px; } }
+        .v-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; max-width:1024px; margin:0 auto; }
+        @media (min-width: 769px){ .v-grid{ grid-template-columns:repeat(4,1fr); gap:14px; } }
         .v-item{ position:relative; display:block; aspect-ratio:3/4; border-radius:18px; overflow:hidden; background:#eee; box-shadow:0 10px 24px rgba(0,0,0,.08); }
         .v-item img{ width:100%; height:100%; object-fit:cover; display:block; filter:saturate(1.05) contrast(1.02); }
         .v-item::after{ content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(to top, rgba(0,0,0,.22), rgba(0,0,0,0) 40%); }
@@ -606,6 +606,100 @@
             40%{ filter:brightness(1.15) drop-shadow(0 0 12px rgba(255,255,255,.6)); }
             100%{ filter:brightness(1.0) drop-shadow(0 0 6px rgba(255,255,255,.35)); }
         }
+
+        /* === 4-step guide: luxury minimal === */
+        .guide-text-box{
+            width:100%; max-width:340px; margin:0 auto 28px;
+            padding:14px 18px; text-align:center;
+            background:rgba(255,255,255,.08); backdrop-filter:blur(8px);
+            border:1px solid rgba(244,208,63,.35); border-radius:16px;
+            box-shadow:0 0 0 1px rgba(244,208,63,.15) inset, 0 4px 16px rgba(0,0,0,.12);
+            min-height:62px; display:flex; align-items:center; justify-content:center;
+        }
+        .guide-step-text{
+            display:none; opacity:0; transition:opacity .25s ease;
+            font-size:13.5px; line-height:1.5; color:#fff;
+            text-shadow:0 2px 6px rgba(0,0,0,.35); font-weight:500;
+            letter-spacing:.01em;
+        }
+        .guide-step-text.active{ display:block; opacity:1; animation:fadeInFast .3s ease; }
+        @keyframes fadeInFast{
+            from{ opacity:0; transform:translateY(4px); }
+            to{ opacity:1; transform:translateY(0); }
+        }
+        @media (min-width: 769px){
+            .guide-step-text{ font-size:14.5px; }
+        }
+        
+        /* CTA row at bottom */
+        .guide-cta-row{
+            display:flex; gap:8px; width:100%; max-width:400px; margin:0 auto 12px;
+            justify-content:center; align-items:center; flex-wrap:wrap;
+        }
+        .guide-cta{
+            position:relative; flex:1; min-width:60px; max-width:70px;
+            display:inline-flex; align-items:center; justify-content:center;
+            padding:12px; border-radius:50%;
+            text-decoration:none; transition:all .2s ease;
+            box-shadow:0 4px 12px rgba(0,0,0,.15);
+            opacity:.4; transform:scale(.88); filter:saturate(.7);
+        }
+        .guide-cta.active{
+            opacity:1; transform:scale(1); filter:saturate(1);
+            box-shadow:0 6px 18px rgba(0,0,0,.25);
+            animation:ctaPulse .3s ease;
+        }
+        @keyframes ctaPulse{
+            0%{ transform:scale(.92); }
+            50%{ transform:scale(1.05); }
+            100%{ transform:scale(1); }
+        }
+        .guide-cta svg{ margin:0; }
+        .guide-cta.whatsapp{
+            background:linear-gradient(135deg, #25d366, #128c7e);
+            color:#fff;
+        }
+        .guide-cta.website{
+            background:rgba(255,255,255,.92); color:#2b2b2b;
+            border:1px solid rgba(244,208,63,.3);
+        }
+        .guide-cta.instagram{
+            background:linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+            color:#fff;
+        }
+        .guide-cta.phone{
+            background:linear-gradient(135deg, #f4d03f, #f5b7b1);
+            color:#2b2b2b;
+        }
+        .guide-cta:hover{ transform:scale(.95) translateY(-1px); opacity:.6; }
+        .guide-cta.active:hover{ transform:scale(1.03) translateY(-2px); opacity:1; }
+        
+        /* Arrow indicator (horizontal flow) */
+        .guide-cta-row::after{
+            content:'→'; position:absolute; left:0; bottom:-22px;
+            font-size:14px; color:rgba(255,255,255,.7);
+            text-shadow:0 2px 4px rgba(0,0,0,.3);
+            transition:left .3s ease; pointer-events:none;
+        }
+        .guide-cta:nth-child(1).active ~ .guide-cta-row::after{ left:12%; }
+        .guide-cta:nth-child(2).active ~ .guide-cta-row::after{ left:37%; }
+        .guide-cta:nth-child(3).active ~ .guide-cta-row::after{ left:62%; }
+        .guide-cta:nth-child(4).active ~ .guide-cta-row::after{ left:87%; }
+        
+        .guide-dots{
+            display:flex; gap:6px; justify-content:center; margin-top:8px;
+        }
+        .guide-dot{
+            width:6px; height:6px; border-radius:50%;
+            background:rgba(255,255,255,.3); cursor:pointer;
+            transition:all .25s ease;
+        }
+        .guide-dot.active{ width:18px; border-radius:3px; background:rgba(255,255,255,.85); }
+        @media (max-width: 768px){
+            .guide-text-box{ max-width:90%; padding:10px 14px; min-height:54px; }
+            .guide-step-text{ font-size:12px; }
+            .guide-cta{ padding:10px; min-width:52px; max-width:60px; }
+        }
     </style>
 </head>
 <body>
@@ -641,32 +735,39 @@
                 <div class="subtitle">Minimal & luxurious daily arrangements • Everlasting collections</div>
             </div>
 
-            <!-- Content (Icon-only actions at bottom) -->
-        <div class="content">
+            <!-- Content (Guide + CTAs at bottom) -->
+            <div class="content">
                 <div class="fade-in w-full">
-                    <div class="mt-6 grid grid-cols-2 gap-3 md:gap-4 w-full max-w-md mx-auto px-[0.1cm]">
-                        <a href="tel:+989177800806"
-                           class="inline-flex items-center justify-center rounded-2xl px-2 py-2 text-[13px] md:text-sm font-medium tracking-wide text-neutral-900 shadow-sm hover:shadow-md transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500/40 focus-visible:ring-offset-2 border border-yellow-400/50 bg-[linear-gradient(90deg,#ffffff_0%,#fff6d5_40%,#f4d03f_100%)]"
-                           aria-label="Call BLUSH">
-                            <svg class="mr-2 h-4 w-4 md:h-5 md:w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.5-1.2a2 2 0 0 1 2.1-.4c.8.3 1.7.5 2.6.6A2 2 0 0 1 22 16.9z"/></svg>
-                            Call us
+                    <!-- Guide text box -->
+                    <div class="guide-text-box">
+                        <p class="guide-step-text active" data-text="1">برای سفارش محصول شخصی‌سازی‌شده از طریق واتس‌اپ با ما در ارتباط باشید</p>
+                        <p class="guide-step-text" data-text="2">برای خرید سریع از محصولات آماده روزانه به وب‌سایت بلاش مراجعه کنید</p>
+                        <p class="guide-step-text" data-text="3">برای دیدن نمونه‌کارهای منحصربه‌فرد بلاش به اینستاگرام ما سر بزنید</p>
+                        <p class="guide-step-text" data-text="4">برای سفارش یا مشاوره فوری می‌توانید تلفنی با ما تماس بگیرید</p>
+                    </div>
+                    
+                    <!-- CTA row with all 4 buttons -->
+                    <div class="guide-cta-row">
+                        <a href="https://wa.me/989357060067" class="guide-cta whatsapp active" data-cta="1" aria-label="واتس‌اپ">
+                            <svg viewBox="0 0 24 24" fill="currentColor" style="margin:0;width:22px;height:22px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                         </a>
-
-                        <a href="https://www.blush-flower.com"
-                           class="inline-flex items-center justify-center rounded-2xl border border-yellow-400/60 bg-white px-2 py-2 text-[13px] md:text-sm font-medium tracking-wide text-neutral-900 shadow-[0_6px_20px_rgba(0,0,0,0.06)] ring-1 ring-yellow-500/10 hover:ring-yellow-500/25 hover:shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500/40 focus-visible:ring-offset-2 decoration-yellow-500/40"
-                           aria-label="View Collections on BLUSH" data-gold>
-                            <svg class="mr-2 h-4 w-4 md:h-5 md:w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 7h12l-1 13H7L6 7Z"/><path d="M9 7a3 3 0 1 1 6 0"/></svg>
-                            View Collections
+                        <a href="https://www.blush-flower.com" class="guide-cta website" data-cta="2" aria-label="وب‌سایت">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin:0;width:24px;height:24px;"><path d="M21 8v13H3V8"/><path d="M23 3H1v5h22V3z"/><path d="M10 12h4"/><circle cx="8" cy="12" r="1.5" fill="currentColor"/><circle cx="16" cy="12" r="1.5" fill="currentColor"/><circle cx="12" cy="16" r="1.5" fill="currentColor"/><path d="M7 3v5M12 3v5M17 3v5"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/blush_flower" target="_blank" rel="noopener" class="guide-cta instagram" data-cta="3" aria-label="اینستاگرام">
+                            <svg viewBox="0 0 24 24" fill="currentColor" style="margin:0;width:22px;height:22px;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                        <a href="tel:+989177800806" class="guide-cta phone" data-cta="4" aria-label="تماس">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin:0;width:20px;height:20px;"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.5-1.2a2 2 0 0 1 2.1-.4c.8.3 1.7.5 2.6.6A2 2 0 0 1 22 16.9z"/></svg>
                         </a>
                     </div>
-
-                    <div class="icon-row flex items-center justify-center">
-                        <a href="https://wa.me/989357060067" aria-label="Chat on WhatsApp" class="icon-cta">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 11.5A8.5 8.5 0 1 1 11.5 3 8.5 8.5 0 0 1 20 11.5Z"/><path d="M8.5 8.5c.5 2 2.5 4 4.5 4.5l1.5-1"/></svg>
-                        </a>
-                        <a href="https://www.instagram.com/blush_flower" target="_blank" rel="noopener" aria-label="Open BLUSH Instagram" class="icon-cta">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1"/></svg>
-                        </a>
+                    
+                    <!-- Navigation dots -->
+                    <div class="guide-dots">
+                        <span class="guide-dot active" data-dot="1"></span>
+                        <span class="guide-dot" data-dot="2"></span>
+                        <span class="guide-dot" data-dot="3"></span>
+                        <span class="guide-dot" data-dot="4"></span>
                     </div>
                 </div>
             </div>
@@ -676,46 +777,76 @@
     <!-- Daily Vitrin / Collections -->
     <section id="collections">
         <div class="v-head">
-            <h2>Daily Vitrin</h2>
-            <p class="v-sub">منتخب امروز از گل‌آرایی‌های مینیمال و لوکس</p>
+            <h2>Blush's Vitrine</h2>
+            <p class="v-sub">منتخب از گل‌آرایی‌های مینیمال و لوکس</p>
         </div>
         <div class="v-grid">
+            <!-- JPG first to avoid repeated webp placeholders -->
             <a class="v-item" href="https://blush-flower.com/" rel="noopener">
-                <img loading="lazy" src="src/assets/vitrine/luxury-bouquet-white-bag-pink-background.webp" alt="دسته گل لوکس در کیسه سفید">
+                <img loading="lazy" src="src/assets/vitrine/181237f0-8af8-4b07-8f01-b4b9a654853a.webp" alt="دسته گل لوکس صورتی و سفید">
             </a>
             <a class="v-item" href="https://blush-flower.com/" rel="noopener">
-                <img loading="lazy" src="src/assets/vitrine/elegant-flower-arrangement-acrylic-vitrine.webp" alt="آرایش گل شیک در ویترین شیشه‌ای">
+                <img loading="lazy" src="src/assets/vitrine/1f3c7c5c-2bb3-4c2a-b9fe-64b5208ac096.webp" alt="آرایش گل شیک در گلدان شیشه‌ای">
             </a>
             <a class="v-item" href="https://blush-flower.com/" rel="noopener">
-                <img loading="lazy" src="src/assets/vitrine/vibrant-mixed-bouquet-modern-vase.webp" alt="دسته گل رنگارنگ در گلدان مدرن">
+                <img loading="lazy" src="src/assets/vitrine/22af0585-18a9-4607-823c-13cf84260b7b.webp" alt="دسته گل رنگارنگ بهاری">
             </a>
             <a class="v-item" href="https://blush-flower.com/" rel="noopener">
-                <img loading="lazy" src="src/assets/vitrine/colorful-flower-box-blue-container.webp" alt="باکت گل رنگارنگ در ظرف آبی">
+                <img loading="lazy" src="src/assets/vitrine/24e85faf-8883-4917-8f74-df33a7302c26.webp" alt="باکت گل لوکس با روبان طلایی">
             </a>
             <a class="v-item" href="https://blush-flower.com/" rel="noopener">
-                <img loading="lazy" src="src/assets/vitrine/artistic-floral-display-hexagonal-box.webp" alt="نمایش هنری گل در جعبه شش‌ضلعی">
+                <img loading="lazy" src="src/assets/vitrine/312aa08c-9127-40bf-b096-e1c79bc3df52.webp" alt="آرایش ارکیده سفید شیک">
             </a>
             <a class="v-item" href="https://blush-flower.com/" rel="noopener">
-                <img loading="lazy" src="src/assets/vitrine/romantic-pink-purple-bouquet-vase.webp" alt="دسته گل رمانتیک صورتی و بنفش">
+                <img loading="lazy" src="src/assets/vitrine/31359c30-d7c8-4678-a046-7c1e9502cd24.webp" alt="دسته گل رمانتیک صورتی">
             </a>
             <a class="v-item" href="https://blush-flower.com/" rel="noopener">
-                <img loading="lazy" src="src/assets/vitrine/luxury-purple-flower-box-ribbon.webp" alt="باکت گل لوکس بنفش با روبان">
+                <img loading="lazy" src="src/assets/vitrine/39094b4a-123c-4299-802b-1981672b488b.webp" alt="گل‌آرایی در گلدان سفید کلاسیک">
             </a>
             <a class="v-item" href="https://blush-flower.com/" rel="noopener">
-                <img loading="lazy" src="src/assets/vitrine/sunflower-yellow-bouquet-green-box.webp" alt="دسته گل آفتابگردان در جعبه سبز">
+                <img loading="lazy" src="src/assets/vitrine/444bfb73-526e-48ef-851a-946f7527d350.webp" alt="دسته گل آفتابگردان شاد">
             </a>
             <a class="v-item" href="https://blush-flower.com/" rel="noopener">
-                <img loading="lazy" src="src/assets/vitrine/elegant-white-orchid-arrangement.webp" alt="آرایش ارکیده سفید شیک">
+                <img loading="lazy" src="src/assets/vitrine/4eb2f329-0dfa-45d1-a1a5-e6a6ddcc7694.webp" alt="باکت گل رنگارنگ در جعبه آبی">
             </a>
             <a class="v-item" href="https://blush-flower.com/" rel="noopener">
-                <img loading="lazy" src="src/assets/vitrine/luxury-golden-flower-box-arrangement.webp" alt="آرایش گل طلایی لوکس">
+                <img loading="lazy" src="src/assets/vitrine/70b41351-8d78-4e8e-a239-48813464bedd.webp" alt="آرایش گل طلایی لوکس">
             </a>
             <a class="v-item" href="https://blush-flower.com/" rel="noopener">
-                <img loading="lazy" src="src/assets/vitrine/beautiful-mixed-bouquet-white-vase.webp" alt="دسته گل زیبا در گلدان سفید">
+                <img loading="lazy" src="src/assets/vitrine/79e11b70-f17c-4193-b79a-ad464b12f37d.webp" alt="دسته گل بنفش رمانتیک">
             </a>
             <a class="v-item" href="https://blush-flower.com/" rel="noopener">
-                <img loading="lazy" src="src/assets/vitrine/cheerful-yellow-white-lavender-bouquet.webp" alt="دسته گل شاد زرد و سفید">
+                <img loading="lazy" src="src/assets/vitrine/87a6c354-df4b-41e7-a59f-ade8eecb3e47.webp" alt="گل‌آرایی در سبد حصیری">
             </a>
+            <a class="v-item" href="https://blush-flower.com/" rel="noopener">
+                <img loading="lazy" src="src/assets/vitrine/90c837c8-4b7b-4999-8b0a-af6d7b0f0a07.webp" alt="دسته گل سفید و سبز">
+            </a>
+            <a class="v-item" href="https://blush-flower.com/" rel="noopener">
+                <img loading="lazy" src="src/assets/vitrine/9f2f5ae6-d71f-48e6-9f50-ab0f76b4c544.webp" alt="باکت گل لوکس با روبان صورتی">
+            </a>
+            <a class="v-item" href="https://blush-flower.com/" rel="noopener">
+                <img loading="lazy" src="src/assets/vitrine/b352b285-9195-43b3-b05c-0f84e219e6c1.webp" alt="آرایش گل در ویترین شیشه‌ای">
+            </a>
+            <a class="v-item" href="https://blush-flower.com/" rel="noopener">
+                <img loading="lazy" src="src/assets/vitrine/bc3d6d2b-b4f1-445b-9a69-c9d1b06ed7f8.webp" alt="دسته گل رنگارنگ در گلدان مدرن">
+            </a>
+            <a class="v-item" href="https://blush-flower.com/" rel="noopener">
+                <img loading="lazy" src="src/assets/vitrine/e04021ff-a1e7-49d0-be94-932c2a7aeffa.webp" alt="گل‌آرایی در گلدان سرامیکی">
+            </a>
+            <a class="v-item" href="https://blush-flower.com/" rel="noopener">
+                <img loading="lazy" src="src/assets/vitrine/e085a5d7-6de9-4617-a8e0-6f9b433d17ee.webp" alt="دسته گل زرد و نارنجی">
+            </a>
+            <a class="v-item" href="https://blush-flower.com/" rel="noopener">
+                <img loading="lazy" src="src/assets/vitrine/e2943b2f-35ed-4ef8-ab90-5b723ba85529.webp" alt="آرایش گل خشک ماندگار">
+            </a>
+            <a class="v-item" href="https://blush-flower.com/" rel="noopener">
+                <img loading="lazy" src="src/assets/vitrine/e7ca7a1e-9aab-4a2d-a4e5-6b776a720c35.webp" alt="دسته گل صورتی و سفید">
+            </a>
+            <a class="v-item" href="https://blush-flower.com/" rel="noopener">
+                <img loading="lazy" src="src/assets/vitrine/f1069a82-19c1-4c12-8304-93c20c1e1d98.webp" alt="باکت گل لوکس با تزئینات طلایی">
+            </a>
+
+            <!-- webp placeholders temporarily removed to avoid repetition at top -->
         </div>
     </section>
 
@@ -927,6 +1058,58 @@
             const url = new URL(a.href);
             keep.forEach(k => { if (params.has(k)) url.searchParams.set(k, params.get(k)); });
             a.href = url.toString();
+        });
+    })();
+
+    // 4-step guide controller (luxury minimal)
+    (() => {
+        const texts = document.querySelectorAll('.guide-step-text');
+        const ctas = document.querySelectorAll('.guide-cta');
+        const dots = document.querySelectorAll('.guide-dot');
+        if (!texts.length || !ctas.length || !dots.length) return;
+        
+        let currentStep = 1;
+        const totalSteps = 4;
+        
+        function showStep(n) {
+            // Update text
+            texts.forEach(t => t.classList.remove('active'));
+            const targetText = document.querySelector(`[data-text="${n}"]`);
+            if (targetText) targetText.classList.add('active');
+            
+            // Update CTAs
+            ctas.forEach(c => c.classList.remove('active'));
+            const targetCta = document.querySelector(`[data-cta="${n}"]`);
+            if (targetCta) targetCta.classList.add('active');
+            
+            // Update dots
+            dots.forEach(d => d.classList.remove('active'));
+            const targetDot = document.querySelector(`[data-dot="${n}"]`);
+            if (targetDot) targetDot.classList.add('active');
+            
+            currentStep = n;
+        }
+        
+        // Auto-advance every 5 seconds
+        setInterval(() => {
+            const next = currentStep >= totalSteps ? 1 : currentStep + 1;
+            showStep(next);
+        }, 5000);
+        
+        // Click dot to navigate
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const step = parseInt(dot.dataset.dot);
+                if (step) showStep(step);
+            });
+        });
+        
+        // Click CTA to lock on that step
+        ctas.forEach(cta => {
+            cta.addEventListener('mouseenter', () => {
+                const step = parseInt(cta.dataset.cta);
+                if (step) showStep(step);
+            });
         });
     })();
     </script>
