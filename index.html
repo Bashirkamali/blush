@@ -1115,6 +1115,32 @@
             });
         });
     })();
+
+    // Force mobile to use small hero video (and honor Save-Data)
+    (() => {
+        const isMobile = matchMedia('(max-width: 768px)').matches;
+        if (!isMobile) return;
+        const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        const saveData = !!(conn && (conn.saveData || (conn.effectiveType && /2g/i.test(conn.effectiveType))));
+        const videos = document.querySelectorAll('#hero video');
+        videos.forEach(video => {
+            const sources = Array.from(video.querySelectorAll('source'));
+            const small = sources.find(s => decodeURIComponent((s.getAttribute('src')||'')).includes('Hero Smaller.mp4'));
+            if (!small) return;
+            if (saveData) {
+                try { video.pause(); } catch(e){}
+                video.removeAttribute('autoplay');
+                video.removeAttribute('loop');
+                return;
+            }
+            const url = small.getAttribute('src');
+            if (url) {
+                // cache-bust to avoid stale content on first deploy
+                video.src = url + '?v=' + Date.now().toString().slice(-6);
+                video.load();
+            }
+        });
+    })();
     </script>
 </body>
 </html>
