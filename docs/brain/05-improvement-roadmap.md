@@ -7,6 +7,7 @@ This roadmap is ordered to stabilize the current project before visual redesign 
 | Priority | Task | Impact | Risk | Files likely involved | Notes |
 |---|---|---|---|---|---|
 | P0 | Decide whether React/Vite or standalone `index.html` is the production source of truth | Prevents wasted work | Low | `index.html`, `src/index.html`, `vite.config.ts`, `src/` | This is the most important decision before redesign |
+| P0 | Use `09-source-of-truth-decision.md` as the migration baseline before converting root `index.html` | Prevents loss of production-like content | Low | `docs/brain/09-source-of-truth-decision.md`, `index.html`, `src/` | Current recommendation: React/Vite is future source, root HTML is current active legacy artifact |
 | P0 | Confirm official WhatsApp, phone, Instagram, and website links | Prevents lost conversions | Low | `src/components/CinematicBloom.tsx`, `index.html`, future CTA constants | Current numbers differ across files |
 | P0 | Fix active HTML entry metadata after source-of-truth decision | SEO correctness | Low | `index.html` or active shell | Avoid `example.com` canonical |
 | P1 | Replace empty `public/hero.webp` and `public/logo.svg` or remove references | Prevents blank poster/logo/OG | Low | `public/`, `CinematicBloom.tsx`, active HTML | Use optimized production assets |
