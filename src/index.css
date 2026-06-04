@@ -2,25 +2,191 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  html {
-    scroll-behavior: smooth;
+/* ============ Scrollbar ============ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #faf6f5; }
+::-webkit-scrollbar-thumb { background: #f6d6e5; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #f0b8d0; }
+
+/* ============ Base ============ */
+html { scroll-behavior: smooth; }
+body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+/* ============ Custom Utility ============ */
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .perspective-1000 { perspective: 1000px; }
+}
+
+/* ============ Blush Text Gradient ============ */
+@layer components {
+  .text-blush-gradient {
+    background: linear-gradient(135deg, #f6d6e5 0%, #f8bbd9 30%, #c9a96e 70%, #f6d6e5 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 6s ease infinite;
   }
   
-  body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  .blush-glass {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .blush-card {
+    @apply relative overflow-hidden rounded-3xl bg-white/60 backdrop-blur-sm;
+    border: 1px solid rgba(246, 214, 229, 0.3);
+    box-shadow: 0 4px 30px rgba(246, 214, 229, 0.15);
+  }
+
+  .blush-btn-primary {
+    @apply relative overflow-hidden rounded-full px-8 py-4 text-white font-medium transition-all duration-500;
+    background: linear-gradient(135deg, #f6d6e5 0%, #f0b8d0 50%, #e899b8 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 4s ease infinite;
+  }
+  .blush-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(246, 214, 229, 0.4);
+  }
+
+  .blush-btn-secondary {
+    @apply relative overflow-hidden rounded-full px-8 py-4 font-medium transition-all duration-500;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+  }
+  .blush-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+  }
+
+  .blush-section {
+    @apply relative overflow-hidden;
   }
 }
 
-@layer components {
-  .shadow-soft {
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+/* ============ Keyframes ============ */
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-8px) rotate(0.5deg); }
+  66% { transform: translateY(4px) rotate(-0.3deg); }
+}
+
+@keyframes bloom {
+  0% { transform: scale(0.8); opacity: 0; }
+  50% { transform: scale(1.05); opacity: 0.7; }
+  100% { transform: scale(1); opacity: 0.5; }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(200%) skewX(-15deg); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(246, 214, 229, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(246, 214, 229, 0.6); }
+}
+
+@keyframes revealText {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* ============ Hero Video Overlay ============ */
+.hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.4) 100%),
+    radial-gradient(50% 50% at 50% 30%, rgba(246,214,229,0.15) 0%, transparent 70%);
+  z-index: 1;
+}
+
+/* ============ Bloom Particles ============ */
+.bloom-particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(246,214,229,0.6) 0%, transparent 70%);
+  animation: float 6s ease-in-out infinite, bloom 4s ease-in-out infinite;
+}
+
+/* ============ Gallery Lightbox Animations ============ */
+.lightbox-enter {
+  animation: scaleIn 0.3s ease-out;
+}
+
+/* ============ Parallax Image Container ============ */
+.parallax-container {
+  overflow: hidden;
+  position: relative;
+}
+.parallax-container img, 
+.parallax-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+}
+
+/* ============ Section Dividers ============ */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(246,214,229,0.4), transparent);
+}
+
+/* ============ Custom Cursor ============ */
+@media (hover: hover) and (pointer: fine) {
+  .custom-cursor {
+    cursor: none;
   }
-  
-  .line-clamp-1 {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
+  .custom-cursor a, .custom-cursor button {
+    cursor: none;
   }
+  .cursor-dot {
+    width: 8px;
+    height: 8px;
+    background: #f6d6e5;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background 0.2s;
+    mix-blend-mode: difference;
+  }
+  .cursor-dot.hovering {
+    width: 40px;
+    height: 40px;
+    background: rgba(246,214,229,0.3);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(246,214,229,0.5);
+  }
+}
+
+/* ============ RTL Support ============ */
+[dir="rtl"] .section-title::after {
+  right: 0;
+  left: auto;
 }

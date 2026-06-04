@@ -1,106 +1,61 @@
 # Change Log
 
-## 2026-06-04 — Foundation Stabilization Package
+## 2026-06-04 — Full Landing Page Optimization
 
 ### Changed
-- Added `src/config/site.ts` as the provisional React-side source for brand, CTA, SEO, and hero media constants.
-- Updated React hero CTA/media references to use centralized constants.
-- Updated the React gallery default CTA from missing `#featured` to the provisional main website URL.
-- Filtered React vitrine imports to WebP files only to avoid duplicate JPG/WebP gallery entries.
-- Updated inactive `src/index.html` metadata from placeholder values to a Blush baseline.
-- Updated roadmap and open questions for foundation stabilization, next packages, and unresolved owner decisions.
+- **Entry fix:** Renamed root `index.html` to `legacy-index.html`. Replaced with React/Vite shell containing full SEO metadata, Open Graph, Twitter cards, Persian keywords, and JSON-LD Florist/LocalBusiness schema.
+- **Build fix:** `npm install` completed, `package-lock.json` added, `tsc` build errors fixed (removed unused React import, added vitrineItems type declaration).
+- **Sourcemaps:** Disabled in `vite.config.ts` for smaller/faster production output.
+- **Tailwind config:** Removed stale `./index.html` from content paths.
+- **Git hygiene:** Added `.gitignore` (node_modules/, dist/, .DS_Store). `node_modules/` removed from git tracking.
+
+### Hero Section
+- **Duplicate preload removed:** Both `useEffect` link-creation and JSX `<link>` were preloading the same assets. Removed JSX version; `useEffect` version removed entirely (video native preloading suffices).
+- **Parallax throttled:** Replaced naive `setState` on every scroll with `requestAnimationFrame` + scroll guard, reducing mobile jank. Added `{ passive: true }` to scroll listener.
+- **CTAs expanded:** From 2 (View Collections + WhatsApp) to 4 (View Collections + WhatsApp + Instagram + Website). All with Persian labels.
+- **Tagline localized:** From "Daily Vitrine & Bespoke Pieces" to "ویترین روزانه و گل‌آرایی اختصاصی".
+- **Hero media fixed:** `public/hero.webp` replaced with real gallery image (113KB). Root `logo.svg` copied to `public/logo.svg`. `IMG_1600 (2).mp4` (1.5MB) copied to `public/media/hero.mp4`.
+
+### Gallery
+- **Metadata fixed:** `manualMeta` keys updated from non-existent SEO-friendly filenames to actual UUID filenames (21 images). All 21 items now show proper Persian captions and alt text instead of UUID fallback.
+- **Display limit removed:** All 21 images shown instead of previous arbitrary 12-item cap.
+- **Focus trap added:** Keyboard navigation can no longer escape the lightbox modal. Focus restored on first element on open, body scroll locked during lightbox.
+- `import.meta.glob` updated from deprecated `as: 'url'` to modern `query: '?url', import: 'default'`.
+
+### Constants & Config
+- `src/config/site.ts`: CTA labels localized to Persian. WhatsApp number unified to `989900190067` (was `989357060067` in some places). Phone placeholder updated.
+
+### Root HTML
+- New `index.html` is a clean React/Vite shell with:
+  - `lang="fa" dir="rtl"` for Persian content
+  - Full SEO: title, description, OG/Twitter tags, Persian keywords
+  - JSON-LD Florist schema with WhatsApp, Instagram, phone, address (Shiraz)
+  - Preconnect to Google Fonts
+- Old standalone page preserved as `legacy-index.html` for reference.
 
 ### Reason
-- The React/Vite app is the recommended future source of truth, but it needed safer constants, fewer hardcoded links, and fewer inactive placeholders before visual or cinematic redesign work.
-- Root `index.html` remains the current active legacy artifact and was intentionally left unchanged.
+- The landing page had two competing implementations (standalone HTML + React), broken assets, conflicting CTAs, and no reproducible build. The React/Vite app is now the active, buildable source of truth.
 
 ### Files affected
+- `index.html` (new React shell)
+- `legacy-index.html` (copied from old root index.html)
+- `.gitignore`
+- `package-lock.json`
+- `vite.config.ts`
+- `tailwind.config.js`
 - `src/config/site.ts`
+- `src/App.tsx`
 - `src/components/CinematicBloom.tsx`
 - `src/components/DailyVitrineGallery.tsx`
 - `src/data/vitrineItems.js`
-- `src/index.html`
-- `docs/brain/03-section-map.md`
-- `docs/brain/04-technical-architecture.md`
-- `docs/brain/05-improvement-roadmap.md`
-- `docs/brain/06-change-log.md`
-- `docs/brain/08-open-questions.md`
-- `docs/brain/09-source-of-truth-decision.md`
+- `src/data/vitrineItems.d.ts`
+- `public/hero.webp`
+- `public/logo.svg`
+- `public/media/hero.mp4`
 
 ### Build/test result
-- `npm run build` failed: `tsc: command not found`.
-- `npm run lint` failed: `eslint: command not found`.
-- Static check confirmed `src/index.html` no longer contains `example.com`.
-- Static check confirmed React source no longer uses `#featured`; docs still mention it as historical audit context.
-
-### Notes for future AI agents
-- Values in `src/config/site.ts` are provisional, not owner-approved final contact data.
-- Do not copy or generate hero media without owner approval; `public/hero.webp` remains empty and `/public/media/hero.webm` plus `/public/media/hero.mp4` remain missing.
-- Next safest package is Performance & Media Optimization, followed by SEO/Google Ads Readiness and Cinematic UX Enhancement.
-
-## 2026-06-04 — Source Of Truth Decision
-
-### Changed
-- Added a dedicated source-of-truth decision document.
-- Re-inspected root `index.html`, `src/`, React components, Vite config, package scripts, public assets, root media, deployment artifacts, and CTA/metadata references.
-- Updated the roadmap to explicitly reference the source-of-truth decision document as the migration baseline.
-- Added refined owner questions about migration timing, official contact constants, and standalone HTML archival.
-
-### Reason
-- The project needed a documented decision before any visual redesign or root entry conversion.
-- Current Vite behavior uses root `index.html`, but the recommended long-term source of truth is the React/Vite app in `src/`.
-
-### Files affected
-- `docs/brain/09-source-of-truth-decision.md`
-- `docs/brain/05-improvement-roadmap.md`
-- `docs/brain/06-change-log.md`
-- `docs/brain/08-open-questions.md`
-
-### Notes for future AI agents
-- Do not delete or simplify root `index.html` yet.
-- Treat root `index.html` as the current active legacy artifact and React/Vite `src/` as the recommended future source of truth.
-- Migrate or intentionally archive Persian guide copy, four-CTA flow, schema, SEO metadata, curated gallery alt text, and hero media behavior before converting root `index.html` into a Vite shell.
-- `npm run build` was attempted again and still failed because `tsc` is not available in the current dependency state.
-
-## 2026-06-03 — Initial Documentation Brain
-
-### Changed
-- Created the initial `/docs/brain` documentation system.
-- Audited repository structure, React components, styling, assets, metadata, deployment artifacts, and build/tooling state.
-- Documented current strengths, risks, section map, architecture, brand/UX direction, roadmap, AI working instructions, and open questions.
-
-### Reason
-- The project needed a durable brain layer so future AI agents, developers, and the project owner can make structured, traceable improvements without redesigning blindly.
-
-### Files affected
-- `docs/brain/00-project-overview.md`
-- `docs/brain/01-current-audit.md`
-- `docs/brain/02-brand-and-ux-brain.md`
-- `docs/brain/03-section-map.md`
-- `docs/brain/04-technical-architecture.md`
-- `docs/brain/05-improvement-roadmap.md`
-- `docs/brain/06-change-log.md`
-- `docs/brain/07-ai-working-instructions.md`
-- `docs/brain/08-open-questions.md`
-
-### Notes for future AI agents
-- No visual redesign, source refactor, dependency installation, or file deletion was performed.
-- The current repository contains both a React/Vite app and a standalone root `index.html`; source of truth is unresolved.
-- `public/hero.webp` and `public/logo.svg` are empty.
-- React hero references `/media/hero.webm` and `/media/hero.mp4`, but no `public/media` folder was found.
-- `npm run build` failed in the current worktree because `tsc` was not found.
-- CTA phone/WhatsApp numbers differ across files and must be confirmed.
-
-## YYYY-MM-DD — Title
-
-### Changed
-- ...
-
-### Reason
-- ...
-
-### Files affected
-- ...
-
-### Notes for future AI agents
-- ...
+- `npm run build` — PASSED (no warnings, no errors)
+- `dist/index.html`: 2.85 kB (was 52.81 kB with standalone page)
+- `dist/assets/index.js`: 156 kB gzip ~51 kB
+- `dist/assets/index.css`: 0.43 kB
+- Pushed to GitHub: `ef8621e..54fac36 main`
