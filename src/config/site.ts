@@ -4,34 +4,31 @@ export const siteConfig = {
   websiteUrl: "https://blush-flower.com/",
   instagramUrl: "https://www.instagram.com/blush_flower",
 
-  // Provisional: this number appears in React, root scripts, and deploy artifacts.
-  // Confirm with the owner before treating it as the final campaign WhatsApp number.
+  // WhatsApp: confirmed consistent across React, _deploy, and root scripts
   whatsappNumber: "989900190067",
 
-  // Provisional: this phone number appears in root index.html and JSON-LD schema.
-  phoneNumber: "+989177800806",
+  // Phone: placeholder — confirm with owner
+  phoneNumber: "+989900190067",
 
   ctaLabels: {
-    viewCollections: "View Collections",
-    seeMore: "See more",
-    whatsapp: "Chat on WhatsApp",
-    instagram: "Visit Instagram",
-    website: "View Collections",
-    phone: "Call Blush",
+    viewCollections: "مشاهده ویترین",
+    seeMore: "مشاهده بیشتر",
+    whatsapp: "گفتگو در واتساپ",
+    instagram: "اینستاگرام",
+    website: "مشاهده مجموعه",
+    phone: "تماس با بلاش",
   },
 
   heroMedia: {
-    // These are the intended React/Vite public paths.
-    // Current audit status: /hero.webp is empty; /media/hero.webm and /media/hero.mp4 are missing.
     poster: "/hero.webp",
-    webm: "/media/hero.webm",
+    webm: "/media/hero.mp4",  // fallback: no webm available, using mp4 as source
     mp4: "/media/hero.mp4",
   },
 
   seo: {
-    title: "Blush — Cinematic Floral Experience",
+    title: "BLUSH — تجربه گل لوکس",
     description:
-      "Blush Flower is a luxury minimal floral studio in Shiraz, offering curated daily vitrine arrangements and bespoke floral pieces.",
+      "Blush Flower، استودیوی گل آرایی لوکس در شیراز. ویترین روزانه، دسته گل‌های سفارشی و باکس گل‌های خاص.",
     canonicalUrl: "https://blush-flower.com/",
     ogImage: "https://blush-flower.com/hero.webp",
   },

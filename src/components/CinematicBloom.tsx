@@ -9,28 +9,9 @@ const CinematicBloom: React.FC<CinematicBloomProps> = ({ className = "" }) => {
   const heroRef = useRef<HTMLElement>(null);
   const [parallaxOffset, setParallaxOffset] = useState(0);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const rafRef = useRef<number>(0);
 
   useEffect(() => {
-    const poster = document.createElement("link");
-    poster.rel = "preload";
-    poster.as = "image";
-    poster.href = siteConfig.heroMedia.poster;
-    document.head.appendChild(poster);
-
-    const videoWebm = document.createElement("link");
-    videoWebm.rel = "preload";
-    videoWebm.as = "video";
-    videoWebm.href = siteConfig.heroMedia.webm;
-    videoWebm.type = "video/webm";
-    document.head.appendChild(videoWebm);
-
-    const videoMp4 = document.createElement("link");
-    videoMp4.rel = "preload";
-    videoMp4.as = "video";
-    videoMp4.href = siteConfig.heroMedia.mp4;
-    videoMp4.type = "video/mp4";
-    document.head.appendChild(videoMp4);
-
     // Check for reduced motion preference
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     setPrefersReducedMotion(mediaQuery.matches);
@@ -41,20 +22,25 @@ const CinematicBloom: React.FC<CinematicBloomProps> = ({ className = "" }) => {
 
     mediaQuery.addEventListener('change', handleMotionChange);
 
-    // Parallax effect
+    // Parallax effect with requestAnimationFrame (no setState on every scroll)
+    let lastScrollY = window.pageYOffset;
     const handleScroll = () => {
       if (prefersReducedMotion) return;
-      
-      const scrolled = window.pageYOffset;
-      const rate = scrolled * -0.5;
-      setParallaxOffset(rate);
+      lastScrollY = window.pageYOffset;
+      if (rafRef.current) return; // throttle: only one RAF pending
+      rafRef.current = requestAnimationFrame(() => {
+        const rate = lastScrollY * -0.5;
+        setParallaxOffset(rate);
+        rafRef.current = 0;
+      });
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
       mediaQuery.removeEventListener('change', handleMotionChange);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, [prefersReducedMotion]);
 
@@ -64,9 +50,6 @@ const CinematicBloom: React.FC<CinematicBloomProps> = ({ className = "" }) => {
       className={`relative min-h-[100svh] overflow-hidden bg-pink-100 ${className}`}
       aria-label={`${siteConfig.brandNameDisplay} — Cinematic Bloom Hero`}
     >
-      {/* Preload hero image */}
-      <link rel="preload" as="image" href={siteConfig.heroMedia.poster} />
-      
       {/* Background Video with poster fallback */}
       <div className="absolute inset-0">
         <video
@@ -99,29 +82,45 @@ const CinematicBloom: React.FC<CinematicBloomProps> = ({ className = "" }) => {
 
       {/* Content */}
       <div className="relative z-10 flex items-center justify-center min-h-[100svh] px-4">
-        <div className="text-center max-w-4xl">
-          <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-light text-white mb-6">
-            {siteConfig.brandNameDisplay}
-          </h1>
-          <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Daily Vitrine & Bespoke Pieces
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="#daily-vitrine"
-              className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300"
-            >
-              {siteConfig.ctaLabels.viewCollections}
-            </a>
-            <a
-              href={whatsappUrl}
-              className="px-8 py-3 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full text-white hover:from-pink-600 hover:to-rose-600 transition-all duration-300"
-            >
-              {siteConfig.ctaLabels.whatsapp}
-            </a>
+          <div className="text-center max-w-4xl">
+            <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-light text-white mb-6">
+              {siteConfig.brandNameDisplay}
+            </h1>
+            <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+              ویترین روزانه و گل‌آرایی اختصاصی
+            </p>
+            <div className="flex flex-wrap gap-3 justify-center">
+              <a
+                href="#daily-vitrine"
+                className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300"
+              >
+                {siteConfig.ctaLabels.viewCollections}
+              </a>
+              <a
+                href={whatsappUrl}
+                className="px-8 py-3 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full text-white hover:from-pink-600 hover:to-rose-600 transition-all duration-300"
+              >
+                {siteConfig.ctaLabels.whatsapp}
+              </a>
+              <a
+                href={siteConfig.instagramUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300"
+              >
+                {siteConfig.ctaLabels.instagram}
+              </a>
+              <a
+                href={siteConfig.websiteUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300"
+              >
+                {siteConfig.ctaLabels.website}
+              </a>
+            </div>
           </div>
         </div>
-      </div>
     </section>
   );
 };

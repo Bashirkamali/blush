@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { siteConfig } from "../config/site";
 
 interface VitrineItem {
@@ -19,26 +19,32 @@ interface DailyVitrineGalleryProps {
 
 const DailyVitrineGallery: React.FC<DailyVitrineGalleryProps> = ({
   items = [],
-  title = "Blush Daily Vitrine",
-  eyebrow = "Daily Vitrine",
+  title = "ویترین روزانه بلاش",
+  eyebrow = "ویترین روزانه",
   ctaHref = siteConfig.websiteUrl,
   ctaLabel = siteConfig.ctaLabels.seeMore,
 }) => {
   const [active, setActive] = useState<number | null>(null);
-  const [lastFocusedElement, setLastFocusedElement] = useState<HTMLElement | null>(null);
+  const lightboxRef = useRef<HTMLDivElement>(null);
   
-  // Limit to 12 items
-  const displayItems = items.slice(0, 12);
+  // Show all items (no limit)
+  const displayItems = items;
 
-  // ESC to close lightbox and focus restoration
+  // ESC to close, focus trap, arrow navigation
   useEffect(() => {
+    if (active === null) return;
+
+    const lightbox = lightboxRef.current;
+    const focusableElements = lightbox?.querySelectorAll<HTMLElement>(
+      'button, a, [tabindex]:not([tabindex="-1"])'
+    );
+    const firstFocusable = focusableElements?.[0];
+    const lastFocusable = focusableElements?.[focusableElements.length - 1];
+
     function onKey(e: KeyboardEvent) {
       if (e.key === 'Escape') {
         setActive(null);
-        // Restore focus to the element that opened the lightbox
-        if (lastFocusedElement) {
-          lastFocusedElement.focus();
-        }
+        return;
       }
       if (e.key === 'ArrowLeft' && active !== null) {
         setActive(i => (i! > 0 ? i! - 1 : displayItems.length - 1));
@@ -46,10 +52,28 @@ const DailyVitrineGallery: React.FC<DailyVitrineGalleryProps> = ({
       if (e.key === 'ArrowRight' && active !== null) {
         setActive(i => (i! < displayItems.length - 1 ? i! + 1 : 0));
       }
+      // Focus trap
+      if (e.key === 'Tab' && focusableElements) {
+        if (e.shiftKey && document.activeElement === firstFocusable) {
+          e.preventDefault();
+          lastFocusable?.focus();
+        } else if (!e.shiftKey && document.activeElement === lastFocusable) {
+          e.preventDefault();
+          firstFocusable?.focus();
+        }
+      }
     }
+
+    // Focus first element when lightbox opens
+    firstFocusable?.focus();
+
     window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [active, displayItems.length, lastFocusedElement]);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, [active, displayItems.length]);
 
   return (
     <section id="daily-vitrine" className="py-12 lg:py-16">
@@ -71,10 +95,7 @@ const DailyVitrineGallery: React.FC<DailyVitrineGalleryProps> = ({
             <button
               key={idx}
               type="button"
-              onClick={() => {
-                setLastFocusedElement(document.activeElement as HTMLElement);
-                setActive(idx);
-              }}
+              onClick={() => setActive(idx)}
               className="group relative overflow-hidden rounded-2xl shadow-soft text-left focus:outline-none focus:ring-2 focus:ring-offset-2"
               aria-label={it.alt || "View image"}
             >
@@ -112,6 +133,7 @@ const DailyVitrineGallery: React.FC<DailyVitrineGalleryProps> = ({
       {/* Lightbox */}
       {active !== null && (
         <div
+          ref={lightboxRef}
           className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
           onClick={() => setActive(null)}
           role="dialog"
