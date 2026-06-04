@@ -56,7 +56,7 @@ export const siteConfig = {
   },
 
   heroMedia: {
-    poster: "/hero.webp",
+    poster: "/generated-hero.png",
     webm: "/media/hero.mp4",
     mp4: "/media/hero.mp4",
   },
