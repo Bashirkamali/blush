@@ -8,18 +8,29 @@ import Footer from './components/Footer'
 
 function App() {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 })
+  const [isHovering, setIsHovering] = useState(false)
 
   useEffect(() => {
-    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
-    if (isTouchDevice) return
-
-    const handleMouseMove = (e: MouseEvent) => {
-      setCursorPos({ x: e.clientX, y: e.clientY })
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0
+    if (isTouch) {
+      document.documentElement.style.cursor = 'auto'
+      return
     }
-    window.addEventListener('mousemove', handleMouseMove)
+    document.documentElement.style.cursor = 'none'
 
+    const onMove = (e: MouseEvent) => setCursorPos({ x: e.clientX, y: e.clientY })
+
+    const onOver = (e: MouseEvent) => {
+      const t = e.target as HTMLElement
+      setIsHovering(!!t.closest('a, button, [role="button"], input, select, textarea'))
+    }
+
+    window.addEventListener('mousemove', onMove)
+    window.addEventListener('mouseover', onOver)
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove)
+      window.removeEventListener('mousemove', onMove)
+      window.removeEventListener('mouseover', onOver)
+      document.documentElement.style.cursor = ''
     }
   }, [])
 
@@ -27,7 +38,7 @@ function App() {
     <>
       {/* Custom Cursor */}
       <div
-        className="cursor-dot"
+        className={`cursor-dot${isHovering ? ' hovering' : ''}`}
         style={{
           left: cursorPos.x,
           top: cursorPos.y,
