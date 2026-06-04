@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { siteConfig, whatsappUrl } from "../config/site";
+import { useMagneticEffect } from "../hooks/useMagneticEffect";
 
 /* ─── Framer‑Motion Variants ─── */
 
@@ -120,6 +121,46 @@ function usePrefersReducedMotion(): boolean {
 
   return prefers;
 }
+
+/* ─── MagneticButton — wraps motion.a with cursor-follow transform ─── */
+
+interface MagneticButtonProps {
+  href: string;
+  className: string;
+  custom: number;
+  children: React.ReactNode;
+  target?: string;
+  rel?: string;
+}
+
+const MagneticButton: React.FC<MagneticButtonProps> = ({
+  href,
+  className,
+  custom,
+  children,
+  target,
+  rel,
+}) => {
+  const { ref, transform } = useMagneticEffect(15, 0.12);
+  const prefersReducedMotion = usePrefersReducedMotion();
+
+  return (
+    <motion.a
+      ref={ref as React.Ref<HTMLAnchorElement>}
+      href={href}
+      target={target}
+      rel={rel}
+      className={className}
+      custom={custom}
+      variants={buttonVariants}
+      initial="hidden"
+      animate="visible"
+      style={prefersReducedMotion ? {} : { transform }}
+    >
+      {children}
+    </motion.a>
+  );
+};
 
 /* ─── Component ─── */
 
@@ -255,63 +296,43 @@ const Hero: React.FC = () => {
             className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center w-full sm:w-auto px-2 sm:px-0"
             variants={containerVariants}
           >
-            <motion.a
+            <MagneticButton
               href="#daily-vitrine"
               className="blush-btn-secondary text-sm sm:text-base w-full sm:w-auto text-center"
               custom={0}
-              variants={buttonVariants}
-              initial="hidden"
-              animate="visible"
-              whileHover={{ scale: prefersReducedMotion ? 1 : 1.04 }}
-              whileTap={{ scale: prefersReducedMotion ? 1 : 0.97 }}
             >
               {siteConfig.ctaLabels.viewCollections}
-            </motion.a>
+            </MagneticButton>
 
-            <motion.a
+            <MagneticButton
               href={whatsappUrl}
               target="_blank"
               rel="noreferrer"
               className="blush-btn-primary text-sm sm:text-base w-full sm:w-auto text-center"
               custom={1}
-              variants={buttonVariants}
-              initial="hidden"
-              animate="visible"
-              whileHover={{ scale: prefersReducedMotion ? 1 : 1.04 }}
-              whileTap={{ scale: prefersReducedMotion ? 1 : 0.97 }}
             >
               {siteConfig.ctaLabels.whatsapp}
-            </motion.a>
+            </MagneticButton>
 
-            <motion.a
+            <MagneticButton
               href={siteConfig.instagramUrl}
               target="_blank"
               rel="noreferrer"
               className="blush-btn-secondary text-sm sm:text-base w-full sm:w-auto text-center"
               custom={2}
-              variants={buttonVariants}
-              initial="hidden"
-              animate="visible"
-              whileHover={{ scale: prefersReducedMotion ? 1 : 1.04 }}
-              whileTap={{ scale: prefersReducedMotion ? 1 : 0.97 }}
             >
               {siteConfig.ctaLabels.instagram}
-            </motion.a>
+            </MagneticButton>
 
-            <motion.a
+            <MagneticButton
               href={siteConfig.websiteUrl}
               target="_blank"
               rel="noreferrer"
               className="blush-btn-secondary text-sm sm:text-base w-full sm:w-auto text-center"
               custom={3}
-              variants={buttonVariants}
-              initial="hidden"
-              animate="visible"
-              whileHover={{ scale: prefersReducedMotion ? 1 : 1.04 }}
-              whileTap={{ scale: prefersReducedMotion ? 1 : 0.97 }}
             >
               {siteConfig.ctaLabels.website}
-            </motion.a>
+            </MagneticButton>
           </motion.div>
         </motion.div>
       </motion.div>

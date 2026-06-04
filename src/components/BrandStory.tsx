@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { siteConfig } from "../config/site";
+import { useAnimatedCounter } from "../hooks/useAnimatedCounter";
 
 /* ─── Framer‑Motion Variants ─── */
 
@@ -45,6 +46,56 @@ const statItem = {
       delay: 0.3 + i * 0.1,
     },
   }),
+};
+
+/* ─── Helper: extract suffix from a Persian‑numeral string ─── */
+
+function extractSuffix(numStr: string): string {
+  // Return everything after the last digit (Persian or Latin)
+  const match = numStr.match(/[۰-۹0-9]([^۰-۹0-9]*)$/);
+  return match ? match[1] : "";
+}
+
+function hasDigits(numStr: string): boolean {
+  return /[۰-۹0-9]/.test(numStr);
+}
+
+/* ─── Animated Stat Card ─── */
+
+const AnimatedStat: React.FC<{
+  value: number;
+  originalNumber: string;
+  label: string;
+  idx: number;
+}> = ({ value, originalNumber, label, idx }) => {
+  const { ref, displayValue } = useAnimatedCounter({
+    value,
+    suffix: extractSuffix(originalNumber),
+    duration: 2000,
+  });
+
+  // If the original number has no digits (e.g. "شیراز"), render it statically
+  const rendered = hasDigits(originalNumber) ? displayValue : originalNumber;
+
+  return (
+    <motion.div
+      ref={ref}
+      className="flex flex-col items-center rounded-2xl border border-[#f6d6e5]/30 bg-white/50 px-3 py-5 text-center backdrop-blur-sm sm:px-4 sm:py-6"
+      custom={idx}
+      variants={statItem}
+      whileHover={{ y: -4, transition: { duration: 0.3 } }}
+    >
+      <span
+        className="font-serif text-xl font-semibold tracking-tight text-[#c9a96e] md:text-3xl"
+        style={{ fontFamily: "'Playfair Display', serif" }}
+      >
+        {rendered}
+      </span>
+      <span className="mt-1 text-sm text-[#6b5863] md:text-base">
+        {label}
+      </span>
+    </motion.div>
+  );
 };
 
 /* ─── Component ─── */
@@ -174,23 +225,13 @@ const BrandStory: React.FC = () => {
               variants={sectionVariants}
             >
               {brandStory.stats.map((stat, idx) => (
-                <motion.div
+                <AnimatedStat
                   key={idx}
-                  className="flex flex-col items-center rounded-2xl border border-[#f6d6e5]/30 bg-white/50 px-3 py-5 text-center backdrop-blur-sm sm:px-4 sm:py-6"
-                  custom={idx}
-                  variants={statItem}
-                  whileHover={{ y: -4, transition: { duration: 0.3 } }}
-                >
-                  <span
-                    className="font-serif text-xl font-semibold tracking-tight text-[#c9a96e] md:text-3xl"
-                    style={{ fontFamily: "'Playfair Display', serif" }}
-                  >
-                    {stat.number}
-                  </span>
-                  <span className="mt-1 text-sm text-[#6b5863] md:text-base">
-                    {stat.label}
-                  </span>
-                </motion.div>
+                  value={stat.value}
+                  originalNumber={stat.number}
+                  label={stat.label}
+                  idx={idx}
+                />
               ))}
             </motion.div>
           </motion.div>

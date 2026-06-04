@@ -16,6 +16,8 @@ body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; 
 @layer utilities {
   .text-balance { text-wrap: balance; }
   .perspective-1000 { perspective: 1000px; }
+  .preserve-3d { transform-style: preserve-3d; }
+  .backface-hidden { backface-visibility: hidden; }
 }
 
 /* ============ Blush Text Gradient ============ */
@@ -27,6 +29,15 @@ body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; 
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation: gradientShift 6s ease infinite;
+  }
+
+  .text-gold-gradient {
+    background: linear-gradient(135deg, #c9a96e 0%, #e8d5a3 50%, #c9a96e 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 4s ease infinite;
   }
   
   .blush-glass {
@@ -52,6 +63,17 @@ body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; 
     transform: translateY(-2px);
     box-shadow: 0 12px 40px rgba(246, 214, 229, 0.4);
   }
+  .blush-btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    transform: translateX(-100%) skewX(-15deg);
+    transition: transform 0.6s;
+  }
+  .blush-btn-primary:hover::after {
+    transform: translateX(200%) skewX(-15deg);
+  }
 
   .blush-btn-secondary {
     @apply relative overflow-hidden rounded-full px-8 py-4 font-medium transition-all duration-500;
@@ -63,6 +85,18 @@ body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; 
   .blush-btn-secondary:hover {
     background: rgba(255, 255, 255, 0.15);
     transform: translateY(-2px);
+  }
+
+  .blush-btn-gold {
+    @apply relative overflow-hidden rounded-full px-8 py-4 text-white font-medium transition-all duration-500;
+    background: linear-gradient(135deg, #c9a96e 0%, #d4b87a 50%, #c9a96e 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 4s ease infinite;
+    box-shadow: 0 4px 20px rgba(201, 169, 110, 0.3);
+  }
+  .blush-btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(201, 169, 110, 0.5);
   }
 
   .blush-section {
@@ -113,6 +147,28 @@ body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; 
   to { transform: scale(1); opacity: 1; }
 }
 
+@keyframes progressBar {
+  from { width: 0%; }
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============ Scroll Progress Bar ============ */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #f6d6e5, #c9a96e, #f6d6e5);
+  background-size: 200% 100%;
+  z-index: 9999;
+  transition: width 0.1s linear;
+  animation: gradientShift 3s ease infinite;
+}
+
 /* ============ Hero Video Overlay ============ */
 .hero-video-overlay {
   position: absolute;
@@ -137,7 +193,7 @@ body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; 
   animation: scaleIn 0.3s ease-out;
 }
 
-/* ============ Parallax Image Container ============ */
+/* ============ Parallax Container ============ */
 .parallax-container {
   overflow: hidden;
   position: relative;
@@ -156,14 +212,25 @@ body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; 
   background: linear-gradient(90deg, transparent, rgba(246,214,229,0.4), transparent);
 }
 
+/* ============ SVG Divider Mask ============ */
+.section-divider-wave {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  overflow: hidden;
+}
+.section-divider-wave svg {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
 /* ============ Custom Cursor ============ */
 @media (hover: hover) and (pointer: fine) {
-  .custom-cursor {
-    cursor: none;
-  }
-  .custom-cursor a, .custom-cursor button {
-    cursor: none;
-  }
+  .custom-cursor { cursor: none; }
+  .custom-cursor a, .custom-cursor button { cursor: none; }
+
   .cursor-dot {
     width: 8px;
     height: 8px;
@@ -173,7 +240,7 @@ body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; 
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);
-    transition: width 0.2s, height 0.2s, background 0.2s;
+    transition: width 0.2s, height 0.2s, background 0.2s, transform 0.1s ease-out;
     mix-blend-mode: difference;
   }
   .cursor-dot.hovering {
@@ -182,6 +249,25 @@ body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; 
     background: rgba(246,214,229,0.3);
     backdrop-filter: blur(4px);
     border: 1px solid rgba(246,214,229,0.5);
+  }
+  
+  /* Cursor ring trail */
+  .cursor-ring {
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(246,214,229,0.3);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, border-color 0.3s;
+    mix-blend-mode: difference;
+  }
+  .cursor-ring.hovering {
+    width: 50px;
+    height: 50px;
+    border-color: rgba(201, 169, 110, 0.5);
   }
 }
 
@@ -194,7 +280,8 @@ body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; 
 /* ============ Mobile Touch Improvements ============ */
 @media (max-width: 640px) {
   .blush-btn-primary,
-  .blush-btn-secondary {
+  .blush-btn-secondary,
+  .blush-btn-gold {
     @apply px-6 py-4 text-sm;
     min-height: 48px;
   }
@@ -211,12 +298,8 @@ body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; 
 
 /* ============ iPhone notch / Dynamic Island safe area ============ */
 @supports (padding-top: env(safe-area-inset-top)) {
-  .safe-top {
-    padding-top: env(safe-area-inset-top);
-  }
-  .safe-bottom {
-    padding-bottom: env(safe-area-inset-bottom);
-  }
+  .safe-top { padding-top: env(safe-area-inset-top); }
+  .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
 }
 
 /* ============ Smooth Loading ============ */
@@ -227,4 +310,107 @@ body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; 
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+/* ============ Magnetic Button Effect ============ */
+.magnetic-btn {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ============ 3D Tilt Card ============ */
+.tilt-card {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+.tilt-card-inner {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
+}
+
+/* ============ FAQ Accordion ============ */
+.faq-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s ease;
+}
+.faq-answer.open {
+  grid-template-rows: 1fr;
+}
+.faq-answer > div {
+  overflow: hidden;
+}
+
+/* ============ Testimonial Stars ============ */
+.star-rating {
+  display: flex;
+  gap: 2px;
+}
+.star-rating svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ============ Navbar Blur ============ */
+.navbar-blur {
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(250, 246, 245, 0.7);
+  border-bottom: 1px solid rgba(246, 214, 229, 0.2);
+}
+
+/* ============ Process Step Connector ============ */
+.step-connector {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, #f6d6e5, #c9a96e, #f6d6e5);
+  background-size: 200% 100%;
+  animation: gradientShift 3s ease infinite;
+}
+
+/* ============ Back To Top ============ */
+.back-to-top {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 999;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(246, 214, 229, 0.9);
+  color: #1a1a2e;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(246, 214, 229, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(246, 214, 229, 0.3);
+}
+.back-to-top:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(246, 214, 229, 0.5);
+  background: #f6d6e5;
+}
+
+/* ============ Instagram Feed Placeholder ============ */
+.insta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+.insta-item {
+  aspect-ratio: 1;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+.insta-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.insta-item:hover img {
+  transform: scale(1.08);
 }

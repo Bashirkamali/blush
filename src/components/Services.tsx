@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { siteConfig } from "../config/site";
+import { useTiltEffect } from "../hooks/useTiltEffect";
 
 /* ─── Decorative icon symbols ─── */
 const ICON_SYMBOLS = ["✿", "❀", "✦"];
@@ -39,6 +40,66 @@ const cardVariants = {
       delay: 0.1 + i * 0.12,
     },
   }),
+};
+
+/* ─── Tilt‑Enabled Service Card ─── */
+
+const TiltCard: React.FC<{
+  title: string;
+  description: string;
+  iconSymbol: string;
+  idx: number;
+}> = ({ title, description, iconSymbol, idx }) => {
+  const { ref } = useTiltEffect({ scale: 1.02, maxTilt: 10, perspective: 800 });
+
+  return (
+    <motion.div
+      ref={ref}
+      className="blush-card group flex flex-col items-center px-4 py-8 text-center transition-shadow duration-500 hover:shadow-[0_12px_50px_rgba(246,214,229,0.35)] sm:px-6 sm:py-10"
+      custom={idx}
+      variants={cardVariants}
+    >
+      {/* ── Decorative Icon Area ── */}
+      <div
+        className="relative mb-6 flex h-16 w-16 items-center justify-center md:h-24 md:w-24"
+        style={{ transformStyle: "preserve-3d", transform: "translateZ(20px)" }}
+      >
+        {/* Gradient circle */}
+        <div
+          className="absolute inset-0 rounded-full opacity-70 transition-opacity duration-500 group-hover:opacity-100"
+          style={{
+            background:
+              "linear-gradient(135deg, #f6d6e5 0%, #f0b8d0 50%, #e899b8 100%)",
+          }}
+        />
+        {/* Inner lighter circle */}
+        <div className="absolute inset-[4px] rounded-full bg-white/70 backdrop-blur-sm" />
+        {/* Symbol */}
+        <span
+          className="relative z-10 text-2xl md:text-3xl"
+          style={{ color: "#c9a96e" }}
+        >
+          {iconSymbol}
+        </span>
+      </div>
+
+      {/* ── Service Title ── */}
+      <h3
+        className="font-serif text-lg font-medium tracking-wide text-[#1a1a2e] md:text-2xl"
+        style={{ fontFamily: "'Playfair Display', serif", transform: "translateZ(30px)" }}
+      >
+        {title}
+      </h3>
+
+      {/* ── Description ── */}
+      <p
+        className="mt-4 text-xs leading-7 text-[#4a3f47] md:text-base md:leading-8"
+        style={{ transform: "translateZ(15px)" }}
+      >
+        {description}
+      </p>
+    </motion.div>
+  );
 };
 
 /* ─── Component ─── */
@@ -101,47 +162,13 @@ const Services: React.FC = () => {
           {/* ── Cards Grid ── */}
           <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-3 md:gap-6 lg:gap-8">
             {services.map((service, idx) => (
-              <motion.div
+              <TiltCard
                 key={idx}
-                className="blush-card group flex flex-col items-center px-4 py-8 text-center transition-all duration-500 hover:shadow-[0_12px_50px_rgba(246,214,229,0.35)] sm:px-6 sm:py-10"
-                custom={idx}
-                variants={cardVariants}
-                whileHover={{ scale: 1.02 }}
-              >
-                {/* ── Decorative Icon Area ── */}
-                <div className="relative mb-6 flex h-16 w-16 items-center justify-center md:h-24 md:w-24">
-                  {/* Gradient circle */}
-                  <div
-                    className="absolute inset-0 rounded-full opacity-70 transition-opacity duration-500 group-hover:opacity-100"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, #f6d6e5 0%, #f0b8d0 50%, #e899b8 100%)",
-                    }}
-                  />
-                  {/* Inner lighter circle */}
-                  <div className="absolute inset-[4px] rounded-full bg-white/70 backdrop-blur-sm" />
-                  {/* Symbol */}
-                  <span
-                    className="relative z-10 text-2xl md:text-3xl"
-                    style={{ color: "#c9a96e" }}
-                  >
-                    {ICON_SYMBOLS[idx % ICON_SYMBOLS.length]}
-                  </span>
-                </div>
-
-                {/* ── Service Title ── */}
-                <h3
-                  className="font-serif text-lg font-medium tracking-wide text-[#1a1a2e] md:text-2xl"
-                  style={{ fontFamily: "'Playfair Display', serif" }}
-                >
-                  {service.title}
-                </h3>
-
-                {/* ── Description ── */}
-                <p className="mt-4 text-xs leading-7 text-[#4a3f47] md:text-base md:leading-8">
-                  {service.description}
-                </p>
-              </motion.div>
+                title={service.title}
+                description={service.description}
+                iconSymbol={ICON_SYMBOLS[idx % ICON_SYMBOLS.length]}
+                idx={idx}
+              />
             ))}
           </div>
         </motion.div>
