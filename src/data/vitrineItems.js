@@ -2,7 +2,7 @@
 // Auto-collect Blush daily vitrine images + optional per-file overrides.
 
 const modules = import.meta.glob(
-  '/src/assets/vitrine/*.{jpg,jpeg,png,webp,avif,JPG,JPEG,PNG}',
+  '/src/assets/vitrine/*.webp',
   { eager: true, as: 'url' }
 );
 

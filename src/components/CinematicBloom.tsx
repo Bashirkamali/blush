@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { siteConfig, whatsappUrl } from "../config/site";
 
 interface CinematicBloomProps {
   className?: string;
@@ -13,20 +14,20 @@ const CinematicBloom: React.FC<CinematicBloomProps> = ({ className = "" }) => {
     const poster = document.createElement("link");
     poster.rel = "preload";
     poster.as = "image";
-    poster.href = "/hero.webp";
+    poster.href = siteConfig.heroMedia.poster;
     document.head.appendChild(poster);
 
     const videoWebm = document.createElement("link");
     videoWebm.rel = "preload";
     videoWebm.as = "video";
-    videoWebm.href = "/media/hero.webm";
+    videoWebm.href = siteConfig.heroMedia.webm;
     videoWebm.type = "video/webm";
     document.head.appendChild(videoWebm);
 
     const videoMp4 = document.createElement("link");
     videoMp4.rel = "preload";
     videoMp4.as = "video";
-    videoMp4.href = "/media/hero.mp4";
+    videoMp4.href = siteConfig.heroMedia.mp4;
     videoMp4.type = "video/mp4";
     document.head.appendChild(videoMp4);
 
@@ -61,10 +62,10 @@ const CinematicBloom: React.FC<CinematicBloomProps> = ({ className = "" }) => {
     <section
       ref={heroRef}
       className={`relative min-h-[100svh] overflow-hidden bg-pink-100 ${className}`}
-      aria-label="Blush — Cinematic Bloom Hero"
+      aria-label={`${siteConfig.brandNameDisplay} — Cinematic Bloom Hero`}
     >
       {/* Preload hero image */}
-      <link rel="preload" as="image" href="/hero.webp" />
+      <link rel="preload" as="image" href={siteConfig.heroMedia.poster} />
       
       {/* Background Video with poster fallback */}
       <div className="absolute inset-0">
@@ -75,14 +76,14 @@ const CinematicBloom: React.FC<CinematicBloomProps> = ({ className = "" }) => {
           muted
           loop
           playsInline
-          poster="/hero.webp"
+          poster={siteConfig.heroMedia.poster}
           style={{ 
             transform: prefersReducedMotion ? 'none' : `translateY(${parallaxOffset}px)`,
             transition: prefersReducedMotion ? 'none' : 'transform 0.1s ease-out'
           }}
         >
-          <source src="/media/hero.webm" type="video/webm" />
-          <source src="/media/hero.mp4" type="video/mp4" />
+          <source src={siteConfig.heroMedia.webm} type="video/webm" />
+          <source src={siteConfig.heroMedia.mp4} type="video/mp4" />
         </video>
       </div>
 
@@ -100,7 +101,7 @@ const CinematicBloom: React.FC<CinematicBloomProps> = ({ className = "" }) => {
       <div className="relative z-10 flex items-center justify-center min-h-[100svh] px-4">
         <div className="text-center max-w-4xl">
           <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-light text-white mb-6">
-            Blush
+            {siteConfig.brandNameDisplay}
           </h1>
           <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
             Daily Vitrine & Bespoke Pieces
@@ -110,13 +111,13 @@ const CinematicBloom: React.FC<CinematicBloomProps> = ({ className = "" }) => {
               href="#daily-vitrine"
               className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300"
             >
-              View Collections
+              {siteConfig.ctaLabels.viewCollections}
             </a>
             <a
-              href="https://wa.me/989900190067"
+              href={whatsappUrl}
               className="px-8 py-3 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full text-white hover:from-pink-600 hover:to-rose-600 transition-all duration-300"
             >
-              Chat on WhatsApp
+              {siteConfig.ctaLabels.whatsapp}
             </a>
           </div>
         </div>

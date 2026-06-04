@@ -105,11 +105,11 @@ Actions:
 
 ### Step 2 — Create Official Constants
 
-Create a small constants module after owner confirms official values.
+Create a small constants module for the React app and keep provisional values clearly marked until owner confirmation.
 
-Recommended future file:
+Current file:
 
-- `src/config/brand.ts`
+- `src/config/site.ts`
 
 Centralize:
 
@@ -123,7 +123,7 @@ Centralize:
 - Hero video paths.
 - SEO title/description/canonical/OG image path.
 
-Do not create this constants file until official contact values are confirmed or the owner accepts temporary values.
+The first Foundation Stabilization cycle created this file with provisional values because the owner accepted the temporary-value approach. Do not treat the values as final campaign data until they are confirmed.
 
 ### Step 3 — Fix Hero Assets
 

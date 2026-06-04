@@ -1,5 +1,43 @@
 # Change Log
 
+## 2026-06-04 — Foundation Stabilization Package
+
+### Changed
+- Added `src/config/site.ts` as the provisional React-side source for brand, CTA, SEO, and hero media constants.
+- Updated React hero CTA/media references to use centralized constants.
+- Updated the React gallery default CTA from missing `#featured` to the provisional main website URL.
+- Filtered React vitrine imports to WebP files only to avoid duplicate JPG/WebP gallery entries.
+- Updated inactive `src/index.html` metadata from placeholder values to a Blush baseline.
+- Updated roadmap and open questions for foundation stabilization, next packages, and unresolved owner decisions.
+
+### Reason
+- The React/Vite app is the recommended future source of truth, but it needed safer constants, fewer hardcoded links, and fewer inactive placeholders before visual or cinematic redesign work.
+- Root `index.html` remains the current active legacy artifact and was intentionally left unchanged.
+
+### Files affected
+- `src/config/site.ts`
+- `src/components/CinematicBloom.tsx`
+- `src/components/DailyVitrineGallery.tsx`
+- `src/data/vitrineItems.js`
+- `src/index.html`
+- `docs/brain/03-section-map.md`
+- `docs/brain/04-technical-architecture.md`
+- `docs/brain/05-improvement-roadmap.md`
+- `docs/brain/06-change-log.md`
+- `docs/brain/08-open-questions.md`
+- `docs/brain/09-source-of-truth-decision.md`
+
+### Build/test result
+- `npm run build` failed: `tsc: command not found`.
+- `npm run lint` failed: `eslint: command not found`.
+- Static check confirmed `src/index.html` no longer contains `example.com`.
+- Static check confirmed React source no longer uses `#featured`; docs still mention it as historical audit context.
+
+### Notes for future AI agents
+- Values in `src/config/site.ts` are provisional, not owner-approved final contact data.
+- Do not copy or generate hero media without owner approval; `public/hero.webp` remains empty and `/public/media/hero.webm` plus `/public/media/hero.mp4` remain missing.
+- Next safest package is Performance & Media Optimization, followed by SEO/Google Ads Readiness and Cinematic UX Enhancement.
+
 ## 2026-06-04 — Source Of Truth Decision
 
 ### Changed

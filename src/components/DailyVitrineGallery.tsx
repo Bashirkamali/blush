@@ -1,4 +1,5 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { siteConfig } from "../config/site";
 
 interface VitrineItem {
   src: string;
@@ -20,12 +21,11 @@ const DailyVitrineGallery: React.FC<DailyVitrineGalleryProps> = ({
   items = [],
   title = "Blush Daily Vitrine",
   eyebrow = "Daily Vitrine",
-  ctaHref = "#featured",
-  ctaLabel = "See more",
+  ctaHref = siteConfig.websiteUrl,
+  ctaLabel = siteConfig.ctaLabels.seeMore,
 }) => {
   const [active, setActive] = useState<number | null>(null);
   const [lastFocusedElement, setLastFocusedElement] = useState<HTMLElement | null>(null);
-  const hasPrices = useMemo(() => items.some(i => i?.price), [items]);
   
   // Limit to 12 items
   const displayItems = items.slice(0, 12);

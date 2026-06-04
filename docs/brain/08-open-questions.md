@@ -43,32 +43,34 @@ These questions should be answered by the project owner before major redesign or
 25. What exact website/collections URL should `View Collections` use?
 26. Should WhatsApp links include a prefilled message? If yes, what language and text?
 27. Should the React app expose all four root HTML conversion paths: WhatsApp, website, Instagram, and phone?
+28. Are the provisional values in `src/config/site.ts` acceptable for the next staging build, or should they remain blocked until confirmed?
 
 ## Media And Performance
 
-28. Should the hero use video, slideshow, or static image?
-29. Which hero media is approved for production?
-30. What is the acceptable total initial page load size for mobile ad traffic?
-31. Should video autoplay be required, or should the poster carry the first impression?
-32. Are the current gallery images final, seasonal, or temporary?
-33. Should JPG source files remain in the repo if WebP files are used for display?
-34. Which existing root video, if any, should become `public/media/hero.mp4` for the React app?
-35. Is the missing `Hero Smaller.mp4` still required, and where is the approved file?
+29. Should the hero use video, slideshow, or static image?
+30. Which hero media is approved for production?
+31. What is the acceptable total initial page load size for mobile ad traffic?
+32. Should video autoplay be required, or should the poster carry the first impression?
+33. Are the current gallery images final, seasonal, or temporary?
+34. Should JPG source files remain in the repo if WebP files are used for display?
+35. Which existing root video, if any, should become `public/media/hero.mp4` for the React app?
+36. Is the missing `Hero Smaller.mp4` still required, and where is the approved file?
+37. Should tracked `.DS_Store` files be removed in a repo hygiene cleanup?
 
 ## Analytics And SEO
 
-36. Which analytics or tracking tools should be connected?
-37. Are Google Ads conversion events required for WhatsApp, Instagram, website, and phone clicks?
-38. Should structured data represent a florist, store, local business, or campaign page?
-39. What Open Graph image should be used?
-40. Are Persian SEO keywords important for this campaign page?
-41. Should the metadata currently in root `index.html` be treated as approved or draft?
+38. Which analytics or tracking tools should be connected?
+39. Are Google Ads conversion events required for WhatsApp, Instagram, website, and phone clicks?
+40. Should structured data represent a florist, store, local business, or campaign page?
+41. What Open Graph image should be used?
+42. Are Persian SEO keywords important for this campaign page?
+43. Should the metadata currently in root `index.html` be treated as approved or draft?
 
 ## Technical Direction
 
-42. Which package manager should be used: npm, pnpm, yarn, or another?
-43. Should a lockfile be committed?
-44. Should production sourcemaps remain enabled?
-45. Should legacy standalone files be migrated, archived, or kept as reference?
-46. Is there a preferred hosting provider or deployment command?
-47. Should a `src/config/brand.ts` constants file be created before official CTA values are confirmed, or only after confirmation?
+44. Which package manager should be used: npm, pnpm, yarn, or another?
+45. Should a lockfile be committed?
+46. Should production sourcemaps remain enabled?
+47. Should legacy standalone files be migrated, archived, or kept as reference?
+48. Is there a preferred hosting provider or deployment command?
+49. Should `src/config/site.ts` be expanded into separate brand, SEO, and CTA config files later, or kept compact until repeated patterns appear?

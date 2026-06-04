@@ -14,6 +14,7 @@ Compose the landing page from React components.
 - `src/App.tsx`
 - `src/main.tsx`
 - `src/index.css`
+- `src/config/site.ts`
 
 **Issues:**  
 - Very thin page structure: only hero plus gallery.
@@ -36,10 +37,11 @@ Current content:
 - Heading: `Blush`
 - Tagline: `Daily Vitrine & Bespoke Pieces`
 - CTA 1: `View Collections` linking to `#daily-vitrine`
-- CTA 2: `Chat on WhatsApp` linking to `https://wa.me/989900190067`
+- CTA 2: `Chat on WhatsApp` using the provisional React-side `whatsappUrl` from `src/config/site.ts`
 
 **Related files:**  
 - `src/components/CinematicBloom.tsx`
+- `src/config/site.ts`
 - `public/hero.webp`
 - Expected but missing: `public/media/hero.webm`
 - Expected but missing: `public/media/hero.mp4`
@@ -52,7 +54,7 @@ Current content:
 - Parallax state updates on every scroll.
 - Hero has no Instagram or website CTA.
 - Content is English-only while other repo content is Persian/English mixed.
-- WhatsApp number differs from standalone HTML visible CTA.
+- WhatsApp number is centralized for React, but still differs from the standalone HTML visible CTA until owner confirmation.
 
 **Future improvements:**  
 - Confirm official WhatsApp number.
@@ -74,26 +76,26 @@ Default content:
 
 - Eyebrow: `Daily Vitrine`
 - Title: `Blush Daily Vitrine`
-- CTA: `See more` linking to `#featured`
+- CTA: `See more` linking to the provisional main website URL from `src/config/site.ts`
 
 **Related files:**  
 - `src/components/DailyVitrineGallery.tsx`
+- `src/config/site.ts`
 - `src/data/vitrineItems.js`
 - `src/assets/vitrine/`
 
 **Issues:**  
-- `#featured` target does not exist.
+- The previous missing `#featured` target has been resolved in React by pointing the default CTA to the provisional main website URL.
 - `manualMeta` keys mostly reference older SEO-friendly filenames that do not exist in the current asset folder.
 - Because metadata does not match, visible captions and alt text may fall back to UUID-derived filenames.
-- The data glob imports both `.JPG` and `.webp` variants, creating duplicates.
+- The data glob now imports `.webp` only; `.JPG` files remain untouched as source/archive assets.
 - Gallery ordering is alphabetical by emitted asset URL, not curated by business priority.
 - Lightbox does not trap focus.
 - "See more" does not lead to the main website or Instagram despite project goals.
 
 **Future improvements:**  
 - Define a curated item list with current filenames, captions, alt text, optional prices, and destination URLs.
-- Prefer WebP for display and avoid duplicate JPG/WebP entries.
-- Update `See more` to a real destination.
+- Confirm the final `See more` destination and update `siteConfig.websiteUrl` if needed.
 - Add focus trap and stronger mobile close affordance.
 - Consider a WhatsApp inquiry CTA per item only if it stays visually restrained.
 

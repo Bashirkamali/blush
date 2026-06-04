@@ -38,7 +38,8 @@ Current React components:
 
 Data:
 
-- `src/data/vitrineItems.js` collects image files using `import.meta.glob`.
+- `src/config/site.ts` centralizes provisional React-side brand, CTA, SEO, and hero media constants.
+- `src/data/vitrineItems.js` collects WebP vitrine images using `import.meta.glob`.
 
 The current component structure is small and easy to reason about, but it does not yet model a full campaign landing page.
 
@@ -49,6 +50,7 @@ React app:
 - Gallery assets are imported from `src/assets/vitrine/` through Vite.
 - Hero poster is referenced as `/hero.webp` from `public/hero.webp`.
 - Hero videos are referenced as `/media/hero.webm` and `/media/hero.mp4`.
+- React-side paths are centralized in `src/config/site.ts`.
 
 Current asset state:
 
@@ -56,7 +58,7 @@ Current asset state:
 - `public/logo.svg` is empty.
 - No `public/media` directory was found.
 - Root-level videos exist, including `IMG_1600_high_quality.mov` at about 16 MB, `IMG_1600 (2).mp4` at about 1.5 MB, and `ezyZip.mp4` under 1 MB.
-- Many gallery images exist as both `.JPG` and `.webp`.
+- Many gallery images exist as both `.JPG` and `.webp`; the React gallery now imports `.webp` files only.
 
 Standalone page:
 
@@ -69,7 +71,7 @@ Standalone page:
 No client routing is visible. The app is a single page with hash anchors:
 
 - `#daily-vitrine` exists in the React gallery.
-- `#featured` is referenced by the gallery default CTA but does not exist.
+- The React gallery default CTA now points to the provisional main website URL instead of missing `#featured`.
 - `#collections` exists in the standalone root HTML.
 
 ## SEO And Meta Handling
@@ -86,8 +88,8 @@ Root `index.html` contains stronger SEO metadata:
 
 `src/index.html` contains React-oriented metadata but includes:
 
-- Placeholder title: `Brand — Daily Vitrine & Bespoke Pieces`
-- Placeholder canonical: `https://example.com/`
+- Blush baseline title and description.
+- Canonical for `https://blush-flower.com/`, pending owner confirmation of the final campaign domain.
 
 Because the active entry is unclear, SEO handling is currently risky.
 
@@ -95,7 +97,8 @@ Because the active entry is unclear, SEO handling is currently risky.
 
 - `src/components/CinematicBloom.tsx`: video preload, poster preload, parallax scroll state, hero rendering.
 - `src/components/DailyVitrineGallery.tsx`: image grid, lightbox, lazy loading.
-- `src/data/vitrineItems.js`: image glob can include duplicate JPG/WebP assets.
+- `src/config/site.ts`: provisional brand/CTA/media constants that must be confirmed by the owner.
+- `src/data/vitrineItems.js`: WebP-only gallery import; metadata still needs curation.
 - `index.html`: preloads large `.mov`, has inline CSS/JS, and may be the actual Vite entry.
 - Root video files: especially `IMG_1600_high_quality.mov`.
 - `vite.config.ts`: sourcemaps enabled for production.
@@ -155,7 +158,7 @@ Unknown:
 - The build cannot currently be verified without installing dependencies.
 - No lockfile means installs are not reproducible.
 - Lint script may not work because no ESLint config was found.
-- Duplicate image formats can create unpredictable gallery content and unnecessary build weight.
+- Duplicate JPG/WebP asset files still exist, but the React gallery imports WebP only.
 - Current metadata can be wrong depending on which HTML file becomes active.
 
 ## Recommended Architecture Improvements
@@ -165,8 +168,8 @@ Unknown:
 3. Fix hero assets and centralize media paths.
 4. Add a lockfile by installing with the selected package manager.
 5. Confirm or remove lint tooling.
-6. Centralize CTA constants for WhatsApp, phone, Instagram, and website.
-7. Replace glob-based duplicate gallery behavior with a curated list or filtered import.
+6. Confirm provisional CTA constants for WhatsApp, phone, Instagram, and website.
+7. Replace glob-based gallery behavior with a curated list when product metadata is ready.
 8. Move validated SEO/schema into the active entry.
 9. Disable production sourcemaps unless intentionally needed.
 10. Keep refactors incremental; do not rewrite the page before the production path is agreed.
