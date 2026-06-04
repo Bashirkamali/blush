@@ -83,7 +83,7 @@ const Services: React.FC = () => {
           {/* ── Section Heading ── */}
           <motion.div className="mb-14 text-center md:mb-18 lg:mb-20" variants={fadeInUp}>
             <h2
-              className="font-serif text-3xl font-light tracking-wide text-[#1a1a2e] md:text-4xl lg:text-5xl"
+              className="font-serif text-2xl font-light tracking-wide text-[#1a1a2e] md:text-4xl lg:text-5xl"
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
               خدمات بلاش
@@ -103,13 +103,13 @@ const Services: React.FC = () => {
             {services.map((service, idx) => (
               <motion.div
                 key={idx}
-                className="blush-card group flex flex-col items-center px-6 py-10 text-center transition-all duration-500 hover:shadow-[0_12px_50px_rgba(246,214,229,0.35)] sm:px-8 sm:py-12"
+                className="blush-card group flex flex-col items-center px-4 py-8 text-center transition-all duration-500 hover:shadow-[0_12px_50px_rgba(246,214,229,0.35)] sm:px-6 sm:py-10"
                 custom={idx}
                 variants={cardVariants}
                 whileHover={{ scale: 1.02 }}
               >
                 {/* ── Decorative Icon Area ── */}
-                <div className="relative mb-6 flex h-20 w-20 items-center justify-center md:h-24 md:w-24">
+                <div className="relative mb-6 flex h-16 w-16 items-center justify-center md:h-24 md:w-24">
                   {/* Gradient circle */}
                   <div
                     className="absolute inset-0 rounded-full opacity-70 transition-opacity duration-500 group-hover:opacity-100"
@@ -131,14 +131,14 @@ const Services: React.FC = () => {
 
                 {/* ── Service Title ── */}
                 <h3
-                  className="font-serif text-xl font-medium tracking-wide text-[#1a1a2e] md:text-2xl"
+                  className="font-serif text-lg font-medium tracking-wide text-[#1a1a2e] md:text-2xl"
                   style={{ fontFamily: "'Playfair Display', serif" }}
                 >
                   {service.title}
                 </h3>
 
                 {/* ── Description ── */}
-                <p className="mt-4 text-sm leading-7 text-[#4a3f47] md:text-base md:leading-8">
+                <p className="mt-4 text-xs leading-7 text-[#4a3f47] md:text-base md:leading-8">
                   {service.description}
                 </p>
               </motion.div>

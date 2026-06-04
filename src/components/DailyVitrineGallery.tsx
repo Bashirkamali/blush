@@ -106,7 +106,7 @@ const DailyVitrineGallery: React.FC = () => {
   }, [active, displayItems.length]);
 
   return (
-    <section id="daily-vitrine" className="relative py-16 lg:py-24 overflow-hidden">
+    <section id="daily-vitrine" className="relative px-4 py-16 lg:py-24 overflow-hidden">
       {/* subtle background glow */}
       <div
         className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-80 w-[80vw] max-w-3xl rounded-full opacity-20"
@@ -123,7 +123,7 @@ const DailyVitrineGallery: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="mb-12 text-center"
         >
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-blush-gradient mb-3">
+          <h2 className="font-serif text-2xl md:text-4xl lg:text-5xl text-blush-gradient mb-3">
             ویترین روزانه بلاش
           </h2>
           {/* elegant gradient line */}

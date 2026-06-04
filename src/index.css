@@ -190,3 +190,41 @@ body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; 
   right: 0;
   left: auto;
 }
+
+/* ============ Mobile Touch Improvements ============ */
+@media (max-width: 640px) {
+  .blush-btn-primary,
+  .blush-btn-secondary {
+    @apply px-6 py-4 text-sm;
+    min-height: 48px;
+  }
+
+  .hero-content-padding {
+    @apply px-4;
+    padding-top: 20vh;
+  }
+
+  .section-padding-mobile {
+    @apply py-14;
+  }
+}
+
+/* ============ iPhone notch / Dynamic Island safe area ============ */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* ============ Smooth Loading ============ */
+.page-enter {
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

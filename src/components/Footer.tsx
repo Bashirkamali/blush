@@ -79,7 +79,7 @@ const Footer: React.FC = () => {
       />
 
       {/* ─── Main Grid ─── */}
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20 lg:px-8 lg:py-24">
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-16 md:py-20 lg:px-8 lg:py-24">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-16">
           {/* ── Column 1: Brand ── */}
           <motion.div
@@ -91,7 +91,7 @@ const Footer: React.FC = () => {
             className="flex flex-col gap-5"
           >
             <h3
-              className="font-serif text-2xl font-light tracking-[0.12em] text-white md:text-3xl"
+              className="font-serif text-xl font-light tracking-[0.12em] text-white md:text-3xl"
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
               {siteConfig.brandNameDisplay}

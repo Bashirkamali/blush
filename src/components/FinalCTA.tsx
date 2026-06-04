@@ -197,12 +197,12 @@ const FinalCTA: React.FC = () => {
       >
         {/* ─── Glassmorphism Card ─── */}
         <motion.div
-          className="blush-glass mx-auto max-w-4xl rounded-3xl px-6 py-14 text-center sm:px-10 sm:py-16 md:px-16 md:py-20 lg:px-20 lg:py-24"
+          className="blush-glass mx-auto max-w-4xl rounded-3xl px-4 py-10 text-center sm:px-6 sm:py-14 md:px-16 md:py-20 lg:px-20 lg:py-24"
           variants={cardVariants}
         >
           {/* Heading */}
           <motion.h2
-            className="font-serif text-2xl leading-relaxed tracking-wide text-white sm:text-3xl md:text-4xl lg:text-5xl"
+            className="font-serif text-xl leading-relaxed tracking-wide text-white sm:text-3xl md:text-4xl lg:text-5xl"
             style={{ fontFamily: "'Playfair Display', serif" }}
             variants={fadeInUp}
           >
@@ -240,8 +240,8 @@ const FinalCTA: React.FC = () => {
                 rel={btn.rel}
                 className={
                   btn.style === "primary"
-                    ? "blush-btn-primary flex items-center justify-center gap-2 text-sm sm:text-base md:text-lg"
-                    : "blush-btn-secondary flex items-center justify-center gap-2 text-sm sm:text-base md:text-lg"
+                    ? "blush-btn-primary flex items-center justify-center gap-2 text-sm sm:text-base md:text-lg min-h-[48px]"
+                    : "blush-btn-secondary flex items-center justify-center gap-2 text-sm sm:text-base md:text-lg min-h-[48px]"
                 }
                 custom={i}
                 variants={buttonVariants}

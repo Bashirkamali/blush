@@ -55,7 +55,7 @@ const BrandStory: React.FC = () => {
   return (
     <section
       id="brand-story"
-      className="relative overflow-hidden py-20 md:py-28 lg:py-32"
+      className="relative overflow-hidden px-4 py-20 md:py-28 lg:py-32"
       dir="rtl"
       aria-label={brandStory.heading}
     >
@@ -132,7 +132,7 @@ const BrandStory: React.FC = () => {
             {/* Heading */}
             <motion.div variants={fadeInRight}>
               <h2
-                className="font-serif text-3xl font-light tracking-wide text-[#1a1a2e] md:text-4xl lg:text-5xl"
+                className="font-serif text-2xl font-light tracking-wide text-[#1a1a2e] md:text-4xl lg:text-5xl"
                 style={{ fontFamily: "'Playfair Display', serif" }}
               >
                 {brandStory.heading}
@@ -160,7 +160,7 @@ const BrandStory: React.FC = () => {
             {brandStory.paragraphs.map((paragraph, idx) => (
               <motion.p
                 key={idx}
-                className="text-base leading-8 text-[#4a3f47] md:text-lg md:leading-9"
+                className="text-sm leading-8 text-[#4a3f47] md:text-lg md:leading-9"
                 style={{ lineHeight: "2" }}
                 variants={fadeInRight}
               >
@@ -182,7 +182,7 @@ const BrandStory: React.FC = () => {
                   whileHover={{ y: -4, transition: { duration: 0.3 } }}
                 >
                   <span
-                    className="font-serif text-2xl font-semibold tracking-tight text-[#c9a96e] md:text-3xl"
+                    className="font-serif text-xl font-semibold tracking-tight text-[#c9a96e] md:text-3xl"
                     style={{ fontFamily: "'Playfair Display', serif" }}
                   >
                     {stat.number}

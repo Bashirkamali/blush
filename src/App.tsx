@@ -46,7 +46,7 @@ function App() {
       />
 
       {/* Main Content */}
-      <div className="min-h-screen bg-[#faf6f5] overflow-hidden">
+      <div className="min-h-screen bg-[#faf6f5] overflow-hidden page-enter">
         <Hero />
         <div className="section-divider mx-auto max-w-4xl" />
         <BrandStory />

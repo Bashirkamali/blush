@@ -222,9 +222,9 @@ const Hero: React.FC = () => {
           initial="hidden"
           animate="visible"
         >
-          {/* Brand Name */}
+        {/* Brand Name — mobile-first sizing */}
           <motion.h1
-            className="font-serif text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-light tracking-[0.15em] mb-6 text-blush-gradient"
+            className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-light tracking-[0.1em] sm:tracking-[0.15em] mb-4 sm:mb-6 text-blush-gradient leading-tight"
             style={{ fontFamily: "'Playfair Display', serif" }}
             variants={brandVariants}
           >
@@ -233,31 +233,31 @@ const Hero: React.FC = () => {
 
           {/* Tagline — clip‑path reveal */}
           <motion.div
-            className="overflow-hidden inline-block mb-4"
+            className="overflow-hidden inline-block mb-3 sm:mb-4"
             variants={taglineRevealVariants}
             style={{ willChange: "clip-path" }}
           >
-            <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white/95 font-light tracking-wide">
+            <p className="text-lg sm:text-2xl md:text-3xl lg:text-4xl text-white/95 font-light tracking-wide leading-snug sm:leading-normal">
               {siteConfig.taglineFa}
             </p>
           </motion.div>
 
           {/* Subtitle */}
           <motion.p
-            className="text-base sm:text-lg md:text-xl text-white/70 font-light tracking-wider mb-10"
+            className="text-sm sm:text-lg md:text-xl text-white/70 font-light tracking-wider mb-8 sm:mb-10"
             variants={subtitleVariants}
           >
             {siteConfig.ctaLabels.heroSubtitle}
           </motion.p>
 
-          {/* ─── CTA Buttons ─── */}
+          {/* ─── CTA Buttons — full-width on mobile, row on desktop ─── */}
           <motion.div
-            className="flex flex-wrap gap-3 sm:gap-4 justify-center"
+            className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center w-full sm:w-auto px-2 sm:px-0"
             variants={containerVariants}
           >
             <motion.a
               href="#daily-vitrine"
-              className="blush-btn-secondary text-sm sm:text-base"
+              className="blush-btn-secondary text-sm sm:text-base w-full sm:w-auto text-center"
               custom={0}
               variants={buttonVariants}
               initial="hidden"
@@ -272,7 +272,7 @@ const Hero: React.FC = () => {
               href={whatsappUrl}
               target="_blank"
               rel="noreferrer"
-              className="blush-btn-primary text-sm sm:text-base"
+              className="blush-btn-primary text-sm sm:text-base w-full sm:w-auto text-center"
               custom={1}
               variants={buttonVariants}
               initial="hidden"
@@ -287,7 +287,7 @@ const Hero: React.FC = () => {
               href={siteConfig.instagramUrl}
               target="_blank"
               rel="noreferrer"
-              className="blush-btn-secondary text-sm sm:text-base"
+              className="blush-btn-secondary text-sm sm:text-base w-full sm:w-auto text-center"
               custom={2}
               variants={buttonVariants}
               initial="hidden"
@@ -302,7 +302,7 @@ const Hero: React.FC = () => {
               href={siteConfig.websiteUrl}
               target="_blank"
               rel="noreferrer"
-              className="blush-btn-secondary text-sm sm:text-base"
+              className="blush-btn-secondary text-sm sm:text-base w-full sm:w-auto text-center"
               custom={3}
               variants={buttonVariants}
               initial="hidden"
