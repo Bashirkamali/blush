@@ -202,7 +202,7 @@ const Navbar: React.FC = () => {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 250 }}
-              className="fixed top-0 left-0 bottom-0 z-[55] w-[75vw] max-w-xs bg-white/95 backdrop-blur-xl shadow-2xl md:hidden flex flex-col"
+              className="fixed top-0 right-0 bottom-0 z-[55] w-[75vw] max-w-xs bg-white/95 backdrop-blur-xl shadow-2xl md:hidden flex flex-col"
             >
               {/* Close button */}
               <div className="flex items-center justify-start p-4 border-b border-[#f6d6e5]/30">

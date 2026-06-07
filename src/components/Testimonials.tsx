@@ -125,7 +125,7 @@ const Testimonials: React.FC = () => {
                 whileHover={{ y: -6, transition: { duration: 0.3 } }}
               >
                 {/* ── Avatar ── */}
-                <div className="flex items-center gap-3 mb-1">
+                <div className="flex items-center gap-3">
                   <img
                     src={testimonial.avatar}
                     alt={testimonial.name}

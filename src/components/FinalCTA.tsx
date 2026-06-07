@@ -229,7 +229,7 @@ const FinalCTA: React.FC = () => {
 
           {/* ─── CTA Buttons Grid ─── */}
           <motion.div
-            className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4 md:gap-5"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4 md:gap-5"
             variants={sectionVariants}
           >
             {ctaButtons.map((btn, i) => (

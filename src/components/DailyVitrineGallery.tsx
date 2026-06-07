@@ -148,7 +148,7 @@ const DailyVitrineGallery: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setActive(idx)}
-                className="relative block w-full overflow-hidden rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-blush-pink focus-visible:ring-offset-2"
+                className="relative block w-full overflow-hidden rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f6d6e5] focus-visible:ring-offset-2"
                 style={{ aspectRatio: "4/5" }}
                 aria-label={it.alt || "View image"}
               >

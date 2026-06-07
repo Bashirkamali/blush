@@ -65,7 +65,6 @@ const CinematicBloom: React.FC<CinematicBloomProps> = ({ className = "" }) => {
             transition: prefersReducedMotion ? 'none' : 'transform 0.1s ease-out'
           }}
         >
-          <source src={siteConfig.heroMedia.webm} type="video/webm" />
           <source src={siteConfig.heroMedia.mp4} type="video/mp4" />
         </video>
       </div>

@@ -197,7 +197,6 @@ const Hero: React.FC = () => {
             playsInline
             poster={siteConfig.heroMedia.poster}
           >
-            <source src={siteConfig.heroMedia.webm} type="video/webm" />
             <source src={siteConfig.heroMedia.mp4} type="video/mp4" />
           </video>
         </motion.div>
@@ -344,7 +343,7 @@ const Hero: React.FC = () => {
         initial="hidden"
         animate="visible"
       >
-        <span className="text-white/50 text-xs tracking-widest uppercase text-center text-[10px] font-light">
+        <span className="text-white/50 text-xs tracking-widest uppercase text-center font-light">
           اسکرول
         </span>
         <motion.svg
