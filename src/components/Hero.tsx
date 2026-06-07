@@ -296,7 +296,7 @@ const Hero: React.FC = () => {
             variants={containerVariants}
           >
             <MagneticButton
-              href="#daily-vitrine"
+              href="#vitrine"
               className="blush-btn-secondary text-sm sm:text-base w-full sm:w-auto text-center"
               custom={0}
             >

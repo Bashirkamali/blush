@@ -6,7 +6,7 @@ export const siteConfig = {
   instagramUrl: "https://www.instagram.com/blush_flower",
 
   whatsappNumber: "989900190067",
-  phoneNumber: "+989****0067",
+  phoneNumber: "+989900190067",
 
   taglineFa: "ویترین روزانه • گل‌آرایی اختصاصی",
   taglineEn: "Daily Vitrine & Bespoke Pieces",
@@ -64,7 +64,7 @@ export const siteConfig = {
     {
       name: "مریم رضایی",
       role: "مشتری وفادار",
-      avatar: "/testimonial-1.jpg",
+      avatar: "/testimonial-1.png",
       text: "دسته گلی که برای سالگرد ازدواجم سفارش دادم فراتر از تصور بود. بسته‌بندی آنقدر زیبا بود که تا دو هفته گل‌ها تازه موندن. بلاش واقعاً عشق رو به زبان گل‌ها ترجمه می‌کنه.",
       rating: 5,
     },
