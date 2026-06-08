@@ -16,8 +16,8 @@ const manualMeta = {
     alt: 'ویترین گل آرایی مدرن بلاش - آرایش گل در گلدان شفاف'
   },
   '22af0585-18a9-4607-823c-13cf84260b7b.webp': {
-    caption: 'باکس گل لوکس سفید و طلایی',
-    alt: 'باکس گل لوکس بلاش با ترکیب سفید و طلایی - هدیه خاص'
+    caption: 'باکس گل سفید و طلایی',
+    alt: 'باکس گل بلاش با ترکیب سفید و طلایی برای هدیه سنجیده'
   },
   '24e85faf-8883-4917-8f74-df33a7302c26.webp': {
     caption: 'دسته گل بهاری رنگارنگ',
@@ -36,8 +36,8 @@ const manualMeta = {
     alt: 'باکس گل شیک بنفش بلاش - ترکیب گل بنفش با روبان ساتن'
   },
   '444bfb73-526e-48ef-851a-946f7527d350.webp': {
-    caption: 'سفارش گل لاکچری',
-    alt: 'طراحی گل لاکچری بلاش - دسته گل مجلل در جعبه شفاف'
+    caption: 'ترکیب گل در جعبه شفاف',
+    alt: 'طراحی گل بلاش در جعبه شفاف برای هدیه خاص'
   },
   '4eb2f329-0dfa-45d1-a1a5-e6a6ddcc7694.webp': {
     caption: 'گل آرایی با رز سفید',
@@ -76,8 +76,8 @@ const manualMeta = {
     alt: 'باکس گل سفید و صورتی بلاش - هدیه‌ای لطیف و خاص'
   },
   'e085a5d7-6de9-4617-a8e0-6f9b433d17ee.webp': {
-    caption: 'آرایش لوکس گل رز',
-    alt: 'آرایش لوکس گل رز بلاش - دسته گل مجلل رز در ویترین'
+    caption: 'چیدمان گل با پالت صورتی',
+    alt: 'چیدمان گل بلاش با پالت صورتی و ivory برای هدیه خاص در شیراز'
   },
   'e2943b2f-35ed-4ef8-ab90-5b723ba85529.webp': {
     caption: 'دسته گل صورتی و بنفش',
@@ -107,6 +107,7 @@ export const items = Object.entries(modules)
     const name = baseName(path);
     const meta = manualMeta[name] || {};
     return {
+      name,
       src: url,
       alt: meta.alt || prettyFromFilename(name),
       caption: meta.caption || prettyFromFilename(name),
@@ -114,8 +115,27 @@ export const items = Object.entries(modules)
       href: meta.href || ''
     };
   })
-  // ترتیب الفبایی پایدار (می‌توانید بعداً بر اساس تاریخ/الگو تغییر دهید)
-  .sort((a, b) => a.src.localeCompare(b.src));
+  .sort((a, b) => {
+    const priority = [
+      'e085a5d7-6de9-4617-a8e0-6f9b433d17ee.webp',
+      '22af0585-18a9-4607-823c-13cf84260b7b.webp',
+      '181237f0-8af8-4b07-8f01-b4b9a654853a.webp',
+      '4eb2f329-0dfa-45d1-a1a5-e6a6ddcc7694.webp',
+      '312aa08c-9127-40bf-b096-e1c79bc3df52.webp',
+      '70b41351-8d78-4e8e-a239-48813464bedd.webp',
+      'e04021ff-a1e7-49d0-be94-932c2a7aeffa.webp',
+      '90c837c8-4b7b-4999-8b0a-af6d7b0f0a07.webp',
+      '31359c30-d7c8-4678-a046-7c1e9502cd24.webp'
+    ];
+    const aName = a.name;
+    const bName = b.name;
+    const aIndex = priority.indexOf(aName);
+    const bIndex = priority.indexOf(bName);
+    if (aIndex !== -1 || bIndex !== -1) {
+      return (aIndex === -1 ? 999 : aIndex) - (bIndex === -1 ? 999 : bIndex);
+    }
+    return a.src.localeCompare(b.src);
+  });
 
 // If the folder is empty, add a demo item.
 if (items.length === 0) {
