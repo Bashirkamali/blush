@@ -69,6 +69,18 @@ Date: 2026-06-08
 - Chrome headless emitted macOS/GPU/updater warnings; screenshots were still written successfully.
 - `npm install` reported existing dependency vulnerabilities; no forced upgrade was applied to avoid unrelated breaking changes.
 
+## Hero Video Production Update
+
+Date: 2026-06-11
+
+- A multi-agent production pass prepared the hero video pipeline.
+- Real video generation connectors were discovered: Fal and Picsart.
+- No video generation job was submitted because verified routes spend USD or Picsart credits and no explicit spending approval was provided.
+- Candidate concepts, prompts, scorecard, production notes, and asset checks were added under `docs/`.
+- `scripts/check-hero-video-assets.mjs` and `npm run check:hero-video` were added.
+- `heroVideo.enabled` remains `false` until final approved desktop/mobile assets exist and pass checks.
+- The existing `public/media/hero.mp4` remains rejected for hero use because it reads as a vertical store walkthrough rather than a premium cinematic ritual.
+
 ## Remaining TODOs
 
 - Confirm whether `+989900190067` is the only official public phone/WhatsApp number.

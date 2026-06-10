@@ -1,14 +1,19 @@
 # Blush Hero Video Assets
 
-Place the final generated and compressed hero video files here:
+Place final generated and compressed hero video files here:
 
 - `cinematic-bloom-ritual-desktop.mp4`
 - `cinematic-bloom-ritual-desktop.webm`
 - `cinematic-bloom-ritual-mobile.mp4`
 - `cinematic-bloom-ritual-mobile.webm`
 
-Current implementation keeps video disabled until these files exist. After adding them, set
-`siteConfig.heroVideo.enabled` to `true` in `src/config/site.ts`.
+Current implementation keeps video disabled until final files exist and pass QA. After adding them, run:
+
+```bash
+npm run check:hero-video
+```
+
+Then set `siteConfig.heroVideo.enabled` to `true` in `src/config/site.ts`.
 
 Recommended budgets:
 
@@ -23,3 +28,11 @@ Video requirements:
 - Seamless loop.
 - Soft macro floral movement.
 - No fake logo, no distorted flowers, no unrealistic hands.
+
+Raw generated candidates belong in:
+
+```text
+public/media/hero-video/candidates/
+```
+
+Do not commit huge raw candidates without reviewing size first.
