@@ -132,8 +132,8 @@ export const siteConfig = {
   },
 
   heroMedia: {
-    poster: "/hero.webp",
-    mp4: "/media/hero.mp4",
+    poster: "./hero.webp",
+    mp4: "./media/hero.mp4",
   },
 
   seo: {

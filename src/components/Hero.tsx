@@ -26,7 +26,8 @@ const Hero = () => {
           animate="visible"
         >
           <motion.h1
-            className="w-full max-w-full overflow-hidden font-serif text-[clamp(2.45rem,15vw,11rem)] font-light leading-[0.9] tracking-normal text-[#21191d] sm:tracking-[0.12em]"
+            className="w-full max-w-full overflow-visible font-serif text-[clamp(2.45rem,10vw,8.25rem)] font-light leading-[0.9] tracking-normal text-[#21191d] sm:tracking-[0.08em]"
+            dir="ltr"
             variants={fadeUp}
             custom={0.1}
           >
