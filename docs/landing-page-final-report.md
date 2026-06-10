@@ -77,15 +77,17 @@ Date: 2026-06-11
 - Real video generation connectors were discovered: Fal and Picsart.
 - No video generation job was submitted because verified routes spend USD or Picsart credits and no explicit spending approval was provided.
 - Candidate concepts, prompts, scorecard, production notes, and asset checks were added under `docs/`.
+- A manual generation package for Bashir was added at `docs/hero-video-manual-generation-package.md`, focused on `Luxury Arrangement Reveal` with `Cinematic Bloom Ritual` mood.
 - `scripts/check-hero-video-assets.mjs` and `npm run check:hero-video` were added.
 - `heroVideo.enabled` remains `false` until final approved desktop/mobile assets exist and pass checks.
 - The existing `public/media/hero.mp4` remains rejected for hero use because it reads as a vertical store walkthrough rather than a premium cinematic ritual.
+- No fake video files or placeholder media were created.
 
 ## Remaining TODOs
 
 - Confirm whether `+989900190067` is the only official public phone/WhatsApp number.
 - Confirm whether a precise address, working hours, delivery zones, or branch distinction can be public.
-- Generate or film the selected Cinematic Bloom Ritual video and then enable `siteConfig.heroVideo.enabled`.
+- Generate or film the selected `Luxury Arrangement Reveal` hero video using the Bashir manual generation package, review candidates, optimize final assets, and then enable `siteConfig.heroVideo.enabled`.
 - Consider reducing Framer Motion if future Lighthouse work shows JS budget pressure.
 
 ## How To Test
