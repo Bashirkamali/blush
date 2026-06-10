@@ -40,7 +40,9 @@ Within three seconds, the visitor should understand:
 
 ## Hero Strategy
 
-Use static optimized hero photography instead of video-first loading. The hero combines a large editorial brand statement with a framed real floral image and practical CTA hierarchy.
+Move from static-first editorial photography to a video-ready cinematic hero. The selected direction is **Cinematic Bloom Ritual**: a 6-8 second silent loop of soft macro floral movement, refined hand detail, blush/ivory/gold palette, and quiet studio lighting.
+
+Until the final generated or filmed video assets are available, the hero uses the optimized poster image as a graceful fallback. Video is intentionally disabled in `siteConfig.heroVideo.enabled` to avoid broken requests and keep the live page fast.
 
 ## Visual Content Strategy
 
@@ -72,7 +74,7 @@ Use static optimized hero photography instead of video-first loading. The hero c
 ## Performance Strategy
 
 - Remove splash screen, custom cursor, wave dividers, and unused glow-heavy UI.
-- Use static hero image with preload.
+- Use poster-first hero loading; enable short muted video only after compressed desktop/mobile assets are ready.
 - Lazy-load below-the-fold gallery images.
 - Keep CSS small and component structure simple.
 - Avoid adding new dependencies.

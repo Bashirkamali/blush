@@ -13,12 +13,12 @@ export const siteConfig = {
 
   hero: {
     title: "BLUSH",
-    subtitle: "استودیوی تجربه‌های گل و هدیه در شیراز",
+    subtitle: "گل، وقتی باید به‌یاد بماند.",
     description:
-      "بلاش برای لحظه‌هایی طراحی می‌کند که باید درست، سنجیده و به‌یادماندنی دیده شوند؛ از انتخاب گل تا بسته‌بندی و لحظه‌ی رسیدن هدیه.",
+      "چیدمان‌های آرام، سنجیده و احساسی برای هدیه‌هایی که معمولی دیده نمی‌شوند.",
     primaryCta: "مشاوره و سفارش از واتساپ",
     secondaryCta: "دیدن نمونه‌ها در اینستاگرام",
-    tertiaryCta: "مشاهده ویترین",
+    tertiaryCta: "ورود به وبسایت بلاش",
     imageAlt:
       "ترکیب گل بلاش با پالت صورتی و ivory، مناسب هدیه لوکس و گل‌آرایی اختصاصی در شیراز",
   },
@@ -134,6 +134,19 @@ export const siteConfig = {
   heroMedia: {
     poster: "./hero.webp",
     mp4: "./media/hero.mp4",
+  },
+
+  heroVideo: {
+    enabled: false,
+    poster: "./hero.webp",
+    desktop: {
+      mp4: "./media/hero-video/cinematic-bloom-ritual-desktop.mp4",
+      webm: "./media/hero-video/cinematic-bloom-ritual-desktop.webm",
+    },
+    mobile: {
+      mp4: "./media/hero-video/cinematic-bloom-ritual-mobile.mp4",
+      webm: "./media/hero-video/cinematic-bloom-ritual-mobile.webm",
+    },
   },
 
   seo: {

@@ -5,7 +5,7 @@ Date: 2026-06-08
 ## What Changed
 
 - Rebuilt the landing page narrative from a decorative cinematic page into a premium Persian-first floral experience landing page.
-- Replaced the video-first hero with a faster editorial hero using the real Blush hero image.
+- Replaced the static-first hero with a video-ready cinematic hero architecture using the real Blush hero image as the fallback poster.
 - Updated the production hero image again to a calmer existing Blush floral composition with more ivory space and a lower file size.
 - Removed splash screen, custom cursor, wave dividers, glow particles, fake testimonials, and unverified numerical proof.
 - Added a persistent minimal navigation with clear WhatsApp CTA.
@@ -28,7 +28,8 @@ Date: 2026-06-08
 
 ## Performance Actions
 
-- Static hero image is preloaded.
+- Hero poster image is preloaded and remains the fallback until final video assets are available.
+- Video sources are configured but disabled until compressed desktop/mobile loops are added.
 - Current hero image is a local WebP around 43 KB, replacing the previous heavier and more colorful hero asset.
 - Gallery images remain WebP and lazy-load after the first visible images.
 - CSS now builds correctly through Tailwind and Autoprefixer.
@@ -45,7 +46,7 @@ Date: 2026-06-08
 
 ## Visual And Content Actions
 
-- Hero now communicates: Blush, floral/gifting studio in Shiraz, emotional promise, primary CTA, secondary CTA, and practical ordering focus.
+- Hero now communicates: Blush, a premium floral feeling, emotional promise, primary CTA, secondary CTA, and practical ordering focus with a cinematic media stage.
 - Services are presented as editorial rows rather than generic feature cards.
 - Standards replace fabricated testimonials.
 - FAQ supports both visitor clarity and answer-engine parsing.
@@ -72,7 +73,7 @@ Date: 2026-06-08
 
 - Confirm whether `+989900190067` is the only official public phone/WhatsApp number.
 - Confirm whether a precise address, working hours, delivery zones, or branch distinction can be public.
-- Replace or art-direct the hero image if a more restrained premium Blush photograph becomes available.
+- Generate or film the selected Cinematic Bloom Ritual video and then enable `siteConfig.heroVideo.enabled`.
 - Consider reducing Framer Motion if future Lighthouse work shows JS budget pressure.
 
 ## How To Test
