@@ -1,4 +1,5 @@
 export interface VitrineItem {
+  name: string;
   src: string;
   alt: string;
   caption: string;
