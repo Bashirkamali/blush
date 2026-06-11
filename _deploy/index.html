@@ -7,6 +7,7 @@
     <link rel="canonical" href="https://example.com/">
     <title>BLUSH — Luxurious Floral Experience</title>
     <link rel="preload" as="image" href="hero.webp" fetchpriority="high" />
+    <link rel="preload" as="video" href="./IMG_1600_high_quality.mov" type="video/quicktime" fetchpriority="high">
     <meta name="theme-color" content="#f7e8eb">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,8 +51,8 @@
             height: 100%;
             object-fit: cover;
             z-index: 1;
-            filter: blur(1.5px) brightness(0.9);
-            transform: scale(1.02);
+            filter: blur(0.5px) brightness(1.15) contrast(1.1) saturate(1.15);
+            transform: scale(1.005);
         }
 
         .video-foreground {
@@ -67,7 +68,7 @@
             box-shadow: 
                 0 8px 32px rgba(0, 0, 0, 0.3),
                 0 0 0 1px rgba(255, 255, 255, 0.1);
-            filter: none;
+            filter: brightness(1.1) contrast(1.1) saturate(1.15);
         }
 
         /* Elegant overlay effects */
@@ -492,6 +493,26 @@
             animation: shimmer 1.6s ease-in-out infinite;
         }
         @keyframes shimmer{ to{ transform: translateX(120%) } }
+        
+        /* Loading indicator */
+        #hero .loading-indicator {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 6;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+        
+        #hero.ready .loading-indicator {
+            opacity: 0;
+        }
 
         /* Top scrim to sharpen headings over media */
         #hero::before{
@@ -503,6 +524,21 @@
         #hero.ready .lqip{ filter:blur(0); transform:none; opacity:0 }
         #hero.ready video{ opacity:1 }
         #hero.ready .skeleton{ display:none }
+        
+        /* Prevent quality flicker during video loading */
+        #hero video {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        
+        #hero video.loaded {
+            opacity: 1;
+        }
+        
+        /* Show loading state initially */
+        #hero:not(.ready) .skeleton {
+            display: block;
+        }
 
         /* Respect reduced motion */
         @media (prefers-reduced-motion:reduce){
@@ -517,11 +553,13 @@
         #hero .video-background{
             position:absolute; top:0; left:0; width:100%; height:100%;
             object-fit:cover; z-index:1;
+            filter: blur(0.5px) brightness(1.15) contrast(1.1) saturate(1.15);
+            transform: scale(1.005);
         }
         #hero .video-foreground{
             position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);
             width:85%; height:85%; object-fit:cover; border-radius:16px; z-index:2;
-            filter: blur(1.5px);
+            filter: brightness(1.1) contrast(1.1) saturate(1.15);
         }
         @media (max-width: 768px){
             #hero .video-foreground{ width:85%; height:85%; border-radius:16px; }
@@ -535,12 +573,14 @@
             <img src="./logo.svg" alt="BLUSH logo" class="logo fade-in">
             
             <!-- Background Video (Blurred) -->
-            <video class="video-background" autoplay muted loop playsinline>
+            <video class="video-background" autoplay muted loop playsinline preload="metadata">
+                <source src="./IMG_1600_high_quality.mov" type="video/quicktime">
                 <source src="./IMG_1600 (2).mp4" type="video/mp4">
             </video>
             
             <!-- Foreground Video (Original) -->
-            <video class="video-foreground" autoplay muted loop playsinline poster="./public/hero.jpg">
+            <video class="video-foreground" autoplay muted loop playsinline preload="auto" fetchpriority="high">
+                <source src="./IMG_1600_high_quality.mov" type="video/quicktime">
                 <source src="./IMG_1600 (2).mp4" type="video/mp4">
             </video>
             
@@ -549,6 +589,9 @@
             
             <!-- Video Glow Effect -->
             <div class="video-glow"></div>
+            
+            <!-- Loading Indicator -->
+            <div class="loading-indicator">Loading...</div>
             
             <!-- Centered Text Overlay -->
             <div class="text-overlay fade-in">
@@ -574,22 +617,40 @@
         </div>
         <div class="v-grid">
             <a class="v-item" href="https://blush-flower.com/" rel="noopener">
-                <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_1.webp" alt="Daily vitrines image 1">
+                <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_1.webp" alt="دسته گل لوکس در کیسه سفید">
             </a>
             <a class="v-item" href="https://blush-flower.com/" rel="noopener">
-                <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_2.webp" alt="Daily vitrines image 2">
+                <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_2.webp" alt="آرایش گل شیک در ویترین شیشه‌ای">
             </a>
             <a class="v-item" href="https://blush-flower.com/" rel="noopener">
-                <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_3.webp" alt="Daily vitrines image 3">
+                <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_3.webp" alt="دسته گل رنگارنگ در گلدان مدرن">
             </a>
             <a class="v-item" href="https://blush-flower.com/" rel="noopener">
-                <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_4.webp" alt="Daily vitrines image 4">
+                <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_4.webp" alt="باکت گل رنگارنگ در ظرف آبی">
             </a>
             <a class="v-item" href="https://blush-flower.com/" rel="noopener">
-                <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_5.webp" alt="Daily vitrines image 5">
+                <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_5.webp" alt="نمایش هنری گل در جعبه شش‌ضلعی">
             </a>
             <a class="v-item" href="https://blush-flower.com/" rel="noopener">
-                <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_6.webp" alt="Daily vitrines image 6">
+                <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_6.webp" alt="دسته گل رمانتیک صورتی و بنفش">
+            </a>
+            <a class="v-item" href="https://blush-flower.com/" rel="noopener">
+                <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_7.webp" alt="باکت گل لوکس بنفش با روبان">
+            </a>
+            <a class="v-item" href="https://blush-flower.com/" rel="noopener">
+                <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_8.webp" alt="دسته گل آفتابگردان در جعبه سبز">
+            </a>
+            <a class="v-item" href="https://blush-flower.com/" rel="noopener">
+                <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_9.webp" alt="آرایش ارکیده سفید شیک">
+            </a>
+            <a class="v-item" href="https://blush-flower.com/" rel="noopener">
+                <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_10.webp" alt="آرایش گل طلایی لوکس">
+            </a>
+            <a class="v-item" href="https://blush-flower.com/" rel="noopener">
+                <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_11.webp" alt="دسته گل زیبا در گلدان سفید">
+            </a>
+            <a class="v-item" href="https://blush-flower.com/" rel="noopener">
+                <img loading="lazy" src="src/assets/vitrine/vitrine_09_05_2025_12.webp" alt="دسته گل شاد زرد و سفید">
             </a>
         </div>
     </section>
@@ -684,10 +745,28 @@
 
       // If video exists and user isn't saving data / reducing motion, fade it in when ready
       if (vid && !saveData && !reduce) {
-        vid.addEventListener('canplaythrough', () => {
-          hero.classList.add('ready');        // ensures CSS fades happen
-          setTimeout(() => { try { lq.remove(); sk.remove(); } catch(e){} }, 160);
-        }, { once: true });
+        let videoLoaded = false;
+        
+        const handleVideoReady = () => {
+          if (!videoLoaded) {
+            videoLoaded = true;
+            vid.classList.add('loaded');
+            hero.classList.add('ready');
+            setTimeout(() => { 
+              try { lq.remove(); sk.remove(); } catch(e){} 
+            }, 300);
+          }
+        };
+        
+        vid.addEventListener('canplaythrough', handleVideoReady, { once: true });
+        vid.addEventListener('loadeddata', handleVideoReady, { once: true });
+        
+        // Fallback: show video after 2 seconds even if not fully loaded
+        setTimeout(() => {
+          if (!videoLoaded) {
+            handleVideoReady();
+          }
+        }, 2000);
 
         // Try to sync background and foreground videos if both exist
         const bg = hero.querySelector('.video-background');
