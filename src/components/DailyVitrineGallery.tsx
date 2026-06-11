@@ -1,177 +1,123 @@
-import React, { useState, useMemo, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { siteConfig, whatsappUrl } from "../config/site";
+import { items } from "../data/vitrineItems";
 
-interface VitrineItem {
-  src: string;
-  alt: string;
-  caption: string;
-  price?: string;
-  href?: string;
-}
-
-interface DailyVitrineGalleryProps {
-  items?: VitrineItem[];
-  title?: string;
-  eyebrow?: string;
-  ctaHref?: string;
-  ctaLabel?: string;
-}
-
-const DailyVitrineGallery: React.FC<DailyVitrineGalleryProps> = ({
-  items = [],
-  title = "Blush Daily Vitrine",
-  eyebrow = "Daily Vitrine",
-  ctaHref = "#featured",
-  ctaLabel = "See more",
-}) => {
+const DailyVitrineGallery = () => {
   const [active, setActive] = useState<number | null>(null);
-  const [lastFocusedElement, setLastFocusedElement] = useState<HTMLElement | null>(null);
-  const hasPrices = useMemo(() => items.some(i => i?.price), [items]);
-  
-  // Limit to 12 items
-  const displayItems = items.slice(0, 12);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const selectedItems = items.slice(0, 9);
 
-  // ESC to close lightbox and focus restoration
   useEffect(() => {
-    function onKey(e: KeyboardEvent) {
-      if (e.key === 'Escape') {
-        setActive(null);
-        // Restore focus to the element that opened the lightbox
-        if (lastFocusedElement) {
-          lastFocusedElement.focus();
-        }
+    if (active === null) return;
+
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setActive(null);
+      if (event.key === "ArrowLeft") {
+        setActive((current) => (current === null ? null : (current + 1) % selectedItems.length));
       }
-      if (e.key === 'ArrowLeft' && active !== null) {
-        setActive(i => (i! > 0 ? i! - 1 : displayItems.length - 1));
+      if (event.key === "ArrowRight") {
+        setActive((current) => (current === null ? null : current === 0 ? selectedItems.length - 1 : current - 1));
       }
-      if (e.key === 'ArrowRight' && active !== null) {
-        setActive(i => (i! < displayItems.length - 1 ? i! + 1 : 0));
-      }
-    }
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [active, displayItems.length, lastFocusedElement]);
+    };
+
+    closeButtonRef.current?.focus();
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [active, selectedItems.length]);
 
   return (
-    <section id="daily-vitrine" className="py-12 lg:py-16">
-      <div className="mx-auto max-w-6xl px-4">
-        <p className="uppercase tracking-[.25em] text-gray-500 mb-2 text-right">{eyebrow}</p>
-        <div className="flex items-end justify-between mb-6 gap-4">
-          <h2 className="font-serif text-3xl md:text-4xl text-[#111827]">{title}</h2>
-          <a
-            href={ctaHref}
-            className="shrink-0 rounded-2xl border border-gray-200 bg-white px-4 py-2 text-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2"
+    <section className="section-shell bg-[#fbf8f6]" id="vitrine" dir="rtl" aria-label="ویترین منتخب بلاش">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+        <div className="section-grid">
+          <motion.div
+            className="section-heading"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7 }}
           >
-            {ctaLabel}
-          </a>
-        </div>
+            <p className="section-index">۰۴</p>
+            <h2>نمونه‌هایی از جهان بلاش</h2>
+            <p className="mt-6 max-w-sm text-sm leading-8 text-[#66575d]">
+              این تصاویر نمونه‌ای از حال‌وهوای ویترین و ترکیب‌های بلاش هستند؛ موجودی و امکان سفارش هر طرح در گفت‌وگو تأیید می‌شود.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row lg:flex-col">
+              <a className="btn-primary" href={whatsappUrl} target="_blank" rel="noreferrer">
+                {siteConfig.ctaLabels.startGift}
+              </a>
+              <a className="btn-secondary-dark" href={siteConfig.instagramUrl} target="_blank" rel="noreferrer">
+                {siteConfig.ctaLabels.instagram}
+              </a>
+            </div>
+          </motion.div>
 
-        {/* Grid */}
-        <div className="grid gap-4 sm:gap-5 md:gap-6 grid-cols-2 md:grid-cols-3">
-          {displayItems.map((it, idx) => (
-            <button
-              key={idx}
-              type="button"
-              onClick={() => {
-                setLastFocusedElement(document.activeElement as HTMLElement);
-                setActive(idx);
-              }}
-              className="group relative overflow-hidden rounded-2xl shadow-soft text-left focus:outline-none focus:ring-2 focus:ring-offset-2"
-              aria-label={it.alt || "View image"}
-            >
-              <img
-                src={it.src}
-                alt={it.alt || ""}
-                loading="lazy"
-                decoding="async"
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-                style={{ aspectRatio: "4/5" }}
-              />
-              {/* Soft Bloom */}
-              <span
-                aria-hidden
-                className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{ filter: "blur(22px)", background: "radial-gradient(50% 50% at 50% 50%, rgba(246,214,229,0.35), transparent 70%)" }}
-              />
-              {(it.caption || it.price) && (
-                <div className="absolute inset-x-0 bottom-0 p-3 md:p-4 bg-gradient-to-t from-black/40 to-transparent text-white">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="line-clamp-1">{(it.caption || "Blush").substring(0, 40)}</span>
-                    {it.price && (
-                      <span className="rounded-full bg-white/85 text-gray-900 px-2 py-0.5 text-xs">
-                        {it.price}
-                      </span>
-                    )}
-                  </div>
-                </div>
-              )}
-            </button>
-          ))}
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
+            {selectedItems.map((item, index) => (
+              <motion.button
+                key={item.src}
+                type="button"
+                className={`group relative overflow-hidden bg-[#eadfd9] text-right outline-none focus-visible:ring-2 focus-visible:ring-[#c0a16e] ${
+                  index === 0 ? "col-span-2 aspect-[16/11] md:col-span-2" : "aspect-[4/5]"
+                }`}
+                onClick={() => setActive(index)}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.6, delay: index * 0.035 }}
+                aria-label={item.alt || item.caption || "نمایش تصویر بلاش"}
+              >
+                <img
+                  src={item.src}
+                  alt={item.alt || ""}
+                  className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
+                  loading={index < 3 ? "eager" : "lazy"}
+                  decoding="async"
+                />
+                <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/58 to-transparent px-4 pb-4 pt-14 text-sm leading-7 text-white opacity-0 transition duration-300 group-hover:opacity-100 md:opacity-100">
+                  {item.caption}
+                </span>
+              </motion.button>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Lightbox */}
       {active !== null && (
         <div
-          className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
-          onClick={() => setActive(null)}
+          className="fixed inset-0 z-[80] flex items-center justify-center bg-[#1c1417]/88 p-4 backdrop-blur"
           role="dialog"
           aria-modal="true"
-          aria-label="Image viewer"
+          aria-label={selectedItems[active]?.caption || "تصویر بلاش"}
+          onClick={() => setActive(null)}
         >
-          <div className="relative max-w-4xl w-full" onClick={(e) => e.stopPropagation()}>
+          <div className="relative w-full max-w-3xl" onClick={(event) => event.stopPropagation()}>
             <button
+              ref={closeButtonRef}
               type="button"
+              className="absolute -top-12 right-0 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white"
               onClick={() => setActive(null)}
-              className="absolute -top-10 right-0 text-white/90 hover:text-white focus:outline-none"
-              aria-label="Close lightbox"
+              aria-label="بستن"
             >
-              ✕
+              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
+              </svg>
             </button>
 
-            <div className="overflow-hidden rounded-2xl bg-black/10">
-              <img
-                src={displayItems[active]?.src}
-                alt={displayItems[active]?.alt || ""}
-                className="w-full h-auto object-contain"
-                style={{ aspectRatio: "4/5" }}
-              />
-            </div>
-
-            <div className="mt-3 flex items-center justify-between text-sm text-white/90">
-              <div className="truncate">{displayItems[active]?.caption || "Blush"}</div>
-              <div className="flex items-center gap-3">
-                {displayItems[active]?.price && <span>{displayItems[active].price}</span>}
-                {displayItems[active]?.href && (
-                  <a
-                    href={displayItems[active].href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="underline underline-offset-4"
-                  >
-                    View details
-                  </a>
-                )}
-              </div>
-            </div>
-
-            {/* Nav */}
-            <div className="mt-2 flex items-center justify-between text-white/80">
-              <button
-                type="button"
-                onClick={() => setActive((i) => (i! > 0 ? i! - 1 : displayItems.length - 1))}
-                className="px-3 py-1 rounded hover:bg-white/10"
-                aria-label="Previous image"
-              >
-                ‹ Prev
-              </button>
-              <button
-                type="button"
-                onClick={() => setActive((i) => (i! < displayItems.length - 1 ? i! + 1 : 0))}
-                className="px-3 py-1 rounded hover:bg-white/10"
-                aria-label="Next image"
-              >
-                Next ›
-              </button>
+            <img
+              src={selectedItems[active]?.src}
+              alt={selectedItems[active]?.alt || ""}
+              className="max-h-[78svh] w-full bg-[#eadfd9] object-contain shadow-2xl"
+            />
+            <div className="mt-4 flex items-center justify-between gap-4 text-sm text-white/78">
+              <p className="truncate">{selectedItems[active]?.caption}</p>
+              <a className="shrink-0 underline underline-offset-8" href={whatsappUrl} target="_blank" rel="noreferrer">
+                گفت‌وگو برای انتخاب مشابه
+              </a>
             </div>
           </div>
         </div>
