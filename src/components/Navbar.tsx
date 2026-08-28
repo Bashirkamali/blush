@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import { siteConfig, whatsappUrl } from "../config/site";
 
@@ -11,8 +11,24 @@ const navLinks = [
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 28, restDelta: 0.001 });
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const firstLink = menuRef.current?.querySelector<HTMLAnchorElement>("a");
+    firstLink?.focus();
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMobileOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [mobileOpen]);
 
   return (
     <>
@@ -37,11 +53,13 @@ const Navbar = () => {
           </a>
 
           <button
+            ref={menuButtonRef}
             type="button"
-            className="grid h-10 w-10 place-items-center border border-[#eadfd9] text-[#21191d] md:hidden"
+            className="grid h-12 w-12 place-items-center border border-[#eadfd9] text-[#21191d] focus-visible:ring-2 focus-visible:ring-[#8b6841] md:hidden"
             onClick={() => setMobileOpen((value) => !value)}
             aria-label={mobileOpen ? "بستن منو" : "باز کردن منو"}
             aria-expanded={mobileOpen}
+            aria-controls="mobile-navigation"
           >
             <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8">
               {mobileOpen ? (
@@ -57,6 +75,8 @@ const Navbar = () => {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
+            ref={menuRef}
+            id="mobile-navigation"
             className="fixed inset-x-4 top-20 z-[55] border border-white/[0.70] bg-white/[0.95] p-5 shadow-2xl backdrop-blur-xl md:hidden"
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -69,7 +89,7 @@ const Navbar = () => {
                   key={link.href}
                   className="px-3 py-3 text-[#3a2a31]"
                   href={link.href}
-                  onClick={() => setMobileOpen(false)}
+                  onClick={() => { setMobileOpen(false); menuButtonRef.current?.focus(); }}
                 >
                   {link.label}
                 </a>

@@ -40,12 +40,14 @@ const FAQ = () => {
                     aria-controls={`faq-answer-${index}`}
                   >
                     <span className="text-lg font-light leading-9 text-[#21191d] md:text-xl">{item.q}</span>
-                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-[#d7c2ba] text-[#806943]">
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[#d7c2ba] text-[#806943]" aria-hidden="true">
                       {isOpen ? "−" : "+"}
                     </span>
                   </button>
                   <div
                     id={`faq-answer-${index}`}
+                    role="region"
+                    aria-hidden={!isOpen}
                     className={`grid transition-[grid-template-rows] duration-300 ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
                   >
                     <div className="overflow-hidden">

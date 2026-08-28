@@ -13,8 +13,9 @@ import BackToTop from "./components/BackToTop";
 function App() {
   return (
     <>
+      <a className="skip-link" href="#main-content">رفتن به محتوای اصلی</a>
       <Navbar />
-      <main className="min-h-screen overflow-hidden bg-[#fbf8f6] text-[#21191d]">
+      <main id="main-content" className="min-h-screen overflow-hidden bg-[#fbf8f6] text-[#21191d]">
         <section id="hero">
           <Hero />
         </section>

@@ -2,7 +2,7 @@ import { siteConfig, whatsappUrl } from "../config/site";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#171114] px-5 py-12 text-white/68 sm:px-8 lg:px-12" dir="rtl">
+    <footer className="bg-[#171114] px-5 py-12 text-[#d9d2d5] sm:px-8 lg:px-12" dir="rtl">
       <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.1fr_0.8fr_0.8fr]">
         <div>
           <h3 className="font-serif text-3xl font-light tracking-[0.16em] text-white">
@@ -33,7 +33,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="mx-auto mt-12 max-w-7xl border-t border-white/10 pt-6 text-xs text-white/[0.38]">
+      <div className="mx-auto mt-12 max-w-7xl border-t border-white/20 pt-6 text-xs text-[#aaa1a5]">
         © ۱۴۰۵ {siteConfig.brandNameFa}. همه حقوق محفوظ است.
       </div>
     </footer>

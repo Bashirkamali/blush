@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://blush-flower.com/sitemap.xml

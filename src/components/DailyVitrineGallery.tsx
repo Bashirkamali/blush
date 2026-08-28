@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { siteConfig, whatsappUrl } from "../config/site";
 import { items } from "../data/vitrineItems";
@@ -6,13 +6,21 @@ import { items } from "../data/vitrineItems";
 const DailyVitrineGallery = () => {
   const [active, setActive] = useState<number | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const triggerRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const selectedItems = items.slice(0, 9);
+  const closeGallery = useCallback(() => {
+    const previous = active;
+    setActive(null);
+    window.requestAnimationFrame(() => {
+      if (previous !== null) triggerRefs.current[previous]?.focus();
+    });
+  }, [active]);
 
   useEffect(() => {
     if (active === null) return;
 
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setActive(null);
+      if (event.key === "Escape") closeGallery();
       if (event.key === "ArrowLeft") {
         setActive((current) => (current === null ? null : (current + 1) % selectedItems.length));
       }
@@ -28,7 +36,7 @@ const DailyVitrineGallery = () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKey);
     };
-  }, [active, selectedItems.length]);
+  }, [active, closeGallery, selectedItems.length]);
 
   return (
     <section className="section-shell bg-[#fbf8f6]" id="vitrine" dir="rtl" aria-label="ویترین منتخب بلاش">
@@ -59,9 +67,10 @@ const DailyVitrineGallery = () => {
           <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
             {selectedItems.map((item, index) => (
               <motion.button
+                ref={(node) => { triggerRefs.current[index] = node; }}
                 key={item.src}
                 type="button"
-                className={`group relative overflow-hidden bg-[#eadfd9] text-right outline-none focus-visible:ring-2 focus-visible:ring-[#c0a16e] ${
+                className={`group relative overflow-hidden rounded-[2rem] bg-[#f7ecef] text-right shadow-[0_18px_45px_rgba(86,55,67,0.08)] outline-none focus-visible:ring-2 focus-visible:ring-[#c0a16e] ${
                   index === 0 ? "col-span-2 aspect-[16/11] md:col-span-2" : "aspect-[4/5]"
                 }`}
                 onClick={() => setActive(index)}
@@ -74,11 +83,12 @@ const DailyVitrineGallery = () => {
                 <img
                   src={item.src}
                   alt={item.alt || ""}
-                  className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
+                  className="h-full w-full object-cover brightness-[1.08] contrast-[0.94] saturate-[0.82] transition duration-700 group-hover:scale-[1.035] group-hover:brightness-[1.12]"
                   loading={index < 3 ? "eager" : "lazy"}
                   decoding="async"
                 />
-                <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/58 to-transparent px-4 pb-4 pt-14 text-sm leading-7 text-white opacity-0 transition duration-300 group-hover:opacity-100 md:opacity-100">
+                <span className="pointer-events-none absolute inset-0 bg-[linear-gradient(145deg,rgba(255,255,255,0.22),transparent_42%,rgba(246,214,229,0.12))]" aria-hidden="true" />
+                <span className="absolute inset-x-3 bottom-3 rounded-full border border-white/70 bg-white/85 px-4 py-2 text-center text-xs leading-6 text-[#4f4348] shadow-sm backdrop-blur-md transition duration-300">
                   {item.caption}
                 </span>
               </motion.button>
@@ -93,14 +103,14 @@ const DailyVitrineGallery = () => {
           role="dialog"
           aria-modal="true"
           aria-label={selectedItems[active]?.caption || "تصویر بلاش"}
-          onClick={() => setActive(null)}
+          onClick={closeGallery}
         >
           <div className="relative w-full max-w-3xl" onClick={(event) => event.stopPropagation()}>
             <button
               ref={closeButtonRef}
               type="button"
               className="absolute -top-12 right-0 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white"
-              onClick={() => setActive(null)}
+              onClick={closeGallery}
               aria-label="بستن"
             >
               <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
@@ -113,8 +123,8 @@ const DailyVitrineGallery = () => {
               alt={selectedItems[active]?.alt || ""}
               className="max-h-[78svh] w-full bg-[#eadfd9] object-contain shadow-2xl"
             />
-            <div className="mt-4 flex items-center justify-between gap-4 text-sm text-white/78">
-              <p className="truncate">{selectedItems[active]?.caption}</p>
+            <div className="mt-4 flex items-center justify-between gap-4 text-sm text-white/90">
+              <p className="truncate">تصویر {active + 1} از {selectedItems.length} — {selectedItems[active]?.caption}</p>
               <a className="shrink-0 underline underline-offset-8" href={whatsappUrl} target="_blank" rel="noreferrer">
                 گفت‌وگو برای انتخاب مشابه
               </a>
