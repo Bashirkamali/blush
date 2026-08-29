@@ -39,7 +39,7 @@ const DailyVitrineGallery = () => {
   }, [active, closeGallery, selectedItems.length]);
 
   return (
-    <section className="section-shell bg-[#fbf8f6]" id="vitrine" dir="rtl" aria-label="ویترین منتخب بلاش">
+    <section className="section-shell bg-[#fff5f7]" id="vitrine" dir="rtl" aria-label="ویترین منتخب بلاش">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
         <div className="section-grid">
           <motion.div
@@ -50,7 +50,7 @@ const DailyVitrineGallery = () => {
             transition={{ duration: 0.7 }}
           >
             <p className="section-index">۰۴</p>
-            <h2>نمونه‌هایی از جهان بلاش</h2>
+            <h2>نمونه‌هایی از دنیای بلاش</h2>
             <p className="mt-6 max-w-sm text-sm leading-8 text-[#66575d]">
               این تصاویر نمونه‌ای از حال‌وهوای ویترین و ترکیب‌های بلاش هستند؛ موجودی و امکان سفارش هر طرح در گفت‌وگو تأیید می‌شود.
             </p>
@@ -70,7 +70,7 @@ const DailyVitrineGallery = () => {
                 ref={(node) => { triggerRefs.current[index] = node; }}
                 key={item.src}
                 type="button"
-                className={`group relative overflow-hidden rounded-[2rem] bg-[#f7ecef] text-right shadow-[0_18px_45px_rgba(86,55,67,0.08)] outline-none focus-visible:ring-2 focus-visible:ring-[#c0a16e] ${
+                className={`group relative overflow-hidden rounded-[2rem] bg-[#f7ecef] text-right shadow-[0_18px_55px_rgba(214,120,159,0.16)] outline-none focus-visible:ring-2 focus-visible:ring-[#c0a16e] ${
                   index === 0 ? "col-span-2 aspect-[16/11] md:col-span-2" : "aspect-[4/5]"
                 }`}
                 onClick={() => setActive(index)}
@@ -83,11 +83,11 @@ const DailyVitrineGallery = () => {
                 <img
                   src={item.src}
                   alt={item.alt || ""}
-                  className="h-full w-full object-cover brightness-[1.08] contrast-[0.94] saturate-[0.82] transition duration-700 group-hover:scale-[1.035] group-hover:brightness-[1.12]"
+                  className="h-full w-full object-cover brightness-[1.05] contrast-[1.02] saturate-[1.12] transition duration-700 group-hover:scale-[1.035] group-hover:brightness-[1.08] group-hover:saturate-[1.18]"
                   loading={index < 3 ? "eager" : "lazy"}
                   decoding="async"
                 />
-                <span className="pointer-events-none absolute inset-0 bg-[linear-gradient(145deg,rgba(255,255,255,0.22),transparent_42%,rgba(246,214,229,0.12))]" aria-hidden="true" />
+                <span className="pointer-events-none absolute inset-0 bg-[linear-gradient(145deg,rgba(255,255,255,0.18),transparent_42%,rgba(246,183,211,0.16))]" aria-hidden="true" />
                 <span className="absolute inset-x-3 bottom-3 rounded-full border border-white/70 bg-white/85 px-4 py-2 text-center text-xs leading-6 text-[#4f4348] shadow-sm backdrop-blur-md transition duration-300">
                   {item.caption}
                 </span>
@@ -121,7 +121,7 @@ const DailyVitrineGallery = () => {
             <img
               src={selectedItems[active]?.src}
               alt={selectedItems[active]?.alt || ""}
-              className="max-h-[78svh] w-full bg-[#eadfd9] object-contain shadow-2xl"
+              className="max-h-[78svh] w-full bg-[#eadfd9] object-contain brightness-[1.04] contrast-[1.02] saturate-[1.12] shadow-2xl"
             />
             <div className="mt-4 flex items-center justify-between gap-4 text-sm text-white/90">
               <p className="truncate">تصویر {active + 1} از {selectedItems.length} — {selectedItems[active]?.caption}</p>

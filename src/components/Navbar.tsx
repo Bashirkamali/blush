@@ -36,7 +36,7 @@ const Navbar = () => {
 
       <header className="fixed inset-x-0 top-0 z-[60] px-4 pt-4 sm:px-6" dir="rtl">
         <nav className="mx-auto flex h-14 max-w-7xl items-center justify-between border border-white/[0.70] bg-white/[0.82] px-4 shadow-[0_12px_40px_rgba(67,42,50,0.08)] backdrop-blur-xl">
-          <a className="font-serif text-xl tracking-[0.16em] text-[#21191d]" href="#hero" aria-label="Blush">
+          <a className="font-serif text-xl tracking-[0.18em] text-[#8b6841] transition-colors hover:text-[#c0a16e] focus-visible:ring-2 focus-visible:ring-[#c0a16e]" href="#hero" aria-label="Blush">
             {siteConfig.brandNameDisplay}
           </a>
 

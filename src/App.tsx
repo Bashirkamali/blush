@@ -15,7 +15,7 @@ function App() {
     <>
       <a className="skip-link" href="#main-content">رفتن به محتوای اصلی</a>
       <Navbar />
-      <main id="main-content" className="min-h-screen overflow-hidden bg-[#fbf8f6] text-[#21191d]">
+      <main id="main-content" className="min-h-screen overflow-hidden bg-[#fff5f7] text-[#21191d]">
         <section id="hero">
           <Hero />
         </section>

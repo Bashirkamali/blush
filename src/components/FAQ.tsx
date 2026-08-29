@@ -6,7 +6,7 @@ const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section className="section-shell bg-[#fbf8f6]" id="faq" dir="rtl" aria-label="پرسش‌های متداول بلاش">
+    <section className="section-shell bg-[#fff5f7]" id="faq" dir="rtl" aria-label="پرسش‌های متداول بلاش">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
         <div className="section-grid">
           <motion.div
