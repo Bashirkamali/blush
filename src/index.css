@@ -75,6 +75,52 @@ video {
   max-width: 100%;
 }
 
+.flower-arranger {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.flower-arranger__drawing {
+  stroke-width: 2.1;
+  vector-effect: non-scaling-stroke;
+}
+
+.flower-arranger__placing-hand {
+  transform-box: fill-box;
+  transform-origin: 88% 10%;
+  animation: arrange-stem 3.2s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+}
+
+.flower-arranger__adjusting-hand {
+  transform-box: fill-box;
+  transform-origin: 92% 16%;
+  animation: adjust-flowers 3.2s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+}
+
+.flower-arranger__flowers {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: flowers-settle 3.2s ease-in-out infinite;
+}
+
+@keyframes arrange-stem {
+  0%, 12%, 100% { transform: translate3d(0, -12px, 0) rotate(-1deg); }
+  42%, 68% { transform: translate3d(-5px, 15px, 0) rotate(2.5deg); }
+}
+
+@keyframes adjust-flowers {
+  0%, 22%, 100% { transform: translate3d(2px, 0, 0) rotate(0deg); }
+  48%, 72% { transform: translate3d(-9px, 5px, 0) rotate(-2deg); }
+}
+
+@keyframes flowers-settle {
+  0%, 45%, 100% { transform: rotate(0deg); }
+  58% { transform: rotate(-1.2deg); }
+  74% { transform: rotate(0.7deg); }
+}
+
 ::selection {
   background: var(--blush);
   color: var(--ink);
