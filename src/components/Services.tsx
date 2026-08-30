@@ -18,8 +18,8 @@ const ServiceIcon = ({ index }: { index: number }) => {
 
 const Services = () => {
   return (
-    <section className="section-shell !py-14 bg-white md:!py-20 lg:!py-24" id="services" dir="rtl" aria-label="تجربه‌های بلاش">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+    <section className="section-shell relative !py-14 bg-white md:!py-20 lg:!py-24" id="services" dir="rtl" aria-label="تجربه‌های بلاش">
+      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
         <div className="section-grid !gap-7 lg:!gap-12">
           <motion.div
             className="section-heading"

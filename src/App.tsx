@@ -9,13 +9,15 @@ import FinalCTA from "./components/FinalCTA";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import BackToTop from "./components/BackToTop";
+import FloralMotionBackdrop from "./components/FloralMotionBackdrop";
 
 function App() {
   return (
     <>
       <a className="skip-link" href="#main-content">رفتن به محتوای اصلی</a>
       <Navbar />
-      <main id="main-content" className="min-h-screen overflow-hidden bg-[#fff5f7] text-[#21191d]">
+      <main id="main-content" className="relative min-h-screen overflow-hidden bg-[#fff5f7] text-[#21191d]">
+        <FloralMotionBackdrop />
         <section id="hero">
           <Hero />
         </section>

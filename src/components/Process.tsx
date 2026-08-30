@@ -3,8 +3,8 @@ import { siteConfig, whatsappUrl } from "../config/site";
 
 const Process = () => {
   return (
-    <section className="section-shell bg-[#f6d6e5]/28" id="process" dir="rtl" aria-label="نحوه سفارش از بلاش">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+    <section className="section-shell relative bg-[#f6d6e5]/28" id="process" dir="rtl" aria-label="نحوه سفارش از بلاش">
+      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
         <div className="section-grid">
           <motion.div
             className="section-heading"
