@@ -1,4 +1,5 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import scrollIllustration from "../assets/brand/illustrations/blush-floral-line-branded-mask-v3.webp";
 import goldWordmarks from "../assets/brand/illustrations/blush-ribbon-branding-gold-mask-v2.webp";
 
@@ -7,8 +8,26 @@ const deepInk = {
   opacity: [0.1, 0.205, 0.17, 0.06],
 } as const;
 
+const useDesktopViewport = () => {
+  const [isDesktop, setIsDesktop] = useState(() =>
+    window.matchMedia("(min-width: 768px)").matches
+  );
+
+  useEffect(() => {
+    const query = window.matchMedia("(min-width: 768px)");
+    const updateViewport = (event: MediaQueryListEvent) => setIsDesktop(event.matches);
+
+    setIsDesktop(query.matches);
+    query.addEventListener("change", updateViewport);
+    return () => query.removeEventListener("change", updateViewport);
+  }, []);
+
+  return isDesktop;
+};
+
 const FloralMotionBackdrop = () => {
-  const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+  const isDesktop = useDesktopViewport();
+  const prefersReducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll();
   const clipPath = useTransform(
     scrollYProgress,
@@ -25,12 +44,16 @@ const FloralMotionBackdrop = () => {
   const goldOpacity = useTransform(
     scrollYProgress,
     [0, 0.08, 0.78, 1],
-    isDesktop ? [0.38, 0.62, 0.55, 0.22] : [0.42, 0.68, 0.6, 0.26]
+    isDesktop ? [0.72, 0.98, 0.9, 0.55] : [0.56, 0.82, 0.74, 0.38]
   );
   const y = useTransform(
     scrollYProgress,
     [0, 1],
-    isDesktop ? ["-7vh", "-142vh"] : ["0vh", "-4vh"]
+    prefersReducedMotion
+      ? ["0vh", "0vh"]
+      : isDesktop
+        ? ["-7vh", "-142vh"]
+        : ["-3vh", "-112vh"]
   );
 
   return (
