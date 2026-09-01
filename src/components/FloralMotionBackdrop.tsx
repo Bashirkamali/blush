@@ -2,11 +2,18 @@ import { useEffect, useState } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import scrollIllustration from "../assets/brand/illustrations/blush-floral-line-branded-mask-v3.webp";
 import goldWordmarks from "../assets/brand/illustrations/blush-ribbon-branding-gold-mask-v2.webp";
+import desktopIllustration from "../assets/brand/illustrations/blush-floral-line-minimal-spaced-v5.png";
 
 const deepInk = {
   paint: "#342a2e",
   opacity: [0.1, 0.205, 0.17, 0.06],
 } as const;
+
+const mobileBackdropClassName =
+  "pointer-events-none fixed left-0 top-0 h-screen w-screen max-w-none [mask-position:center_top] [mask-repeat:no-repeat] [mask-size:115%_auto] mix-blend-multiply md:hidden";
+
+const desktopBackdropClassName =
+  "pointer-events-none fixed left-1/2 top-0 hidden aspect-[2/3] w-[clamp(44rem,92dvh,50rem)] max-w-[82vw] bg-contain bg-center bg-no-repeat mix-blend-multiply md:block";
 
 const useDesktopViewport = () => {
   const [isDesktop, setIsDesktop] = useState(() =>
@@ -46,39 +53,56 @@ const FloralMotionBackdrop = () => {
     [0, 0.08, 0.78, 1],
     isDesktop ? [0.72, 0.98, 0.9, 0.55] : [0.56, 0.82, 0.74, 0.38]
   );
-  const y = useTransform(
+  const desktopOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.08, 0.78, 1],
+    [0.12, 0.22, 0.17, 0.06]
+  );
+  const mobileY = useTransform(
     scrollYProgress,
     [0, 1],
-    prefersReducedMotion
-      ? ["0vh", "0vh"]
-      : isDesktop
-        ? ["-7vh", "-142vh"]
-        : ["-3vh", "-112vh"]
+    prefersReducedMotion ? ["0vh", "0vh"] : ["-3vh", "-112vh"]
+  );
+  const desktopY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    prefersReducedMotion ? ["0vh", "0vh"] : ["0vh", "calc(-100% + 100vh)"]
   );
 
   return (
     <>
       <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-[15] h-screen w-screen max-w-none [mask-position:center_top] [mask-repeat:no-repeat] [mask-size:115%_auto] mix-blend-multiply md:h-[150vw] md:[mask-position:center] md:[mask-size:contain]"
+        className={`${mobileBackdropClassName} z-[15]`}
         style={{
           background: deepInk.paint,
           clipPath,
           maskImage: `url(${scrollIllustration})`,
           WebkitMaskImage: `url(${scrollIllustration})`,
           opacity,
-          y,
+          y: mobileY,
         }}
         aria-hidden="true"
       />
       <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-[16] h-screen w-screen max-w-none [mask-position:center_top] [mask-repeat:no-repeat] [mask-size:115%_auto] mix-blend-multiply md:h-[150vw] md:[mask-position:center] md:[mask-size:contain]"
+        className={`${mobileBackdropClassName} z-[16]`}
         style={{
           background: "#c0a16e",
           clipPath,
           maskImage: `url(${goldWordmarks})`,
           WebkitMaskImage: `url(${goldWordmarks})`,
           opacity: goldOpacity,
-          y,
+          y: mobileY,
+        }}
+        aria-hidden="true"
+      />
+      <motion.div
+        className={`${desktopBackdropClassName} z-[15]`}
+        style={{
+          backgroundImage: `url(${desktopIllustration})`,
+          clipPath,
+          opacity: desktopOpacity,
+          x: "-50%",
+          y: desktopY,
         }}
         aria-hidden="true"
       />
