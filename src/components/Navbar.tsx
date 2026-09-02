@@ -2,13 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import { siteConfig, whatsappUrl } from "../config/site";
 
-const navLinks = [
-  { label: "چرا بلاش", href: "#brand-story" },
-  { label: "تجربه‌ها", href: "#services" },
-  { label: "ویترین", href: "#vitrine" },
-  { label: "سفارش", href: "#process" },
-];
-
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -41,7 +34,7 @@ const Navbar = () => {
           </a>
 
           <div className="hidden items-center gap-7 md:flex">
-            {navLinks.map((link) => (
+            {siteConfig.navigation.map((link) => (
               <a key={link.href} className="text-sm text-[#5f5056] transition hover:text-[#21191d]" href={link.href}>
                 {link.label}
               </a>
@@ -84,7 +77,7 @@ const Navbar = () => {
             dir="rtl"
           >
             <div className="grid gap-2">
-              {navLinks.map((link) => (
+              {siteConfig.navigation.map((link) => (
                 <a
                   key={link.href}
                   className="px-3 py-3 text-[#3a2a31]"

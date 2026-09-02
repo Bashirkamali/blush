@@ -14,7 +14,7 @@ const Testimonials = () => {
             transition={{ duration: 0.7 }}
           >
             <p className="section-index">۰۵</p>
-            <h2>استانداردهایی که تجربه را می‌سازند</h2>
+            <h2>{siteConfig.sectionHeadings.standards}</h2>
           </motion.div>
 
           <div className="grid gap-4 md:grid-cols-3">

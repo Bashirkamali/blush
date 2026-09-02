@@ -50,9 +50,9 @@ const DailyVitrineGallery = () => {
             transition={{ duration: 0.7 }}
           >
             <p className="section-index">۰۴</p>
-            <h2>نمونه‌هایی از دنیای بلاش</h2>
+            <h2>{siteConfig.sectionHeadings.gallery}</h2>
             <p className="mt-6 max-w-sm text-sm leading-8 text-[#66575d]">
-              این تصاویر نمونه‌ای از حال‌وهوای ویترین و ترکیب‌های بلاش هستند؛ موجودی و امکان سفارش هر طرح در گفت‌وگو تأیید می‌شود.
+              {siteConfig.gallery.description}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row lg:flex-col">
               <a className="btn-primary" href={whatsappUrl} target="_blank" rel="noreferrer">
@@ -126,7 +126,7 @@ const DailyVitrineGallery = () => {
             <div className="mt-4 flex items-center justify-between gap-4 text-sm text-white/90">
               <p className="truncate">تصویر {active + 1} از {selectedItems.length} — {selectedItems[active]?.caption}</p>
               <a className="shrink-0 underline underline-offset-8" href={whatsappUrl} target="_blank" rel="noreferrer">
-                گفت‌وگو برای انتخاب مشابه
+                {siteConfig.gallery.similarCta}
               </a>
             </div>
           </div>

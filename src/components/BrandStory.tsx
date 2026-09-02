@@ -34,7 +34,7 @@ const BrandStory = () => {
           <div>
             <p className="text-2xl font-light leading-[1.85] text-[#31262a] md:text-3xl">{brandStory.subtitle}</p>
             <div className="mt-7 space-y-5 text-base leading-9 text-[#66575d]">
-              {brandStory.paragraphs.slice(0, 2).map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+              {brandStory.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
             </div>
           </div>
         </motion.div>

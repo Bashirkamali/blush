@@ -29,7 +29,7 @@ const Services = () => {
             transition={{ duration: 0.7 }}
           >
             <p className="section-index">۰۲</p>
-            <h2>امضای بلاش</h2>
+            <h2>{siteConfig.sectionHeadings.services}</h2>
           </motion.div>
 
           <div className="grid grid-cols-2 gap-2.5 sm:gap-4">

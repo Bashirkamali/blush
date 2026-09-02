@@ -14,9 +14,9 @@ const Process = () => {
             transition={{ duration: 0.7 }}
           >
             <p className="section-index">۰۳</p>
-            <h2>چطور یک هدیه سنجیده انتخاب می‌شود؟</h2>
+            <h2>{siteConfig.sectionHeadings.process}</h2>
             <a className="mt-8 inline-flex text-sm text-[#806943] underline underline-offset-8" href={whatsappUrl} target="_blank" rel="noreferrer">
-              شروع گفت‌وگو در واتساپ
+              {siteConfig.ctaLabels.whatsapp}
             </a>
           </motion.div>
 

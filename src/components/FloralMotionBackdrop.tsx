@@ -40,33 +40,37 @@ const FloralMotionBackdrop = () => {
     scrollYProgress,
     isDesktop ? [0, 0.16, 0.38] : [0, 0.08, 0.22],
     isDesktop
-      ? ["inset(0 0 58% 0)", "inset(0 0 20% 0)", "inset(0 0 0% 0)"]
+      ? ["inset(0 0 0% 0)", "inset(0 0 0% 0)", "inset(0 0 0% 0)"]
       : ["inset(0 0 42% 0)", "inset(0 0 10% 0)", "inset(0 0 0% 0)"]
   );
   const opacity = useTransform(
     scrollYProgress,
-    [0, 0.08, 0.78, 1],
-    isDesktop ? [...deepInk.opacity] : deepInk.opacity.map((value) => Math.min(value * 1.18, 0.3))
+    isDesktop ? [0, 0.08, 0.78, 1] : [0, 0.08, 0.96, 1],
+    isDesktop
+      ? [...deepInk.opacity]
+      : [deepInk.opacity[0] * 1.18, deepInk.opacity[1] * 1.18, deepInk.opacity[2] * 1.18, 0]
   );
   const goldOpacity = useTransform(
     scrollYProgress,
-    [0, 0.08, 0.78, 1],
-    isDesktop ? [0.72, 0.98, 0.9, 0.55] : [0.56, 0.82, 0.74, 0.38]
+    isDesktop ? [0, 0.08, 0.78, 1] : [0, 0.08, 0.96, 1],
+    isDesktop ? [0.72, 0.98, 0.9, 0.55] : [0.56, 0.82, 0.74, 0]
   );
   const desktopOpacity = useTransform(
     scrollYProgress,
     [0, 0.08, 0.78, 1],
-    [0.12, 0.22, 0.17, 0.06]
+    [0.159, 0.291, 0.225, 0.079]
   );
   const mobileY = useTransform(
     scrollYProgress,
-    [0, 1],
-    prefersReducedMotion ? ["0vh", "0vh"] : ["-3vh", "-112vh"]
+    [0, 0.96, 1],
+    prefersReducedMotion ? ["0vh", "0vh", "0vh"] : ["-3vh", "-3vh", "-112vh"]
   );
   const desktopY = useTransform(
     scrollYProgress,
-    [0, 1],
-    prefersReducedMotion ? ["0vh", "0vh"] : ["0vh", "calc(-100% + 100vh)"]
+    [0, 0.1, 1],
+    prefersReducedMotion
+      ? ["0vh", "0vh", "0vh"]
+      : ["0vh", "0vh", "calc(-100% + 100vh)"]
   );
 
   return (

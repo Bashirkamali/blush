@@ -9,21 +9,21 @@ const Footer = () => {
             {siteConfig.brandNameDisplay}
           </h3>
           <p className="mt-5 max-w-md text-sm leading-8">
-            بلاش، استودیوی تجربه‌های گل و هدیه در شیراز؛ برای انتخاب‌هایی که باید سنجیده، آرام و خوش‌حافظه باشند.
+            {siteConfig.footer.description}
           </p>
         </div>
 
         <div>
-          <h4 className="text-sm text-white">مسیرهای سریع</h4>
+          <h4 className="text-sm text-white">{siteConfig.footer.quickLinksHeading}</h4>
           <ul className="mt-5 space-y-3 text-sm">
-            <li><a href="#vitrine">ویترین منتخب</a></li>
-            <li><a href="#services">تجربه‌ها</a></li>
-            <li><a href="#faq">پرسش‌های رایج</a></li>
+            {siteConfig.footer.quickLinks.map((link) => (
+              <li key={link.href}><a href={link.href}>{link.label}</a></li>
+            ))}
           </ul>
         </div>
 
         <div>
-          <h4 className="text-sm text-white">تماس</h4>
+          <h4 className="text-sm text-white">{siteConfig.footer.contactHeading}</h4>
           <ul className="mt-5 space-y-3 text-sm">
             <li><a href={whatsappUrl} target="_blank" rel="noreferrer">واتساپ</a></li>
             <li><a href={siteConfig.instagramUrl} target="_blank" rel="noreferrer">اینستاگرام</a></li>
