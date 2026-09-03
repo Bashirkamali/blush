@@ -16,7 +16,6 @@ const FAQ = () => {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7 }}
           >
-            <p className="section-index">۰۶</p>
             <h2 lang="en" dir="ltr">{siteConfig.sectionHeadings.faq}</h2>
           </motion.div>
 

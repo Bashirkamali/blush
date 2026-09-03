@@ -1,204 +1,109 @@
 export const siteConfig = {
-  brandName: "Blush",
-  brandNameDisplay: "BLUSH",
-  brandNameFa: "بلاش",
-  websiteUrl: "https://blush-flower.com/",
-  instagramUrl: "https://www.instagram.com/blush_flower",
-
-  whatsappNumber: "989900190067",
-  phoneNumber: "+989900190067",
-
-  taglineFa: "استودیوی تجربه‌های گل و هدیه در شیراز",
-  taglineEn: "A floral experience studio in Shiraz",
-
+  brandName: "Blush", brandNameDisplay: "BLUSH", brandNameFa: "بلاش",
+  websiteUrl: "https://www.blush-flower.com/", dailyVitrineUrl: "https://www.blush-flower.com/",
+  landingUrl: "https://blush.plus/", instagramUrl: "https://www.instagram.com/blush_flower",
+  whatsappNumber: "989900190067", phoneNumber: "+989357060067",
   navigation: [
-    { label: "About Blush", href: "#brand-story" },
-    { label: "Ways to Choose", href: "#services" },
-    { label: "Vitrine", href: "#vitrine" },
-    { label: "The Process", href: "#process" },
+    { label: "The Studio", href: "#brand-story" }, { label: "Selection", href: "#services" },
+    { label: "The Process", href: "#process" }, { label: "In Bloom", href: "#vitrine" },
+    { label: "Sending from Abroad", href: "#remote-ordering" }, { label: "FAQ", href: "#faq" },
   ],
-
   hero: {
-    title: "BLUSH",
-    subtitle: "Flowers, when they’re meant to be remembered.",
-    titlePrefix: "Flowers, when they’re meant",
-    titleEmphasis: "to be remembered.",
-    description:
-      "گل و هدیه‌ای متناسب با آدم، مناسبت و سلیقه شما؛ با انتخاب گل‌های فصل، طراحی اختصاصی و نگاه بلاش.",
-    primaryCta: "گفت‌وگو با بلاش در واتساپ",
-    secondaryCta: "مشاهده نمونه‌ها",
-    tertiaryCta: "ورود به وبسایت بلاش",
-    eyebrow: "استودیوی گل و هدیه در شیراز",
-    availabilityNote:
-      "موجودی گل، امکان اجرا و زمان تحویل پیش از تأیید سفارش هماهنگ می‌شود.",
+    titlePrefix: "Where Flowers Become", titleEmphasis: "Memories",
+    description: "از هر کجای دنیا سفارش بدهید؛ گل در شیراز و به دست کسی که برایتان مهم است می‌رسد.",
+    supportingText: "استودیوی گل و هدیه در شیراز. هر سفارش بر پایهٔ مناسبت، گیرنده و گل‌های همان فصل طراحی می‌شود.",
+    primaryCta: "سفارش در واتساپ", secondaryCta: "دیدن ویترین", eyebrow: "BLUSH — FLORAL STUDIO, SHIRAZ",
     highlights: [
-      { title: "انتخاب شخصی‌سازی‌شده", description: "بر اساس مناسبت و سلیقه" },
-      { title: "تصاویر واقعی بلاش", description: "نمونه‌هایی از طراحی‌های واقعی" },
-      { title: "هماهنگی شفاف", description: "پیش از ثبت نهایی سفارش" },
+      { title: "طراحی اختصاصی", description: "از صفر، برای هر سفارش" },
+      { title: "تأیید پیش از ارسال", description: "عکس طرح نهایی، پیش از خروج از استودیو" },
+      { title: "ارسال در شیراز", description: "ارسال کارهای ویترین روز از ۲ ساعت پس از ثبت سفارش" },
     ],
-    vitrineCard: {
-      title: "ویترین بلاش",
-      description: "هر طرح با گل‌های فصل دوباره طراحی می‌شود.",
-    },
-    imageAlt:
-      "استند تشریفاتی ارکیده و رز بلاش مقابل دیوار صورتی و لوگوی طلایی استودیو",
+    vitrineCard: { title: "ویترین روز", description: "هر طرح با گل‌های فصل دوباره طراحی می‌شود." },
+    imageAlt: "استند تشریفاتی ارکیده و رز مقابل دیوار صورتی و لوگوی طلایی استودیو",
   },
-
   brandStory: {
-    heading: "More Than Flowers",
-    subtitle: "گل‌ها ماندگار نیستند؛ حسی که با انتخاب درست می‌سازند، می‌ماند.",
-    paragraphs: [
-      "در بلاش، هر سفارش با توجه به مناسبت، سلیقه، رنگ، فصل و جزئیات همان موقعیت شکل می‌گیرد.",
-    ],
+    heading: "Designed to Be Remembered", subtitle: "کار ما پیش از گل شروع می‌شود.",
+    paragraphs: ["شناخت مناسبت، گیرنده و فضایی که گل در آن قرار می‌گیرد، پیش از هر طراحی. ترکیب، رنگ و مقیاس از همین‌جا تعیین می‌شود."],
   },
-
-  sectionHeadings: {
-    services: "Ways to Choose Blush",
-    process: "A Thoughtful Choice Starts with a Conversation",
-    gallery: "The World of Blush",
-    standards: "The Blush Standard",
-    faq: "Frequently Asked Questions",
-  },
-
+  sectionHeadings: { services: "Selection", process: "The Process", gallery: "Blush in Bloom", standards: "The Blush Standard", faq: "Frequently Asked Questions" },
+  standardsIntro: "در بلاش، هیچ مرحله‌ای اتفاقی نیست. سال‌ها تجربه، آزمون و بازنگری، مسیر انتخاب و طراحی تا بسته‌بندی، ارتباط و تحویل را به سیستمی روشن تبدیل کرده است؛ سیستمی که یک استاندارد واحد را در هر سفارش، محصول و خدمت حفظ می‌کند.",
   services: [
-    {
-      title: "The Daily Vitrine",
-      description: "انتخاب‌هایی آماده از گل‌های تازه و ترکیب‌های همان روز.",
-    },
-    {
-      title: "Bespoke Design",
-      description: "طراحی بر اساس مناسبت، سلیقه، رنگ و حدود بودجه شما.",
-    },
-    {
-      title: "Packaging & Presentation",
-      description: "جزئیاتی هماهنگ با سبک و حال‌وهوای سفارش.",
-    },
-    {
-      title: "Special Orders",
-      description: "برای سفارش‌های خاص و بزرگ، پس از بررسی زمان و امکان اجرا.",
-    },
+    { title: "The Daily Vitrine", description: "ترکیب‌های آمادهٔ همان روز، از گل‌های تازهٔ صبح. مناسب سفارش‌های فوری." },
+    { title: "Bespoke Design", description: "طرح از صفر، بر پایهٔ مناسبت، رنگ و مقیاس موردنظر شما." },
+    { title: "Gift Boxes", description: "جعبه، کاغذ و روبان متناسب با طرح — نه جدا از آن." },
+    { title: "Events", description: "مراسم، ویترین برند و حجم‌های بزرگ، با برنامه‌ریزی از پیش." },
   ],
-
   standards: [
-    {
-      title: "Details, Not Just Volume",
-      description:
-        "هر ترکیب با توجه به رنگ، فرم و تناسب گل‌ها شکل می‌گیرد.",
-    },
-    {
-      title: "Guidance Before You Choose",
-      description:
-        "اگر هنوز انتخاب مشخصی ندارید، از مناسبت، سلیقه و بودجه شروع می‌کنیم.",
-    },
-    {
-      title: "A Cohesive Presentation",
-      description:
-        "از انتخاب گل تا بسته‌بندی، جزئیات باید بخشی از یک تصویر واحد باشند.",
-    },
+    { title: "Details Matter" },
+    { title: "Built from Experience" },
+    { title: "One Consistent Standard" },
   ],
-
   process: [
-    {
-      step: "۰۱",
-      title: "The Person & the Occasion",
-      description:
-        "مناسبت، سلیقه و حال‌وهوایی که در ذهن دارید را با ما در میان بگذارید.",
-    },
-    {
-      step: "۰۲",
-      title: "Style & Budget",
-      description:
-        "بر اساس زمان، رنگ و بودجه، انتخاب‌ها را محدود و دقیق‌تر می‌کنیم.",
-    },
-    {
-      step: "۰۳",
-      title: "The Final Design",
-      description:
-        "پس از تأیید، بلاش طراحی، بسته‌بندی و آماده‌سازی سفارش را انجام می‌دهد.",
-    },
+    { step: "۰۱", title: "Tell Us Who It’s For", description: "مناسبت، تاریخ و حال‌وهوای موردنظر را در واتساپ می‌فرستید." },
+    { step: "۰۲", title: "We Narrow the Options", description: "بر اساس تاریخ، رنگ و بودجه، دو تا سه پیشنهاد می‌فرستیم." },
+    { step: "۰۳", title: "You Confirm the Design", description: "طراحی، بسته‌بندی و ارسال با ماست." },
   ],
-
-  gallery: {
-    description:
-      "نمونه‌هایی واقعی از طراحی‌های بلاش؛ ترکیب‌ها با فصل و موجودی تغییر می‌کنند و هر سفارش می‌تواند با حال‌وهوایی مشابه دوباره طراحی شود.",
-    similarCta: "گفت‌وگو برای انتخاب مشابه",
+  leadTimes: {
+    heading: "حداقل زمان ثبت سفارش",
+    items: [{ title: "ویترین روز", value: "ارسال از ۲ ساعت پس از ثبت سفارش" }, { title: "مراسم و حجم‌های بزرگ", value: "در مشاوره تعیین می‌شود" }],
+    note: "زمان دقیق تحویل به نشانی و ترافیک شهر بستگی دارد. ثبت دیرتر از این بازه‌ها، احتمال تغییر طرح یا پذیرفته‌نشدن سفارش را به‌طور محسوسی افزایش می‌دهد.",
   },
-
-  faq: [
-    {
-      q: "برای سفارش از بلاش از کجا شروع کنم؟",
-      a: "از واتساپ. مناسبت، زمان موردنظر و حدود سلیقه یا بودجه را بفرستید تا انتخاب مناسب‌تری پیشنهاد کنیم.",
-    },
-    {
-      q: "آیا می‌توانم نمونه‌های قبلی را ببینم؟",
-      a: "بله. ویترین این صفحه و اینستاگرام بلاش شامل نمونه‌هایی از طراحی‌های واقعی ما هستند.",
-    },
-    {
-      q: "آیا طراحی اختصاصی انجام می‌شود؟",
-      a: "بله، برای سفارش‌های خاص امکان طراحی اختصاصی وجود دارد. نتیجه به فصل، موجودی گل، زمان و جزئیات سفارش بستگی دارد.",
-    },
-    {
-      q: "ارسال و زمان تحویل چگونه هماهنگ می‌شود؟",
-      a: "زمان و شیوه تحویل هنگام ثبت سفارش مشخص می‌شود. برای سفارش‌های حساس زمانی، بهتر است زودتر با ما در تماس باشید.",
-    },
-    {
-      q: "آیا قیمت‌ها ثابت‌اند؟",
-      a: "خیر. قیمت نهایی بر اساس نوع گل، فصل، ابعاد و جزئیات سفارش مشخص می‌شود.",
-    },
-  ],
-
-  finalCta: {
-    heading: "For a Gift Meant to Be Remembered, Let’s Start Here.",
-  },
-
-  footer: {
-    description:
-      "بلاش، استودیوی گل و هدیه در شیراز؛ برای انتخابی متناسب با آدم، مناسبت و سلیقه شما.",
-    quickLinksHeading: "Explore",
-    contactHeading: "Contact",
-    quickLinks: [
-      { label: "ویترین بلاش", href: "#vitrine" },
-      { label: "راه‌های انتخاب", href: "#services" },
-      { label: "پرسش‌های رایج", href: "#faq" },
+  gallery: { description: "نمونه‌های واقعی از سفارش‌های اجراشده. ترکیب‌ها با فصل تغییر می‌کنند و هر طرح می‌تواند با همان حال‌وهوا دوباره اجرا شود.", similarCta: "سفارش طرحی مشابه" },
+  remoteOrdering: {
+    heading: "Sending from Abroad", intro: "در شیراز نیستید؟ فرقی نمی‌کند.",
+    description: "سفارش را از هر کجای دنیا ثبت می‌کنید؛ گل در شیراز و به دست کسی که برایتان مهم است می‌رسد.",
+    cards: [
+      { title: "پرداخت بین‌المللی", description: "نیازی به حساب بانکی ایرانی ندارید. روش پرداخت متناسب با کشور شما، در گفت‌وگو مشخص می‌شود." },
+      { title: "تأیید پیش از ارسال", description: "عکس طرح نهایی، پیش از خروج از استودیو برای شما ارسال می‌شود." },
+      { title: "هماهنگی با گیرنده", description: "تماس ما با گیرنده بدون فاش‌شدن سورپرایز انجام می‌شود." },
+      { title: "اختلاف ساعت", description: "پیام شما در هر ساعتی ثبت می‌شود. پاسخ از ۱۰ صبح به وقت ایران." },
     ],
   },
-
-  ctaLabels: {
-    viewCollections: "مشاهده ویترین",
-    whatsapp: "گفت‌وگو با بلاش در واتساپ",
-    instagram: "دیدن نمونه‌های بیشتر در اینستاگرام",
-    website: "ورود به وبسایت بلاش",
-    phone: "تماس با بلاش",
-    startGift: "شروع سفارش",
+  faq: [
+    { q: "چطور سفارش بدهم؟", a: "در واتساپ مناسبت، تاریخ و بودجهٔ تقریبی را بفرستید. بر اساس آن دو تا سه پیشنهاد برایتان می‌فرستیم." },
+    { q: "چقدر زودتر باید سفارش بدهم؟", a: "ارسال کارهای ویترین روز از ۲ ساعت پس از ثبت سفارش انجام می‌شود. برای مراسم و حجم‌های بزرگ، حداقل زمان در مشاوره اعلام می‌شود. ثبت دیرتر، احتمال تغییر طرح یا پذیرفته‌نشدن سفارش را افزایش می‌دهد." },
+    { q: "ارسال به کجا انجام می‌شود؟", a: "به تمام مناطق شیراز ارسال داریم. برای شهرهای اطراف تا شعاع ۲۰۰ کیلومتر نیز ارسال ویژه انجام می‌شود." },
+    { q: "ارسال چطور انجام می‌شود؟", a: "ارسال توسط شرکای حمل انجام می‌شود و هزینهٔ آن جدا از سفارش محاسبه می‌گردد. پیش از حرکت، مقصد، زمان و جزئیات تحویل را با راننده هماهنگ می‌کنیم." },
+    { q: "اگر گیرنده در محل نبود چه می‌شود؟", a: "راننده تا حدود یک ساعت در محل منتظر می‌ماند تا تحویل انجام شود. اگر گیرنده در نشانی دیگری باشد، ارسال به آن نشانی ممکن است؛ هزینهٔ مسیر جدید یا توقف مجدد بر عهدهٔ سفارش‌دهنده است." },
+    { q: "از خارج از ایران چطور پرداخت کنم؟", a: "پرداخت بین‌المللی امکان‌پذیر است و به حساب بانکی ایرانی نیاز ندارید. چون گزینه‌های در دسترس از کشوری به کشور دیگر متفاوت است، روش پرداخت را در واتساپ و متناسب با محل شما مشخص می‌کنیم." },
+    { q: "از کجا مطمئن شوم سفارش همان چیزی است که خواستم؟", a: "برای سفارش‌های خارج از ایران و راه دور، عکس طرح نهایی پیش از خروج از استودیو ارسال می‌شود. در روزهای بسیار پرتراکم ممکن است این عکس با کمی تأخیر برسد." },
+    { q: "قیمت‌ها چگونه تعیین می‌شود؟", a: "قیمت هر سفارش به نوع گل، فصل، ابعاد و جزئیات طراحی بستگی دارد و در گفت‌وگو اعلام می‌شود." },
+  ],
+  finalCta: {
+    heading: "Contact", description: "Make Their Moment Unforgettable.", sub: "راه‌های ارتباط با دو شعبه بلاش در شیراز",
+    hours: "۱۰:۰۰ تا ۲۲:۰۰، به وقت ایران", hoursNote: "پیام‌های خارج از این ساعت ثبت می‌شوند و صبح روز بعد پاسخ داده می‌شوند. پیام‌های اینستاگرام در صورت امکان خارج از ساعت کاری هم بررسی می‌شوند.",
   },
-
-  heroMedia: {
-    poster: "./hero.webp",
-    mp4: "./media/hero.mp4",
+  branches: [
+    {
+      name: "Blush Studio", label: "استودیو گل بلاش (شعبه ۱)",
+      address: "بلوار ستارخان، خیابان ولیعصر قصرالدشت، نبش کوچه ۲۶",
+      phone: "+989357060067", whatsapp: "989900190067",
+      mapUrl: "https://maps.app.goo.gl/vpTj7CJoCJKYRHbK9",
+    },
+    {
+      name: "Blush Boutique", label: "بوتیک گل بلاش (شعبه ۲)",
+      address: "میدان معلم، خیابان معلم، بین کوچه‌های ۵ و ۷",
+      phone: "+989177800806", whatsapp: "989177800806",
+      mapUrl: "https://maps.app.goo.gl/kQkvwqs6JB4WuDmv9",
+    },
+  ],
+  footer: {
+    description: "Blush — Floral Studio, Shiraz", serviceNote: "پاسخ‌گویی ۱۰:۰۰ تا ۲۲:۰۰ به وقت ایران — ارسال در سراسر شیراز و شهرهای اطراف",
+    quickLinksHeading: "Explore", contactHeading: "Contact",
+    quickLinks: [{ label: "ویترین روز", href: "https://www.blush-flower.com/" }, { label: "سفارش از راه دور", href: "#remote-ordering" }, { label: "پرسش‌های متداول", href: "#faq" }],
   },
-
+  ctaLabels: { whatsapp: "سفارش در واتساپ", vitrine: "دیدن ویترین", instagram: "اینستاگرام", dailyVitrine: "ورود به ویترین روز BLUSH", website: "ورود به وب‌سایت بلاش" },
+  heroMedia: { poster: "./hero.webp", mp4: "./media/hero.mp4" },
   heroVideo: {
-    enabled: false,
-    poster: "./hero.webp",
-    desktop: {
-      mp4: "./media/hero-video/cinematic-bloom-ritual-desktop.mp4",
-      webm: "./media/hero-video/cinematic-bloom-ritual-desktop.webm",
-    },
-    mobile: {
-      mp4: "./media/hero-video/cinematic-bloom-ritual-mobile.mp4",
-      webm: "./media/hero-video/cinematic-bloom-ritual-mobile.webm",
-    },
+    enabled: false, poster: "./hero.webp",
+    desktop: { mp4: "./media/hero-video/cinematic-bloom-ritual-desktop.mp4", webm: "./media/hero-video/cinematic-bloom-ritual-desktop.webm" },
+    mobile: { mp4: "./media/hero-video/cinematic-bloom-ritual-mobile.mp4", webm: "./media/hero-video/cinematic-bloom-ritual-mobile.webm" },
   },
-
   seo: {
-    title: "بلاش | گل‌فروشی لوکس و استودیوی تجربه گل در شیراز",
-    description:
-      "بلاش، استودیوی گل و هدیه در شیراز؛ ویترین روز، طراحی اختصاصی و انتخابی متناسب با مناسبت، سلیقه و گل‌های فصل.",
-    canonicalUrl: "https://blush-flower.com/",
-    ogImage: "https://blush-flower.com/hero.webp",
+    title: "بلاش | Blush — سفارش گل و باکس گل لوکس در شیراز",
+    description: "استودیوی گل و هدیه بلاش در شیراز. باکس گل، دسته گل و طراحی اختصاصی برای مناسبت‌های مهم. سفارش از خارج از ایران در واتساپ.",
+    canonicalUrl: "https://blush.plus/", ogImage: "https://blush.plus/hero.webp",
   },
 } as const;
 
-export const whatsappUrl = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(
-  "سلام بلاش، برای انتخاب گل و هدیه راهنمایی می‌خواهم."
-)}`;
+export const whatsappUrl = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent("سلام بلاش. مناسبت: ____ | تاریخ: ____ | شهر گیرنده: ____")}`;

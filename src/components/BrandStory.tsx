@@ -16,7 +16,6 @@ const BrandStory = () => {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7 }}
         >
-          <p className="section-index">۰۱</p>
           <h2 lang="en" dir="ltr">{brandStory.heading}</h2>
         </motion.div>
 
@@ -29,7 +28,7 @@ const BrandStory = () => {
         >
           <picture>
             <source media="(max-width: 767px)" srcSet={storyImageMobile} />
-            <img src={storyImage} alt="چیدمان رز صورتی و سفید بلاش در فضای روشن و مینیمال استودیو" className="aspect-[4/5] w-full rounded-t-[5rem] object-cover brightness-[1.02] contrast-[1.02] saturate-[1.12] shadow-[0_24px_70px_rgba(214,120,159,0.18)]" width="1100" height="1375" loading="lazy" />
+            <img src={storyImage} alt="چیدمان رز صورتی و سفید در فضای روشن و مینیمال استودیو" className="aspect-[4/5] w-full rounded-t-[5rem] object-cover brightness-[1.02] contrast-[1.02] saturate-[1.12] shadow-[0_24px_70px_rgba(214,120,159,0.18)]" width="1100" height="1375" loading="lazy" />
           </picture>
           <div>
             <p className="text-2xl font-light leading-[1.85] text-[#31262a] md:text-3xl">{brandStory.subtitle}</p>

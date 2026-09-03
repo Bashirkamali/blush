@@ -29,26 +29,26 @@ const Navbar = () => {
 
       <header className="fixed inset-x-0 top-0 z-[60] px-4 pt-4 sm:px-6" dir="rtl">
         <nav className="mx-auto flex h-14 max-w-7xl items-center justify-between border border-white/[0.70] bg-white/[0.82] px-4 shadow-[0_12px_40px_rgba(67,42,50,0.08)] backdrop-blur-xl">
-          <a className="font-serif text-xl tracking-[0.18em] text-[#8b6841] transition-colors hover:text-[#c0a16e] focus-visible:ring-2 focus-visible:ring-[#c0a16e]" href="#hero" aria-label="Blush">
+          <a className="text-lg tracking-[0.2em] text-[#8b6841] transition-colors hover:text-[#c0a16e] focus-visible:ring-2 focus-visible:ring-[#c0a16e]" href="#hero" aria-label="Blush" lang="en" dir="ltr">
             {siteConfig.brandNameDisplay}
           </a>
 
-          <div className="hidden items-center gap-7 md:flex">
+          <div className="hidden items-center gap-5 lg:flex">
             {siteConfig.navigation.map((link) => (
-              <a key={link.href} className="text-sm text-[#5f5056] transition hover:text-[#21191d]" href={link.href} lang="en" dir="ltr">
+              <a key={link.href} className="text-xs text-[#5f5056] transition hover:text-[#21191d]" href={link.href} lang="en" dir="ltr">
                 {link.label}
               </a>
             ))}
           </div>
 
-          <a className="hidden rounded-full bg-[#21191d] px-5 py-2.5 text-sm text-white transition hover:bg-[#3a2a31] md:inline-flex" href={whatsappUrl} target="_blank" rel="noreferrer">
+          <a className="hidden rounded-full bg-[#21191d] px-5 py-2.5 text-sm text-white transition hover:bg-[#3a2a31] lg:inline-flex" href={whatsappUrl} target="_blank" rel="noreferrer">
             {siteConfig.ctaLabels.whatsapp}
           </a>
 
           <button
             ref={menuButtonRef}
             type="button"
-            className="grid h-12 w-12 place-items-center border border-[#eadfd9] text-[#21191d] focus-visible:ring-2 focus-visible:ring-[#8b6841] md:hidden"
+            className="grid h-12 w-12 place-items-center border border-[#eadfd9] text-[#21191d] focus-visible:ring-2 focus-visible:ring-[#8b6841] lg:hidden"
             onClick={() => setMobileOpen((value) => !value)}
             aria-label={mobileOpen ? "بستن منو" : "باز کردن منو"}
             aria-expanded={mobileOpen}
@@ -70,7 +70,7 @@ const Navbar = () => {
           <motion.div
             ref={menuRef}
             id="mobile-navigation"
-            className="fixed inset-x-4 top-20 z-[55] border border-white/[0.70] bg-white/[0.95] p-5 shadow-2xl backdrop-blur-xl md:hidden"
+            className="fixed inset-x-4 top-20 z-[55] border border-white/[0.70] bg-white/[0.95] p-5 shadow-2xl backdrop-blur-xl lg:hidden"
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}

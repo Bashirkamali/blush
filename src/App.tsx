@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import BackToTop from "./components/BackToTop";
 import FloralMotionBackdrop from "./components/FloralMotionBackdrop";
+import RemoteOrdering from "./components/RemoteOrdering";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <BrandStory />
         <Services />
         <Process />
+        <RemoteOrdering />
         <DailyVitrineGallery />
         <Testimonials />
         <FAQ />

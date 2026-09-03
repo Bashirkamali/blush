@@ -11,18 +11,20 @@ const Hero = () => {
       <div className="pointer-events-none absolute -right-28 top-20 h-80 w-80 rounded-full bg-[#f3c8da]/35 blur-3xl" />
       <div className="relative mx-auto grid max-w-7xl items-center gap-0 lg:min-h-[calc(100svh-7rem)] lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
         <div className="relative order-2 -mt-8 rounded-t-[2rem] bg-[#fff5f7] px-1 pb-2 pt-7 text-right [&>*]:relative [&>*]:z-20 lg:order-1 lg:mt-0 lg:rounded-none lg:bg-transparent lg:px-0 lg:py-8" dir="rtl">
-          <p className="mb-4 text-xs font-semibold tracking-[0.18em] text-[#8b6841] lg:mb-5">{siteConfig.hero.eyebrow}</p>
-          <h1 id="hero-title" className="max-w-2xl text-[2.15rem] font-light leading-[1.55] text-[#21191d] sm:text-5xl lg:text-6xl lg:leading-[1.4]" lang="en" dir="ltr">
+          <p className="mb-4 text-xs font-semibold tracking-[0.18em] text-[#8b6841] lg:mb-5" lang="en" dir="ltr">{siteConfig.hero.eyebrow}</p>
+          <h1 id="hero-title" className="max-w-2xl text-[1.9rem] font-light leading-[1.55] text-[#21191d] sm:text-4xl lg:text-5xl lg:leading-[1.4]" lang="en" dir="ltr">
             {siteConfig.hero.titlePrefix} <span className="text-[#a65d78]">{siteConfig.hero.titleEmphasis}</span>
           </h1>
           <p className="mt-4 max-w-xl text-sm leading-8 text-[#5f5056] sm:mt-6 sm:text-lg sm:leading-10">
             {siteConfig.hero.description}
           </p>
+          <p className="mt-2 max-w-xl text-xs leading-7 text-[#796a70] sm:text-sm sm:leading-8">
+            {siteConfig.hero.supportingText}
+          </p>
           <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center">
             <a className="btn-primary w-full sm:w-auto" href={whatsappUrl} target="_blank" rel="noreferrer">{siteConfig.hero.primaryCta}</a>
             <a className="btn-secondary w-full sm:w-auto" href="#vitrine">{siteConfig.hero.secondaryCta}</a>
           </div>
-          <p className="mt-4 text-xs leading-7 text-[#796a70]">{siteConfig.hero.availabilityNote}</p>
           <ul className="mt-6 grid grid-cols-3 gap-2 border-t border-[#e6d8d3] pt-5 text-center text-[0.68rem] leading-5 text-[#62545a] sm:mt-9 sm:gap-3 sm:pt-6 sm:text-right sm:text-sm sm:leading-7 lg:text-right">
             {siteConfig.hero.highlights.map((item) => (
               <li key={item.title}><strong className="block font-medium text-[#21191d]">{item.title}</strong>{item.description}</li>

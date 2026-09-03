@@ -50,6 +50,16 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* English display copy uses a lighter editorial serif; Persian stays Vazirmatn. */
+[lang="en"] {
+  font-family: "Bodoni 72", Didot, Baskerville, "Times New Roman", serif;
+  font-weight: 400;
+  font-kerning: normal;
+  font-feature-settings: "kern" 1, "liga" 1;
+  letter-spacing: 0.01em;
+  text-align: center;
+}
+
 .skip-link {
   position: fixed;
   top: 0.75rem;
@@ -106,7 +116,7 @@ video {
   }
 
   .section-heading h2 {
-    @apply text-3xl font-light leading-[1.65] text-[#21191d] md:text-5xl md:leading-[1.45];
+    @apply text-2xl font-light leading-[1.65] text-[#21191d] md:text-4xl md:leading-[1.45];
   }
 
   .section-index {

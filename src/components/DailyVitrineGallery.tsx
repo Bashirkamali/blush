@@ -49,16 +49,18 @@ const DailyVitrineGallery = () => {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7 }}
           >
-            <p className="section-index">۰۴</p>
             <h2 lang="en" dir="ltr">{siteConfig.sectionHeadings.gallery}</h2>
             <p className="mt-6 max-w-sm text-sm leading-8 text-[#66575d]">
               {siteConfig.gallery.description}
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row lg:flex-col">
+            <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
               <a className="btn-primary" href={whatsappUrl} target="_blank" rel="noreferrer">
-                {siteConfig.ctaLabels.startGift}
+                {siteConfig.gallery.similarCta}
               </a>
-              <a className="btn-secondary-dark" href={siteConfig.instagramUrl} target="_blank" rel="noreferrer">
+              <a className="btn-secondary-dark" href={siteConfig.dailyVitrineUrl} target="_blank" rel="noreferrer">
+                {siteConfig.ctaLabels.dailyVitrine}
+              </a>
+              <a className="btn-secondary-dark sm:col-span-2 lg:col-span-1" href={siteConfig.instagramUrl} target="_blank" rel="noreferrer">
                 {siteConfig.ctaLabels.instagram}
               </a>
             </div>
@@ -78,7 +80,7 @@ const DailyVitrineGallery = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.6, delay: index * 0.035 }}
-                aria-label={item.alt || item.caption || "نمایش تصویر بلاش"}
+                aria-label={`نمایش تصویر در اندازه بزرگ: ${item.alt}`}
               >
                 <img
                   src={item.src}
@@ -88,9 +90,6 @@ const DailyVitrineGallery = () => {
                   decoding="async"
                 />
                 <span className="pointer-events-none absolute inset-0 bg-[linear-gradient(145deg,rgba(255,255,255,0.18),transparent_42%,rgba(246,183,211,0.16))]" aria-hidden="true" />
-                <span className="absolute inset-x-3 bottom-3 rounded-full border border-white/70 bg-white/85 px-4 py-2 text-center text-xs leading-6 text-[#4f4348] shadow-sm backdrop-blur-md transition duration-300">
-                  {item.caption}
-                </span>
               </motion.button>
             ))}
           </div>
@@ -102,7 +101,7 @@ const DailyVitrineGallery = () => {
           className="fixed inset-0 z-[80] flex items-center justify-center bg-[#1c1417]/88 p-4 backdrop-blur"
           role="dialog"
           aria-modal="true"
-          aria-label={selectedItems[active]?.caption || "تصویر بلاش"}
+          aria-label={selectedItems[active]?.alt}
           onClick={closeGallery}
         >
           <div className="relative w-full max-w-3xl" onClick={(event) => event.stopPropagation()}>
