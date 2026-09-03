@@ -17,7 +17,7 @@ const FAQ = () => {
             transition={{ duration: 0.7 }}
           >
             <p className="section-index">۰۶</p>
-            <h2>{siteConfig.sectionHeadings.faq}</h2>
+            <h2 lang="en" dir="ltr">{siteConfig.sectionHeadings.faq}</h2>
           </motion.div>
 
           <div className="divide-y divide-[#eadfd9] border-y border-[#eadfd9]">

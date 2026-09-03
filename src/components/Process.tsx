@@ -14,7 +14,7 @@ const Process = () => {
             transition={{ duration: 0.7 }}
           >
             <p className="section-index">۰۳</p>
-            <h2>{siteConfig.sectionHeadings.process}</h2>
+            <h2 lang="en" dir="ltr">{siteConfig.sectionHeadings.process}</h2>
             <a className="mt-8 inline-flex text-sm text-[#806943] underline underline-offset-8" href={whatsappUrl} target="_blank" rel="noreferrer">
               {siteConfig.ctaLabels.whatsapp}
             </a>
@@ -31,7 +31,7 @@ const Process = () => {
                 transition={{ duration: 0.65, delay: index * 0.07 }}
               >
                 <span className="font-serif text-4xl font-light text-[#c0a16e]">{step.step}</span>
-                <h3 className="mt-8 text-xl font-light leading-9 text-[#21191d]">{step.title}</h3>
+                <h3 className="mt-8 text-xl font-light leading-9 text-[#21191d]" lang="en" dir="ltr">{step.title}</h3>
                 <p className="mt-4 text-sm leading-8 text-[#66575d]">{step.description}</p>
               </motion.article>
             ))}

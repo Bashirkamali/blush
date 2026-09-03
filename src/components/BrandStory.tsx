@@ -17,7 +17,7 @@ const BrandStory = () => {
           transition={{ duration: 0.7 }}
         >
           <p className="section-index">۰۱</p>
-          <h2>{brandStory.heading}</h2>
+          <h2 lang="en" dir="ltr">{brandStory.heading}</h2>
         </motion.div>
 
         <motion.div

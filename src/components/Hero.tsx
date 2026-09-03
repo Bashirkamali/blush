@@ -12,7 +12,7 @@ const Hero = () => {
       <div className="relative mx-auto grid max-w-7xl items-center gap-0 lg:min-h-[calc(100svh-7rem)] lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
         <div className="relative order-2 -mt-8 rounded-t-[2rem] bg-[#fff5f7] px-1 pb-2 pt-7 text-right [&>*]:relative [&>*]:z-20 lg:order-1 lg:mt-0 lg:rounded-none lg:bg-transparent lg:px-0 lg:py-8" dir="rtl">
           <p className="mb-4 text-xs font-semibold tracking-[0.18em] text-[#8b6841] lg:mb-5">{siteConfig.hero.eyebrow}</p>
-          <h1 id="hero-title" className="max-w-2xl text-[2.15rem] font-light leading-[1.55] text-[#21191d] sm:text-5xl lg:text-6xl lg:leading-[1.4]">
+          <h1 id="hero-title" className="max-w-2xl text-[2.15rem] font-light leading-[1.55] text-[#21191d] sm:text-5xl lg:text-6xl lg:leading-[1.4]" lang="en" dir="ltr">
             {siteConfig.hero.titlePrefix} <span className="text-[#a65d78]">{siteConfig.hero.titleEmphasis}</span>
           </h1>
           <p className="mt-4 max-w-xl text-sm leading-8 text-[#5f5056] sm:mt-6 sm:text-lg sm:leading-10">

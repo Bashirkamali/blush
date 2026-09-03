@@ -12,17 +12,17 @@ export const siteConfig = {
   taglineEn: "A floral experience studio in Shiraz",
 
   navigation: [
-    { label: "درباره بلاش", href: "#brand-story" },
-    { label: "راه‌های انتخاب", href: "#services" },
-    { label: "ویترین", href: "#vitrine" },
-    { label: "روند سفارش", href: "#process" },
+    { label: "About Blush", href: "#brand-story" },
+    { label: "Ways to Choose", href: "#services" },
+    { label: "Vitrine", href: "#vitrine" },
+    { label: "The Process", href: "#process" },
   ],
 
   hero: {
     title: "BLUSH",
-    subtitle: "گل، وقتی باید به‌یاد بماند.",
-    titlePrefix: "گل، وقتی باید",
-    titleEmphasis: "به‌یاد بماند.",
+    subtitle: "Flowers, when they’re meant to be remembered.",
+    titlePrefix: "Flowers, when they’re meant",
+    titleEmphasis: "to be remembered.",
     description:
       "گل و هدیه‌ای متناسب با آدم، مناسبت و سلیقه شما؛ با انتخاب گل‌های فصل، طراحی اختصاصی و نگاه بلاش.",
     primaryCta: "گفت‌وگو با بلاش در واتساپ",
@@ -45,7 +45,7 @@ export const siteConfig = {
   },
 
   brandStory: {
-    heading: "بلاش، فراتر از انتخاب گل",
+    heading: "More Than Flowers",
     subtitle: "گل‌ها ماندگار نیستند؛ حسی که با انتخاب درست می‌سازند، می‌ماند.",
     paragraphs: [
       "در بلاش، هر سفارش با توجه به مناسبت، سلیقه، رنگ، فصل و جزئیات همان موقعیت شکل می‌گیرد.",
@@ -53,45 +53,45 @@ export const siteConfig = {
   },
 
   sectionHeadings: {
-    services: "راه‌های انتخاب از بلاش",
-    process: "انتخاب درست، از یک گفت‌وگوی کوتاه شروع می‌شود.",
-    gallery: "نمونه‌هایی از دنیای بلاش",
-    standards: "استانداردهای بلاش",
-    faq: "پرسش‌های رایج",
+    services: "Ways to Choose Blush",
+    process: "A Thoughtful Choice Starts with a Conversation",
+    gallery: "The World of Blush",
+    standards: "The Blush Standard",
+    faq: "Frequently Asked Questions",
   },
 
   services: [
     {
-      title: "ویترین روز",
+      title: "The Daily Vitrine",
       description: "انتخاب‌هایی آماده از گل‌های تازه و ترکیب‌های همان روز.",
     },
     {
-      title: "طراحی اختصاصی",
+      title: "Bespoke Design",
       description: "طراحی بر اساس مناسبت، سلیقه، رنگ و حدود بودجه شما.",
     },
     {
-      title: "بسته‌بندی و ارائه",
+      title: "Packaging & Presentation",
       description: "جزئیاتی هماهنگ با سبک و حال‌وهوای سفارش.",
     },
     {
-      title: "سفارش‌های ویژه",
+      title: "Special Orders",
       description: "برای سفارش‌های خاص و بزرگ، پس از بررسی زمان و امکان اجرا.",
     },
   ],
 
   standards: [
     {
-      title: "جزئیات، نه فقط حجم",
+      title: "Details, Not Just Volume",
       description:
         "هر ترکیب با توجه به رنگ، فرم و تناسب گل‌ها شکل می‌گیرد.",
     },
     {
-      title: "راهنمایی پیش از انتخاب",
+      title: "Guidance Before You Choose",
       description:
         "اگر هنوز انتخاب مشخصی ندارید، از مناسبت، سلیقه و بودجه شروع می‌کنیم.",
     },
     {
-      title: "ارائه‌ای هماهنگ",
+      title: "A Cohesive Presentation",
       description:
         "از انتخاب گل تا بسته‌بندی، جزئیات باید بخشی از یک تصویر واحد باشند.",
     },
@@ -100,19 +100,19 @@ export const siteConfig = {
   process: [
     {
       step: "۰۱",
-      title: "برای چه کسی و چه مناسبتی؟",
+      title: "The Person & the Occasion",
       description:
         "مناسبت، سلیقه و حال‌وهوایی که در ذهن دارید را با ما در میان بگذارید.",
     },
     {
       step: "۰۲",
-      title: "سبک و حدود بودجه را مشخص می‌کنیم.",
+      title: "Style & Budget",
       description:
         "بر اساس زمان، رنگ و بودجه، انتخاب‌ها را محدود و دقیق‌تر می‌کنیم.",
     },
     {
       step: "۰۳",
-      title: "طرح نهایی را با هم انتخاب می‌کنیم.",
+      title: "The Final Design",
       description:
         "پس از تأیید، بلاش طراحی، بسته‌بندی و آماده‌سازی سفارش را انجام می‌دهد.",
     },
@@ -148,14 +148,14 @@ export const siteConfig = {
   ],
 
   finalCta: {
-    heading: "برای هدیه‌ای که قرار است به‌یاد بماند، از همین‌جا شروع کنیم.",
+    heading: "For a Gift Meant to Be Remembered, Let’s Start Here.",
   },
 
   footer: {
     description:
       "بلاش، استودیوی گل و هدیه در شیراز؛ برای انتخابی متناسب با آدم، مناسبت و سلیقه شما.",
-    quickLinksHeading: "مسیرهای سریع",
-    contactHeading: "تماس",
+    quickLinksHeading: "Explore",
+    contactHeading: "Contact",
     quickLinks: [
       { label: "ویترین بلاش", href: "#vitrine" },
       { label: "راه‌های انتخاب", href: "#services" },

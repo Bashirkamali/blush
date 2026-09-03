@@ -29,7 +29,7 @@ const Services = () => {
             transition={{ duration: 0.7 }}
           >
             <p className="section-index">۰۲</p>
-            <h2>{siteConfig.sectionHeadings.services}</h2>
+            <h2 lang="en" dir="ltr">{siteConfig.sectionHeadings.services}</h2>
           </motion.div>
 
           <div className="grid grid-cols-2 gap-2.5 sm:gap-4">
@@ -45,7 +45,7 @@ const Services = () => {
                 <div className="grid h-11 w-11 place-items-center rounded-full bg-[#fbe9f0] text-[#a65d78] transition duration-500 group-hover:bg-[#f6d6e5] group-hover:text-[#8b6841] md:h-12 md:w-12">
                   <ServiceIcon index={index} />
                 </div>
-                <h3 className="mt-4 text-base font-medium leading-7 text-[#21191d] sm:text-lg md:text-xl">{service.title}</h3>
+                <h3 className="mt-4 text-base font-medium leading-7 text-[#21191d] sm:text-lg md:text-xl" lang="en" dir="ltr">{service.title}</h3>
                 <p className="mt-2 text-xs leading-6 text-[#796a70] sm:text-sm sm:leading-7">{service.description}</p>
               </motion.article>
             ))}

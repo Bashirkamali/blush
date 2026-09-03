@@ -50,7 +50,7 @@ const DailyVitrineGallery = () => {
             transition={{ duration: 0.7 }}
           >
             <p className="section-index">۰۴</p>
-            <h2>{siteConfig.sectionHeadings.gallery}</h2>
+            <h2 lang="en" dir="ltr">{siteConfig.sectionHeadings.gallery}</h2>
             <p className="mt-6 max-w-sm text-sm leading-8 text-[#66575d]">
               {siteConfig.gallery.description}
             </p>

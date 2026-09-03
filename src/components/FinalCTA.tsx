@@ -13,7 +13,7 @@ const FinalCTA = () => {
       >
         <div>
           <p className="section-index text-[#c0a16e]">۰۷</p>
-          <h2 className="max-w-3xl text-3xl font-light leading-[1.7] md:text-5xl md:leading-[1.55]">
+          <h2 className="max-w-3xl text-3xl font-light leading-[1.7] md:text-5xl md:leading-[1.55]" lang="en" dir="ltr">
             {siteConfig.finalCta.heading}
           </h2>
         </div>

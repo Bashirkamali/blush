@@ -14,7 +14,7 @@ const Footer = () => {
         </div>
 
         <div>
-          <h4 className="text-sm text-white">{siteConfig.footer.quickLinksHeading}</h4>
+          <h4 className="text-sm text-white" lang="en" dir="ltr">{siteConfig.footer.quickLinksHeading}</h4>
           <ul className="mt-5 space-y-3 text-sm">
             {siteConfig.footer.quickLinks.map((link) => (
               <li key={link.href}><a href={link.href}>{link.label}</a></li>
@@ -23,7 +23,7 @@ const Footer = () => {
         </div>
 
         <div>
-          <h4 className="text-sm text-white">{siteConfig.footer.contactHeading}</h4>
+          <h4 className="text-sm text-white" lang="en" dir="ltr">{siteConfig.footer.contactHeading}</h4>
           <ul className="mt-5 space-y-3 text-sm">
             <li><a href={whatsappUrl} target="_blank" rel="noreferrer">واتساپ</a></li>
             <li><a href={siteConfig.instagramUrl} target="_blank" rel="noreferrer">اینستاگرام</a></li>

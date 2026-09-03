@@ -35,7 +35,7 @@ const Navbar = () => {
 
           <div className="hidden items-center gap-7 md:flex">
             {siteConfig.navigation.map((link) => (
-              <a key={link.href} className="text-sm text-[#5f5056] transition hover:text-[#21191d]" href={link.href}>
+              <a key={link.href} className="text-sm text-[#5f5056] transition hover:text-[#21191d]" href={link.href} lang="en" dir="ltr">
                 {link.label}
               </a>
             ))}
@@ -82,6 +82,8 @@ const Navbar = () => {
                   key={link.href}
                   className="px-3 py-3 text-[#3a2a31]"
                   href={link.href}
+                  lang="en"
+                  dir="ltr"
                   onClick={() => { setMobileOpen(false); menuButtonRef.current?.focus(); }}
                 >
                   {link.label}

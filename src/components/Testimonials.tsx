@@ -14,7 +14,7 @@ const Testimonials = () => {
             transition={{ duration: 0.7 }}
           >
             <p className="section-index">۰۵</p>
-            <h2>{siteConfig.sectionHeadings.standards}</h2>
+            <h2 lang="en" dir="ltr">{siteConfig.sectionHeadings.standards}</h2>
           </motion.div>
 
           <div className="grid gap-4 md:grid-cols-3">
@@ -28,7 +28,7 @@ const Testimonials = () => {
                 transition={{ duration: 0.65, delay: index * 0.06 }}
               >
                 <span className="block h-px w-14 bg-[#c0a16e]" />
-                <h3 className="mt-8 text-xl font-light leading-9 text-[#21191d]">{item.title}</h3>
+                <h3 className="mt-8 text-xl font-light leading-9 text-[#21191d]" lang="en" dir="ltr">{item.title}</h3>
                 <p className="mt-4 text-sm leading-8 text-[#66575d]">{item.description}</p>
               </motion.article>
             ))}
