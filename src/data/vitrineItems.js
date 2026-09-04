@@ -46,6 +46,46 @@ const manualMeta = {
   'blush-world-10-acrylic-orchid-box.webp': {
     caption: 'باکس شفاف ارکیده و رز',
     alt: 'باکس شفاف با ارکیده سفید و رز صورتی'
+  },
+  'blush-world-7237-studio-arrangement.webp': {
+    caption: 'گل‌آرایی باشکوه صورتی و ارکیده',
+    alt: 'گل‌آرایی بزرگ صورتی و بنفش با رز، لیلیوم و ارکیده روی استند سفید'
+  },
+  'blush-world-7239-studio-arrangement.webp': {
+    caption: 'چیدمان رز و پرنده بهشتی',
+    alt: 'چیدمان رز صورتی و زرد، ارکیده سفید و پرنده بهشتی در گلدان تیره'
+  },
+  'blush-world-7240-studio-arrangement.webp': {
+    caption: 'باکس گل زرد و صورتی',
+    alt: 'باکس گل استوانه‌ای زرد با رز صورتی، گل‌های سفید و روبان'
+  },
+  'blush-world-7241-studio-arrangement.webp': {
+    caption: 'باکس گل سبز و رز رنگی',
+    alt: 'باکس گل استوانه‌ای سبز با رز صورتی و نارنجی، آنتوریوم و روبان'
+  },
+  'blush-world-7243-studio-arrangement.webp': {
+    caption: 'باکس گل آبی و ارکیده سفید',
+    alt: 'باکس گل آبی با ارکیده سفید، رز کرم و آنتوریوم سرمه‌ای'
+  },
+  'blush-world-7244-studio-arrangement.webp': {
+    caption: 'گل‌آرایی ارکیده و رز شرابی',
+    alt: 'گل‌آرایی بزرگ شرابی و بنفش با ارکیده، رز و آنتوریوم در گلدان مشکی'
+  },
+  'blush-world-15-colorful-blue-box.webp': {
+    caption: 'باکس گل آبی رنگارنگ',
+    alt: 'باکس گل آبی با رز صورتی و نارنجی، میخک و گل‌های زرد و بنفش'
+  },
+  'blush-world-16-pastel-orchid-vase.webp': {
+    caption: 'گلدان ارکیده و رز پاستلی',
+    alt: 'گل‌آرایی پاستلی با ارکیده سفید و رز صورتی و کرم در گلدان روشن'
+  },
+  'blush-world-17-sunflower-basket.webp': {
+    caption: 'سبد گل آفتابگردان',
+    alt: 'سبد گل با آفتابگردان، رز نارنجی و صورتی و گل‌های سفید روی زمینه صورتی'
+  },
+  'blush-world-18-colorful-ceramic-vase.webp': {
+    caption: 'گلدان رنگارنگ رز و گل‌های فصلی',
+    alt: 'گل‌آرایی رنگارنگ با رز، گل‌های بنفش و زرد در گلدان سرامیکی'
   }
 };
 
@@ -82,7 +122,17 @@ export const items = Object.entries(modules)
       'blush-world-07-colorful-basket-arrangement.webp',
       'blush-world-08-blush-studio-arrangement.webp',
       'blush-world-09-orchid-installation.webp',
-      'blush-world-10-acrylic-orchid-box.webp'
+      'blush-world-10-acrylic-orchid-box.webp',
+      'blush-world-7237-studio-arrangement.webp',
+      'blush-world-7239-studio-arrangement.webp',
+      'blush-world-7240-studio-arrangement.webp',
+      'blush-world-7241-studio-arrangement.webp',
+      'blush-world-7243-studio-arrangement.webp',
+      'blush-world-7244-studio-arrangement.webp',
+      'blush-world-15-colorful-blue-box.webp',
+      'blush-world-16-pastel-orchid-vase.webp',
+      'blush-world-17-sunflower-basket.webp',
+      'blush-world-18-colorful-ceramic-vase.webp'
     ];
     const aName = a.name;
     const bName = b.name;

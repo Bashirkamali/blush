@@ -7,7 +7,7 @@ const DailyVitrineGallery = () => {
   const [active, setActive] = useState<number | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const triggerRefs = useRef<Array<HTMLButtonElement | null>>([]);
-  const selectedItems = items.slice(0, 10);
+  const selectedItems = items.slice(0, 20);
   const closeGallery = useCallback(() => {
     const previous = active;
     setActive(null);
