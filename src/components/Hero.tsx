@@ -10,7 +10,7 @@ const Hero = () => {
     <section className="relative overflow-hidden bg-[#fff5f7] px-5 pb-10 pt-24 sm:px-8 lg:px-12 lg:pb-20 lg:pt-28" aria-labelledby="hero-title">
       <div className="pointer-events-none absolute -right-28 top-20 h-80 w-80 rounded-full bg-[#f3c8da]/35 blur-3xl" />
       <div className="relative mx-auto grid max-w-7xl items-center gap-0 lg:min-h-[calc(100svh-7rem)] lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-        <div className="relative order-2 -mt-8 rounded-t-[2rem] bg-[#fff5f7] px-1 pb-2 pt-7 text-right [&>*]:relative [&>*]:z-20 lg:order-1 lg:mt-0 lg:rounded-none lg:bg-transparent lg:px-0 lg:py-8" dir="rtl">
+        <div className="relative z-[18] order-2 -mt-8 rounded-t-[2rem] bg-white/80 px-1 pb-2 pt-7 text-right backdrop-blur-[1px] [&>*]:relative [&>*]:z-20 lg:order-1 lg:mt-0 lg:rounded-none lg:bg-transparent lg:px-0 lg:py-8 lg:backdrop-blur-none" dir="rtl">
           <p className="mb-4 text-xs font-semibold tracking-[0.18em] text-[#8b6841] lg:mb-5" lang="en" dir="ltr">{siteConfig.hero.eyebrow}</p>
           <h1 id="hero-title" className="max-w-2xl text-[1.9rem] font-light leading-[1.55] text-[#21191d] sm:text-4xl lg:text-5xl lg:leading-[1.4]" lang="en" dir="ltr">
             {siteConfig.hero.titlePrefix} <span className="text-[#a65d78]">{siteConfig.hero.titleEmphasis}</span>
