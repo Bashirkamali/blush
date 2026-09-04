@@ -10,8 +10,8 @@ export const siteConfig = {
   ],
   hero: {
     titlePrefix: "Where Flowers Become", titleEmphasis: "Memories",
-    description: "از هر کجای دنیا سفارش بدهید؛ گل در شیراز و به دست کسی که برایتان مهم است می‌رسد.",
-    supportingText: "استودیوی گل و هدیه در شیراز. هر سفارش بر پایهٔ مناسبت، گیرنده و گل‌های همان فصل طراحی می‌شود.",
+    description: "بلاش جایی‌ست که احساسات شما را به زبان گل‌ها، به دست عزیزانتان می‌رساند.",
+    supportingText: "از هر کجای این کرهٔ خاکی می‌توانید با ما در تماس باشید و در کمتر از چند ساعت، سفارش شما به دست عزیزانتان خواهد رسید.",
     primaryCta: "سفارش در واتساپ", secondaryCta: "دیدن ویترین", eyebrow: "BLUSH — FLORAL STUDIO, SHIRAZ",
     highlights: [
       { title: "طراحی اختصاصی", description: "از صفر، برای هر سفارش" },
