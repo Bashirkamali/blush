@@ -31,7 +31,7 @@ const Hero = () => {
             ))}
           </ul>
         </div>
-        <motion.div className="relative order-1 min-h-[24rem] lg:order-2 lg:min-h-[calc(100svh-10rem)]" initial={reduceMotion ? false : { opacity: 0, x: -18 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
+        <motion.div className="relative z-[17] order-1 min-h-[24rem] lg:order-2 lg:min-h-[calc(100svh-10rem)]" initial={reduceMotion ? false : { opacity: 0, x: -18 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
           <picture>
             <source media="(max-width: 767px)" srcSet={heroImageMobile} />
             <img src={heroImage} alt={siteConfig.hero.imageAlt} className="absolute inset-0 h-full w-full rounded-t-[6rem] object-cover object-center shadow-[0_30px_85px_rgba(214,120,159,0.22)] lg:rounded-t-[9rem]" width="1100" height="1462" {...{ fetchpriority: "high" }} />
