@@ -17,14 +17,14 @@ const FinalCTA = () => {
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.75 }}
       >
-        <div className="max-w-3xl text-right">
-          <h2 className="max-w-3xl !text-right text-2xl font-light leading-[1.7] md:text-4xl md:leading-[1.55]" lang="en" dir="ltr">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="max-w-3xl !text-center text-2xl font-light leading-[1.7] md:text-4xl md:leading-[1.55]" lang="en" dir="ltr">
             {siteConfig.finalCta.heading}
           </h2>
-          <p className="mt-5 !text-right text-2xl leading-9" lang="en" dir="ltr">{siteConfig.finalCta.description}</p>
+          <p className="mt-5 !text-center text-2xl leading-9" lang="en" dir="ltr">{siteConfig.finalCta.description}</p>
           <p className="mt-3 text-sm text-white/70">{siteConfig.finalCta.sub}</p>
           <p className="mt-7 font-medium text-[#c0a16e]">{siteConfig.finalCta.hours}</p>
-          <p className="mt-2 max-w-2xl text-sm leading-8 text-white/65">{siteConfig.finalCta.hoursNote}</p>
+          <p className="mx-auto mt-2 max-w-2xl text-sm leading-8 text-white/65">{siteConfig.finalCta.hoursNote}</p>
         </div>
 
         <div className="mt-10 grid gap-4 lg:grid-cols-2">
