@@ -9,7 +9,7 @@ const ContactIcon = ({ type }: { type: "phone" | "whatsapp" | "location" }) => {
 
 const FinalCTA = () => {
   return (
-    <section className="bg-[#21191d] px-5 py-20 text-white sm:px-8 md:py-28 lg:px-12" id="contact" dir="rtl" aria-label="تماس با بلاش">
+    <section className="relative z-[17] bg-[#21191d] px-5 py-20 text-white sm:px-8 md:py-28 lg:px-12" id="contact" dir="rtl" aria-label="تماس با بلاش">
       <motion.div
         className="mx-auto max-w-7xl"
         initial={{ opacity: 0, y: 24 }}
@@ -17,11 +17,11 @@ const FinalCTA = () => {
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.75 }}
       >
-        <div className="max-w-3xl">
-          <h2 className="max-w-3xl text-2xl font-light leading-[1.7] md:text-4xl md:leading-[1.55]" lang="en" dir="ltr">
+        <div className="max-w-3xl text-right">
+          <h2 className="max-w-3xl !text-right text-2xl font-light leading-[1.7] md:text-4xl md:leading-[1.55]" lang="en" dir="ltr">
             {siteConfig.finalCta.heading}
           </h2>
-          <p className="mt-5 text-2xl leading-9" lang="en" dir="ltr">{siteConfig.finalCta.description}</p>
+          <p className="mt-5 !text-right text-2xl leading-9" lang="en" dir="ltr">{siteConfig.finalCta.description}</p>
           <p className="mt-3 text-sm text-white/70">{siteConfig.finalCta.sub}</p>
           <p className="mt-7 font-medium text-[#c0a16e]">{siteConfig.finalCta.hours}</p>
           <p className="mt-2 max-w-2xl text-sm leading-8 text-white/65">{siteConfig.finalCta.hoursNote}</p>
@@ -29,8 +29,8 @@ const FinalCTA = () => {
 
         <div className="mt-10 grid gap-4 lg:grid-cols-2">
           {siteConfig.branches.map((branch) => (
-            <article className="border border-white/15 bg-white/[0.04] p-6 md:p-7" key={branch.name}>
-              <h3 className="text-xl text-white" lang="en" dir="ltr">{branch.name}</h3>
+            <article className="border border-white/15 bg-white/[0.04] p-6 text-right md:p-7" key={branch.name}>
+              <h3 className="!text-right text-xl text-white" lang="en" dir="ltr">{branch.name}</h3>
               <p className="mt-4 font-medium text-[#e3c58f]">{branch.label}</p>
               <address className="mt-2 min-h-14 not-italic text-sm leading-7 text-white/65">{branch.address}</address>
               <div className="mt-6 flex flex-wrap gap-3">
